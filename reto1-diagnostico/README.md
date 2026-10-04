@@ -1,6 +1,6 @@
 # H1 Carga y contrato de datos
 
-H1 comprende únicamente ingesta, normalización y calidad de datos; **no completa el Reto 1**. El diagnóstico y sus conclusiones pertenecen a H2, aún no iniciado. No calcula disponibilidad, causa raíz, señales tempranas ni pronósticos. No ejecuta el BAT, Azure ni servicios externos. Los únicos accesos externos de esta etapa fueron lecturas gratuitas de documentación oficial sobre formatos.
+H1 comprende únicamente ingesta, normalización y calidad de datos; **no completa el Reto 1**. El diagnóstico y sus conclusiones pertenecen a H2, ahora entregado para revisión en [H2_DIAGNOSTICO.md](H2_DIAGNOSTICO.md). H1 no calcula disponibilidad, causa raíz, señales tempranas ni pronósticos. No ejecuta el BAT, Azure ni servicios externos. Los únicos accesos externos de H1 fueron lecturas gratuitas de documentación oficial sobre formatos.
 
 ## Reproducir
 
@@ -82,6 +82,6 @@ Revisar personalmente antes de aceptar H1:
 - La regla de deduplicar solo archivos completos y la limitación del matching entre fuentes.
 - Ejecutar los tres comandos principales y comprobar que el resumen coincide. La integridad de los originales no prueba que los datos sintéticos representen la realidad de un servicio.
 
-H1 está aprobado por el usuario, quien autorizó su commit y push. H2 requiere una autorización posterior; no se inicia con el cierre de H1.
+H1 está aprobado y versionado. H2 fue autorizado posteriormente y está implementado para revisión; su aprobación no se presume. H3 no está autorizado.
 
 El post-mortem posterior tendrá fuente independiente `reto1-diagnostico/POSTMORTEM.md` y versión final paginada `reto1-diagnostico/POSTMORTEM.pdf`, con un máximo verificable de 3 páginas. No es este README ni H1_CALIDAD.md; no se redacta en H1.

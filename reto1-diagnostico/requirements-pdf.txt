@@ -1,0 +1,6 @@
+# Optional PDF generation and structural QA only. Analysis/tests use stdlib.
+# Exact versions available and exercised for this deliverable.
+# ReportLab includes redistributable Bitstream Vera TrueType fonts;
+# the renderer embeds them. See FONT_LICENSE.txt.
+reportlab==4.4.9
+pypdf==6.10.0

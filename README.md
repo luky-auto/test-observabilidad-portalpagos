@@ -1,13 +1,24 @@
 # Prueba técnica de Observabilidad y Automatización
 
-Preparación del caso sintético PortalPagos. **Estado: H0 aprobado; H1 completado y aprobado; los cinco retos todavía no están completados.** H1 cubre únicamente ingesta, normalización y calidad de datos. El diagnóstico y el post-mortem del Reto 1 corresponden a H2, no iniciado. No se han ejecutado comandos contra Azure ni creado recursos.
+Caso sintético PortalPagos. **Estado: H0, H1 y H2 aprobados; Reto 1 cerrado.** H1 cubre ingesta, normalización y calidad; H2 entrega el diagnóstico y post-mortem del Reto 1. Los retos 2–5 no se han iniciado. No se han ejecutado comandos contra Azure ni creado recursos.
+
+Entregables H2: [diagnóstico técnico](reto1-diagnostico/H2_DIAGNOSTICO.md), [post-mortem fuente](reto1-diagnostico/POSTMORTEM.md), [PDF ejecutivo](reto1-diagnostico/POSTMORTEM.pdf) y [evidencias](evidencias/publicables/h2-evidence.json). Los comandos de análisis están en el diagnóstico. H1/H2 analíticos usan biblioteca estándar; únicamente la creación/verificación de PDF requiere paquetes opcionales:
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r reto1-diagnostico/requirements-pdf.txt
+.\.venv\Scripts\python.exe reto1-diagnostico/h2_reports.py
+.\.venv\Scripts\python.exe reto1-diagnostico/render_postmortem.py
+```
+
+Omitir la creación si `.venv` ya existe; si no tiene pip, ejecutar `python -m ensurepip` con ese entorno. Las versiones fijadas son las usadas para verificar el PDF, no requisitos del parser. Para inspección visual instalar Poppler y ejecutar `pdftoppm -png reto1-diagnostico/POSTMORTEM.pdf work-private/h2/page` (crear antes `work-private/h2/`). Revisar cada imagen; el conteo automático no reemplaza la revisión. Objetivo de compatibilidad Python 3.11+; ejecución real en 3.12.14, sin validación directa de 3.11.
 
 ## Cómo empezar
 
 1. Leer [AGENTS.md](AGENTS.md), [PLAN.md](PLAN.md) y [DECISION_LOG.md](DECISION_LOG.md).
 2. Mantener localmente el kit autorizado en `input-private/kit_prueba_portalpagos/` y el enunciado DOCX en `input-private/`. Esta carpeta está excluida de Git y es de solo lectura por regla de trabajo; no se han cambiado sus permisos del sistema.
 3. Verificar con `git status --short` y `git check-ignore input-private/kit_prueba_portalpagos/scripts/mantenimiento_diario.bat` que las entradas no se proponen para versionar. No abrir ni ejecutar el BAT sin protección de su credencial.
-4. Seguir la [guía de reproducción de H1](reto1-diagnostico/README.md): objetivo de compatibilidad Python 3.11 o posterior; ejecución comprobada en Python 3.12.14, sin validación directa de 3.11. Únicamente biblioteca estándar, comandos con `py -3.11` o `.venv` local. No requiere paquetes externos ni `requirements.txt`. H2 permanece pendiente de autorización.
+4. Seguir la [guía de reproducción de H1](reto1-diagnostico/README.md): objetivo de compatibilidad Python 3.11 o posterior; ejecución comprobada en Python 3.12.14, sin validación directa de 3.11. Ingestión y análisis usan biblioteca estándar; los paquetes opcionales anteriores son solo para PDF. H2 completado y aprobado; H3 pendiente y no autorizado.
 
 El kit no se distribuye con el repositorio. La reproducción futura requerirá acceso legítimo al kit o fixtures sintéticos claramente identificados. El plazo es de cinco días desde la recepción según el enunciado; la fecha de recepción no está confirmada.
 

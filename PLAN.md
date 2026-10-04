@@ -2,9 +2,18 @@
 
 Fecha: 2026-10-03 (America/Bogota). Alcance inicial máximo: **20 horas**, incluidas preparación, pruebas, evidencia, revisión y reserva. El enunciado estima 12–16 horas y fija 5 días desde la recepción; la fecha de recepción no está confirmada, por lo que no se calcula vencimiento.
 
-Estado: **H0 completado y aprobado por el usuario**, con cierre registrado el **2026-10-03 a las 20:37:32 (America/Bogota, UTC-05:00)**. **H1 completado y aprobado por el usuario**, con cierre registrado el **2026-10-03 a las 21:47:09 (America/Bogota, UTC-05:00)** según el reloj consultado en esta revisión (cierre técnico anterior: 20:59:53); H2–H7 pendientes y no iniciados. Ninguno de los cinco retos está resuelto. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
+Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-03 a las 20:37:32 y 21:47:09 (Bogotá), respectivamente. **H2 completado y aprobado; Reto 1 cerrado**, el 2026-10-04 a las 02:29:13 (America/Bogota, UTC-05). H3 pendiente y no iniciado; H4–H7 no iniciados. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
 
 ## Secuencia y prioridades
+
+| Hitos | Reto correspondiente |
+|---|---|
+| H1 y H2 | Reto 1: ingesta/calidad y diagnóstico/post-mortem |
+| H3 | Reto 2: mantenimiento |
+| H4 | Reto 3: Azure |
+| H5 | Reto 4: triage con IA |
+| H6 | Reto 5: propuesta de 90 días |
+| H0 y H7 | Preparación y cierre transversales |
 
 | Hito | Prioridad | Máximo | Dependencia |
 |---|---|---:|---|
@@ -60,6 +69,17 @@ Estado: **H0 completado y aprobado por el usuario**, con cierre registrado el **
 - **Aceptación:** cubrir las cinco preguntas del reto sin equiparar tasa de éxito por petición a disponibilidad temporal; separar hechos, hipótesis y supuestos; exportar el post-mortem a PDF, verificar mediante herramienta el total de páginas (máximo 3), revisar visualmente cada página y registrar el resultado. Markdown no demuestra paginación. Revisión del usuario registrada.
 - **Riesgos:** correlación presentada como causalidad; ausencia de logs presentada como salud; falsa precisión del pronóstico.
 - **Tiempo máximo:** 3 h.
+
+#### Resultado verificado de H2
+
+- Diagnóstico reproducible: `h2_analyze.py`, catálogo E-001–E-009 en `evidencias/publicables/h2-evidence.json` y `H2_DIAGNOSTICO.md`. Markdown regenerable con `h2_reports.py`.
+- Post-mortem independiente: `POSTMORTEM.md` y `POSTMORTEM.pdf`, **2 páginas**, generado con `render_postmortem.py`; ambas páginas renderizadas e inspeccionadas, sin texto cortado o ilegible.
+- Resultado: degradación definida desde ventana 11:50; primer 5xx de confirmación 13:23:45; AppOffline 14:38–15:04 del 18. Éxito HTTP semanal observado: APIs 98,349%, salud integrada 99,742%; no se declara disponibilidad temporal exacta.
+- Causa inmediata respaldada: errores de memoria, terminaciones y pool deshabilitado. Retención de caché como hipótesis de alta confianza, pendiente de dumps/código. Disco: escenarios condicionales de 30–106 h al cierre de la muestra; sin certeza de agotamiento real.
+- Validación: 33 tests (21 H1 + 12 H2) aprobados; 33 controles H1 aprobados; análisis final repetido con JSON idéntico, cotejado con la evidencia publicable. No se modifica ingestión H1.
+- Python: objetivo 3.11+, ejecución comprobada 3.12.14; 3.11 no probado directamente. Análisis/pruebas estándar; generación PDF usa dependencias opcionales fijadas en `requirements-pdf.txt` y revisión con Poppler.
+- Control de tiempo parcial: 2026-10-04 00:43:00–00:59:37 Bogotá (16 min 37 s observados), sin incluir cierre documental posterior. No representa una medición completa del esfuerzo ni cambia el máximo de 3 h.
+- Revisión humana aprobada por el usuario. Se conservan los límites declarados: definición de APIs y denominador; hora supuesta de eventos/tickets; hipótesis de caché; umbrales analíticos y sensibilidad de disco. Cierre autorizado para commit y push; sin Azure ni inicio de H3.
 
 ### H3 Mantenimiento del Reto 2
 

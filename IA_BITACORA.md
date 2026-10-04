@@ -69,3 +69,31 @@ Los límites anteriores correspondían a H0. En H1 sí existen pruebas de ingest
 **Ejecución real:** `py -3.11 --version` indicó que no existe una instalación registrada. Se creó una `.venv` local ignorada, sin paquetes externos, con el Python 3.12.14 disponible. Desde `.venv` se ejecutaron `-m unittest discover -s tests -p test_h1.py -v` (**21 PASS**), `h1_ingest.py --output work-private/h1-repro` y `verify_h1.py --output work-private/h1-repro --reference evidencias/publicables/h1-summary.json` (**33 PASS**). La referencia publicada no cambió. No se afirma haber probado Python 3.11 ni otro sistema operativo.
 
 **Revisión:** búsqueda de rutas locales en archivos rastreados y candidatos no ignorados: 12 archivos, cero coincidencias; `git diff --check` sin errores. Se actualizaron ambas guías, el alcance de H1 en el informe y la planificación de H2; no se redactó el post-mortem. Sin staging, commit, push ni inicio de H2.
+
+## Prompt importante 04 y ejecución de H2
+
+**2026-10-04, Bogotá. Solicitud real resumida:** completar exclusivamente el diagnóstico Reto 1 usando H1; explicar cronología, causa con incertidumbre, disponibilidad de negocio frente a salud, señales y riesgos/pronóstico; correlacionar todas las fuentes, producir evidencias estables y pruebas, ejecutar dos veces, redactar post-mortem independiente máximo tres páginas y verificar renderizado. Sin Azure, commit/push ni H3.
+
+**Herramientas y respuesta:** Codex, PowerShell, Python 3.12.14 y biblioteca estándar para consultas, cálculos y pruebas. Habilidad PDF consultada; ReportLab 4.4.9 y pypdf 6.10.0 disponibles para autoría/conteo, Poppler para renderizado y visor de imágenes para inspección real. No subagentes ni servicios Azure. Código generado: análisis H2, pruebas críticas, informes Markdown reproducibles y renderer PDF; catálogo E-001–E-009.
+
+**Validación real:** H1 pasó 33 verificaciones antes del análisis; 33 pruebas unitarias (21 H1 y 12 H2) pasaron. Se ejecutó dos veces la versión final del análisis y se compararon hashes con la copia publicable: iguales. Indicadores generados: API 82617/84004 éxitos, salud 20101/20153; se documentó que son métricas por solicitud y no de tiempo. El contraste IIS/HTTPERR impidió presentar el 100% parcial de salud como resultado integrado.
+
+**Incidencia real de generación:** el primer generador Markdown emitió `SyntaxWarning` por escapes de rutas relativas en un literal Python; se cambió a literal raw y se regeneró sin esa advertencia. No afectó las cifras ni fue un error causal del diagnóstico. Poppler emitió una advertencia sobre la fuente Symbol; ambos PNG se generaron y fueron inspeccionados sin caracteres rotos, recortes o solapamientos. No se inventan otras equivocaciones.
+
+**PDF verificado:** dos páginas con texto extraíble, renderizadas por separado y vistas completas. Contenido ejecutivo sin código, hashes o instrucciones de parsing; referencias discretas a E-001–E-009. Datos derivados masivos y PNG solo en `work-private/`.
+
+**Decisiones no delegadas:** aceptar alcance/denominadores de operaciones, comprobar zona de exportación de eventos/tickets, investigar caché con dumps/código, aprobar mitigaciones, autorizar H3 o commit/push. Confianza alta en mecanismo inmediato no equivale a defecto de código demostrado. Los escenarios de disco no se convierten en certeza.
+
+**Integridad de cierre:** comparación SHA256 de los 18 originales contra el inicio de H2: sin cambios. Bases normalizadas y PNG permanecen ignorados. El resumen H1 y sus parsers no se modificaron.
+
+## Corrección final de tipografía del post-mortem
+
+**Solicitud real:** conservar el contenido aprobado de H2, corregir exclusivamente el renderizado con TrueType incrustada y redistribuible, comprobar `pdffonts`, inspeccionar las dos páginas, agregar relación hitos/retos y repetir pruebas y controles sin análisis, commit ni H3.
+
+**Error real de la revisión anterior:** la primera inspección automática declaró correcto el PDF, pero una revisión independiente encontró tipografía no incrustada y renderizado visual defectuoso, con separación y colisión entre caracteres. La inspección visual inicial del asistente tampoco detectó ese defecto. El conteo de páginas y la extracción de texto no eran evidencia suficiente de corrección tipográfica.
+
+**Corrección:** reemplazo de Helvetica por Bitstream Vera normal/negrita, TrueType distribuida con ReportLab; resolución relativa al paquete, sin rutas de fuentes del sistema. Licencia redistribuible incluida en `reto1-diagnostico/FONT_LICENSE.txt`. Se añadió una validación que rechaza fuentes sin FontFile2. Esta validación detectó inicialmente Helvetica residual del documento y obligó a configurar también la fuente inicial del documento, además del texto y el canvas.
+
+**Validación final:** `pdffonts` de Poppler 26.09.0 confirmó BitstreamVeraSans-Roman y BitstreamVeraSans-Bold como TrueType, ambas `emb yes`, `sub yes`, `uni yes`; sin Helvetica. El paquete local inicial no incluía pdffonts: se obtuvo una copia adicional de Poppler únicamente en `work-private/`, excluida de Git. PDF de **2 páginas**, ambas renderizadas a PNG e inspeccionadas completas; sin letras separadas, superpuestas o cortadas, títulos y párrafos legibles. La comparación del texto extraído con el Markdown, excluyendo formato y pies, resultó idéntica; horas, cifras y referencias se conservaron.
+
+Se repitieron las **33 pruebas (21 H1 + 12 H2), todas PASS**. No se ejecutó el análisis ni se regeneró el contenido Markdown; se preservaron diagnóstico, post-mortem fuente y catálogo aprobado. Solo se agregó al PLAN la tabla breve de correspondencia hitos/retos. Sin commit, push ni inicio de H3.
