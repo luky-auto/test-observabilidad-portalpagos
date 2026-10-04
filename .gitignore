@@ -1,0 +1,34 @@
+# Datos originales de la prueba, se omitenn
+input-private/
+
+# Credenciales y configuración local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.publishsettings
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Azure
+.azure/
+
+# Visual Studio y compilaciones
+.vs/
+bin/
+obj/
+
+# Archivos temporales
+*.tmp
+*.log
