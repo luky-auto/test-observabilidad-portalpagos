@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-03 (America/Bogota). Alcance inicial máximo: **20 horas**, incluidas preparación, pruebas, evidencia, revisión y reserva. El enunciado estima 12–16 horas y fija 5 días desde la recepción; la fecha de recepción no está confirmada, por lo que no se calcula vencimiento.
 
-Estado: **H0 completado y aprobado por el usuario**, con cierre registrado el **2026-10-03 a las 20:37:32 (America/Bogota, UTC-05:00)**, a partir del reloj consultado durante esta revisión. H1–H7 pendientes; H1 no iniciado. Ninguno de los cinco retos está resuelto. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
+Estado: **H0 completado y aprobado por el usuario**, con cierre registrado el **2026-10-03 a las 20:37:32 (America/Bogota, UTC-05:00)**. **H1 completado y aprobado por el usuario**, con cierre registrado el **2026-10-03 a las 21:47:09 (America/Bogota, UTC-05:00)** según el reloj consultado en esta revisión (cierre técnico anterior: 20:59:53); H2–H7 pendientes y no iniciados. Ninguno de los cinco retos está resuelto. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
 
 ## Secuencia y prioridades
 
@@ -30,6 +30,8 @@ Estado: **H0 completado y aprobado por el usuario**, con cierre registrado el **
 
 ### H1 Contrato de datos del Reto 1
 
+**Alcance:** únicamente ingesta, normalización y calidad de datos. Completar H1 no significa completar el Reto 1; los entregables de diagnóstico y comunicación ejecutiva quedan en H2.
+
 - **Objetivo:** producir ingestión reproducible y trazable sin confundir formatos, duplicados ni periodos.
 - **Entregable:** parsers y validaciones locales; inventario con hashes; reglas de normalización temporal, calidad y deduplicación; fixtures sintéticos.
 - **Evidencia esperada:** conteos de entrada/aceptados/rechazados/duplicados y referencias a líneas originales; cobertura de la semana local.
@@ -38,13 +40,24 @@ Estado: **H0 completado y aprobado por el usuario**, con cierre registrado el **
 - **Riesgos:** doble conteo; confundir nombre del archivo con fecha local; atribuir zona horaria sin validarla.
 - **Tiempo máximo:** 2 h.
 
+#### Resultado verificado de H1
+
+- Código: `reto1-diagnostico/h1_ingest.py` y `verify_h1.py`; guía de reproducción y `H1_CALIDAD.md` en la misma carpeta.
+- Evidencia: `evidencias/publicables/h1-summary.json` (29.899 bytes), con reglas, hashes, referencias, rangos y cuentas. SQLite detallado solo en `work-private/`.
+- 195932 registros de entrada = 170050 conservados + 25882 filas de una copia exacta excluida; 0 rechazados. Conservados: 170020 en semana y 30 sin fecha. Ausencias se mantienen como nulos, no ceros.
+- 21 pruebas sintéticas aprobadas; dos cargas completas finales con resumen idéntico byte a byte; 33 verificaciones independientes aprobadas. Los 18 originales mantienen sus hashes de inicio. No se cambió el índice ni se hizo commit/push.
+- Aceptado en H1, con límites aún vigentes: supuesto Bogotá para eventos/tickets sin offset; conservación de HTTPERR sin petición, valores de memoria ausentes y registros sin fecha; límites del matching entre fuentes. Ver detalles y referencias en `H1_CALIDAD.md`.
+- Medición parcial real: reloj de control entre 20:44:53 y 20:59:53 Bogotá, 15 minutos de ejecución observada; no incluye la lectura inicial anterior al primer control ni el cierre documental posterior. No se presenta como duración total del hito. Máximo autorizado sin cambios: 2 h.
+- **Detención:** no iniciar H2 hasta aprobación explícita del usuario; esta implementación no autoriza commit/push.
+
 ### H2 Diagnóstico del Reto 1
 
 - **Objetivo:** responder con evidencia a cronología, causa y factores, disponibilidad, señales tempranas y otros riesgos pronosticables.
-- **Entregable:** análisis reproducible y post-mortem ejecutivo sin culpables de máximo 3 páginas.
+- **Entregables posteriores del Reto 1:** diagnóstico técnico reproducible del incidente; línea de tiempo en `America/Bogota`; disponibilidad semanal con método y denominador; causa raíz y factores contribuyentes; señales tempranas; riesgos y pronóstico con método, números y límites (o imposibilidad justificada); post-mortem ejecutivo sin culpables de máximo 3 páginas.
+- **Post-mortem independiente:** fuente `reto1-diagnostico/POSTMORTEM.md`; versión final `reto1-diagnostico/POSTMORTEM.pdf`. Ambos serán distintos de `H1_CALIDAD.md` y los README. No crearlos ni redactarlos hasta H2 autorizado y con conclusiones respaldadas por las ejecuciones.
 - **Evidencia esperada:** cada afirmación con archivo/línea o consulta; cronología en Colombia; método y números de disponibilidad y pronóstico, o límites explícitos si no son estimables.
 - **Pruebas:** denominadores y ventanas, casos manuales de control, separación del sondeo y tráfico relevante, conciliación IIS/HTTPERR/eventos/Perfmon/tickets; sensibilidad a supuestos y datos ausentes.
-- **Aceptación:** cubrir las cinco preguntas del reto sin equiparar tasa de éxito por petición a disponibilidad temporal; separar hechos, hipótesis y supuestos; revisión del usuario registrada.
+- **Aceptación:** cubrir las cinco preguntas del reto sin equiparar tasa de éxito por petición a disponibilidad temporal; separar hechos, hipótesis y supuestos; exportar el post-mortem a PDF, verificar mediante herramienta el total de páginas (máximo 3), revisar visualmente cada página y registrar el resultado. Markdown no demuestra paginación. Revisión del usuario registrada.
 - **Riesgos:** correlación presentada como causalidad; ausencia de logs presentada como salud; falsa precisión del pronóstico.
 - **Tiempo máximo:** 3 h.
 

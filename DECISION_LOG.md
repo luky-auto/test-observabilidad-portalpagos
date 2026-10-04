@@ -23,3 +23,26 @@ Verificación local completada: los hashes SHA256 de los 18 originales permanece
 Diff de preparación: `.gitignore` modificado (24 inserciones y 3 eliminaciones), cinco Markdown nuevos y nueve rutas de carpetas vacías. Decisiones principales: entradas privadas, hitos secuenciales, 20 h y puertas de Azure. Supuestos pendientes: zonas temporales, herramientas y acceso a proveedores; riesgos: configuración global Git inaccesible y trabajo de retos aún no probado. Mensaje de commit sugerido para una futura autorización: `docs: preparar plan y controles de la prueba de observabilidad`.
 
 La revisión del usuario de esta preparación aún está pendiente. No se ha solicitado ni ejercido autorización para commit, push o cambios Azure.
+
+## Decisiones de H1 del 2026-10-03
+
+El cierre anterior conserva el estado histórico de preparación de H0. Posteriormente el usuario aprobó H0 y autorizó su commit/push; esa operación ya terminó. La autorización actual es únicamente implementar H1 sin commit/push ni H2.
+
+| ID | Tipo y estado | Decisión y fundamento | Consecuencia o validación |
+|---|---|---|---|
+| D12 | Hecho y decisión; implementada | Python 3.12.14 encontrado en el runtime local, aunque no está en PATH ni registrado en `py`. Usar biblioteca estándar, requisito Python 3.11+ | Sin instalación ni llamadas pagadas; rutas y comandos en `reto1-diagnostico/README.md` |
+| D13 | Alcance H1; implementada | Leer IIS, HTTPERR, eventos, Perfmon, tickets y log textual de mantenimiento; no BAT ni alerta R4 | 14 archivos inventariados, 13 únicos; entradas en solo lectura |
+| D14 | Decisión de calidad; implementada | Excluir únicamente archivos completos idénticos por SHA256 dentro de fuente; ordenar por longitud de nombre y orden lexical para elegir canónico | 25882 filas de la copia excluidas; no deduplicar filas o fuentes por semejanza |
+| D15 | Hecho normativo y supuesto; explícitos | UTC para IIS W3C/HTTPERR según Microsoft; UTC-05 para Perfmon por cabecera. Bogotá para eventos/tickets es supuesto contrastado, no hecho probado | Conservar timestamp original y advertencia `timezone_assumed_bogota`; R07 y referencias en H1_CALIDAD. Offset fijo limitado a la semana del kit |
+| D16 | Corrección real de contrato; implementada | Los espacios en contadores son ausencia, no decimal inválido. HTTPERR puede registrar conexiones sin petición HTTP | Conservar 13 valores de memoria como null y el registro de línea 1546 sin método/URI/estado; tests específicos. No imputar ceros ni inventar estado HTTP |
+| D17 | Decisión de trazabilidad; implementada | SQLite privado con rangos de líneas físicas y esquema vigente; resumen determinista pequeño como único derivado publicable | Resumen de 29.899 bytes, dos ejecuciones idénticas; 33 controles independientes aprobados |
+| D18 | Decisión de límites; vigente | Matching por segundo/método/ruta/estado/IP servidor detecta candidatos, no identidad. Mantener 30 registros sin fecha de mantenimiento y todos los tickets | Cero pares IIS/HTTPERR bajo R10 no prueba ausencia absoluta de duplicados. No inferir disponibilidad, ejecuciones de mantenimiento ni causa raíz |
+| D19 | Decisión de errores; implementada | Filas recuperablemente inválidas a cuarentena; codificación/comillas irrecuperables abortan. Quitar resumen previo antes de reconstruir | 21 tests aprobados; cero cuarentena en el kit final. No usar salidas parciales ni correr dos cargas sobre el mismo destino |
+
+H1 queda implementado y verificado, pendiente de aceptación. La evidencia describe solo resultados ejecutados; no se aprobaron nuevas acciones Azure, commits o publicaciones.
+
+## Revisión de portabilidad y planificación de H1
+
+- **D20 — Corrección solicitada por el usuario:** sustituir la ruta del intérprete propia del equipo por instrucciones con `py -3.11` o `.venv` local recreable. H1 usa solo biblioteca estándar; no se añade `requirements.txt` sin dependencias externas. La nueva validación se ejecutó en `.venv` con Python 3.12.14; Python 3.11 no está disponible en el lanzador local y no se declara probado.
+- **D21 — Alcance y entrega posterior:** H1 es ingesta, normalización y calidad; no completa el Reto 1. H2 conserva diagnóstico, cronología en America/Bogota, disponibilidad semanal, causa y factores, señales tempranas, riesgos y pronóstico. El post-mortem tendrá fuente independiente `reto1-diagnostico/POSTMORTEM.md` y PDF `reto1-diagnostico/POSTMORTEM.pdf`, máximo 3 páginas contadas y revisadas visualmente. No se crean ni redactan todavía.
+- **Validación de esta revisión:** 21 pruebas PASS, 33 controles PASS, resumen sin diferencias, búsqueda de rutas locales en los 12 archivos rastreados/candidatos sin coincidencias y `git diff --check` sin errores. `.venv` y bases privadas ignoradas. H2 no iniciado; sin commit/push.

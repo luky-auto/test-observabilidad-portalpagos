@@ -1,13 +1,13 @@
 # Prueba técnica de Observabilidad y Automatización
 
-Preparación del caso sintético PortalPagos. **Estado: documentación inicial; los cinco retos están pendientes.** No se han ejecutado comandos contra Azure, creado recursos ni implementado soluciones en esta etapa.
+Preparación del caso sintético PortalPagos. **Estado: H0 aprobado; H1 completado y aprobado; los cinco retos todavía no están completados.** H1 cubre únicamente ingesta, normalización y calidad de datos. El diagnóstico y el post-mortem del Reto 1 corresponden a H2, no iniciado. No se han ejecutado comandos contra Azure ni creado recursos.
 
 ## Cómo empezar
 
 1. Leer [AGENTS.md](AGENTS.md), [PLAN.md](PLAN.md) y [DECISION_LOG.md](DECISION_LOG.md).
 2. Mantener localmente el kit autorizado en `input-private/kit_prueba_portalpagos/` y el enunciado DOCX en `input-private/`. Esta carpeta está excluida de Git y es de solo lectura por regla de trabajo; no se han cambiado sus permisos del sistema.
 3. Verificar con `git status --short` y `git check-ignore input-private/kit_prueba_portalpagos/scripts/mantenimiento_diario.bat` que las entradas no se proponen para versionar. No abrir ni ejecutar el BAT sin protección de su credencial.
-4. Revisar H0 antes de comenzar H1. Todavía no hay scripts de reproducción de los retos ni dependencias instaladas para ellos; se documentarán al implementarlos.
+4. Seguir la [guía de reproducción de H1](reto1-diagnostico/README.md): objetivo de compatibilidad Python 3.11 o posterior; ejecución comprobada en Python 3.12.14, sin validación directa de 3.11. Únicamente biblioteca estándar, comandos con `py -3.11` o `.venv` local. No requiere paquetes externos ni `requirements.txt`. H2 permanece pendiente de autorización.
 
 El kit no se distribuye con el repositorio. La reproducción futura requerirá acceso legítimo al kit o fixtures sintéticos claramente identificados. El plazo es de cinco días desde la recepción según el enunciado; la fecha de recepción no está confirmada.
 

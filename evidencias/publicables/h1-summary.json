@@ -1,0 +1,1027 @@
+{
+  "contract_version": 1,
+  "end_exclusive": true,
+  "files": [
+    {
+      "accepted": 23230,
+      "blank_lines": 0,
+      "bytes": 4945947,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260914.log",
+      "first_bogota": "2026-09-14T00:00:01-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-14T05:00:01+00:00",
+      "in_week": 23230,
+      "input_rows": 23230,
+      "last_bogota": "2026-09-14T18:59:52-05:00",
+      "last_ref": {
+        "line_end": 23234,
+        "line_start": 23234
+      },
+      "last_utc": "2026-09-14T23:59:52+00:00",
+      "outside_week": 0,
+      "physical_lines": 23234,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "a8da34951452743cf958f1c73a56ac72b1e6ce844118db578283ee99f6df5a25",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 24996,
+      "blank_lines": 0,
+      "bytes": 5262930,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260915.log",
+      "first_bogota": "2026-09-14T19:00:04-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-15T00:00:04+00:00",
+      "in_week": 24996,
+      "input_rows": 24996,
+      "last_bogota": "2026-09-15T18:59:58-05:00",
+      "last_ref": {
+        "line_end": 25000,
+        "line_start": 25000
+      },
+      "last_utc": "2026-09-15T23:59:58+00:00",
+      "outside_week": 0,
+      "physical_lines": 25000,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "12bd97bb29f1806daa4c64355971be784e7a56a4ea39a79adf30a9b3dc275e89",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 25882,
+      "blank_lines": 0,
+      "bytes": 5463945,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260916.log",
+      "first_bogota": "2026-09-15T19:00:00-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-16T00:00:00+00:00",
+      "in_week": 25882,
+      "input_rows": 25882,
+      "last_bogota": "2026-09-16T18:59:56-05:00",
+      "last_ref": {
+        "line_end": 25886,
+        "line_start": 25886
+      },
+      "last_utc": "2026-09-16T23:59:56+00:00",
+      "outside_week": 0,
+      "physical_lines": 25886,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "e17d0efd4a254d01da2cfceacaaf8977f0941e0d91db9733768f8b769fbfb7ee",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 28448,
+      "blank_lines": 0,
+      "bytes": 7100095,
+      "comment_lines": 8,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260917.log",
+      "first_bogota": "2026-09-16T19:00:04-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-17T00:00:04+00:00",
+      "in_week": 28448,
+      "input_rows": 28448,
+      "last_bogota": "2026-09-17T18:59:49-05:00",
+      "last_ref": {
+        "line_end": 28455,
+        "line_start": 28455
+      },
+      "last_utc": "2026-09-17T23:59:49+00:00",
+      "outside_week": 0,
+      "physical_lines": 28456,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken"
+          ],
+          "line": 4,
+          "valid": true
+        },
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "cs-host",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken",
+            "X-Forwarded-For"
+          ],
+          "line": 2351,
+          "valid": true
+        }
+      ],
+      "sha256": "3d8a5ffad2f99b7f88d22658c67f506bb7f5a77b27945534472447300723c570",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 36485,
+      "blank_lines": 0,
+      "bytes": 9317475,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260918.log",
+      "first_bogota": "2026-09-17T19:00:04-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-18T00:00:04+00:00",
+      "in_week": 36485,
+      "input_rows": 36485,
+      "last_bogota": "2026-09-18T18:59:54-05:00",
+      "last_ref": {
+        "line_end": 36488,
+        "line_start": 36488
+      },
+      "last_utc": "2026-09-18T23:59:54+00:00",
+      "outside_week": 0,
+      "physical_lines": 36489,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "cs-host",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken",
+            "X-Forwarded-For"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "d8b129181e92c17626e99006596b8d0ee56b18e5e80f0817855873af93ec1786",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 15903,
+      "blank_lines": 0,
+      "bytes": 3839729,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260919.log",
+      "first_bogota": "2026-09-18T19:00:01-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-19T00:00:01+00:00",
+      "in_week": 15903,
+      "input_rows": 15903,
+      "last_bogota": "2026-09-19T18:59:45-05:00",
+      "last_ref": {
+        "line_end": 15907,
+        "line_start": 15907
+      },
+      "last_utc": "2026-09-19T23:59:45+00:00",
+      "outside_week": 0,
+      "physical_lines": 15907,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "cs-host",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken",
+            "X-Forwarded-For"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "431b3c799349ae59bd98862147bc36cf49da345538b1fad7ccc60bd08aff67ac",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 9765,
+      "blank_lines": 0,
+      "bytes": 2208295,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260920.log",
+      "first_bogota": "2026-09-19T19:00:05-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-20T00:00:05+00:00",
+      "in_week": 9765,
+      "input_rows": 9765,
+      "last_bogota": "2026-09-20T18:59:35-05:00",
+      "last_ref": {
+        "line_end": 9769,
+        "line_start": 9769
+      },
+      "last_utc": "2026-09-20T23:59:35+00:00",
+      "outside_week": 0,
+      "physical_lines": 9769,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "cs-host",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken",
+            "X-Forwarded-For"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "844aad18e718cf60c3c33d3671b44ef4f17801d7ddc1bf34388f18e1b2d2d537",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 1247,
+      "blank_lines": 0,
+      "bytes": 249956,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/iis/W3SVC2/u_ex260921.log",
+      "first_bogota": "2026-09-20T19:00:05-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-21T00:00:05+00:00",
+      "in_week": 1247,
+      "input_rows": 1247,
+      "last_bogota": "2026-09-20T23:59:57-05:00",
+      "last_ref": {
+        "line_end": 1251,
+        "line_start": 1251
+      },
+      "last_utc": "2026-09-21T04:59:57+00:00",
+      "outside_week": 0,
+      "physical_lines": 1251,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "cs-host",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken",
+            "X-Forwarded-For"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "bb7947712edca300be9be8d823d7743ef38dc933d6f9ec7b087882cfc153c76b",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 0,
+      "blank_lines": 0,
+      "bytes": 5463945,
+      "comment_lines": 4,
+      "copy_name_hint": true,
+      "duplicate_file_rows": 25882,
+      "duplicate_of": "logs/iis/W3SVC2/u_ex260916.log",
+      "file": "logs/iis/W3SVC2/u_ex260916 - copia.log",
+      "first_bogota": null,
+      "first_ref": null,
+      "first_utc": null,
+      "in_week": 0,
+      "input_rows": 25882,
+      "last_bogota": null,
+      "last_ref": null,
+      "last_utc": null,
+      "outside_week": 0,
+      "physical_lines": 25886,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "s-ip",
+            "cs-method",
+            "cs-uri-stem",
+            "cs-uri-query",
+            "s-port",
+            "cs-username",
+            "c-ip",
+            "cs(User-Agent)",
+            "cs(Referer)",
+            "sc-status",
+            "sc-substatus",
+            "sc-win32-status",
+            "time-taken"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "e17d0efd4a254d01da2cfceacaaf8977f0941e0d91db9733768f8b769fbfb7ee",
+      "source": "iis",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {}
+    },
+    {
+      "accepted": 1542,
+      "blank_lines": 0,
+      "bytes": 175819,
+      "comment_lines": 4,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "logs/httperr/httperr1.log",
+      "first_bogota": "2026-09-18T14:38:00-05:00",
+      "first_ref": {
+        "line_end": 5,
+        "line_start": 5
+      },
+      "first_utc": "2026-09-18T19:38:00+00:00",
+      "in_week": 1542,
+      "input_rows": 1542,
+      "last_bogota": "2026-09-19T02:02:11-05:00",
+      "last_ref": {
+        "line_end": 1546,
+        "line_start": 1546
+      },
+      "last_utc": "2026-09-19T07:02:11+00:00",
+      "outside_week": 0,
+      "physical_lines": 1546,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "date",
+            "time",
+            "c-ip",
+            "c-port",
+            "s-ip",
+            "s-port",
+            "cs-version",
+            "cs-method",
+            "cs-uri",
+            "streamid",
+            "sc-status",
+            "s-siteid",
+            "s-reason",
+            "s-queuename"
+          ],
+          "line": 4,
+          "valid": true
+        }
+      ],
+      "sha256": "c43819a8eccda8d191e23ec72988ed395a4d43edd7dc77e08648fe72c856ad2a",
+      "source": "httperr",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {
+        "incomplete_http_request": 1,
+        "missing_numeric:sc-status": 1
+      }
+    },
+    {
+      "accepted": 498,
+      "blank_lines": 0,
+      "bytes": 129551,
+      "comment_lines": 0,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "eventos/eventos_WEB-PAGOS-01.csv",
+      "first_bogota": "2026-09-14T01:11:24-05:00",
+      "first_ref": {
+        "line_end": 2,
+        "line_start": 2
+      },
+      "first_utc": "2026-09-14T06:11:24+00:00",
+      "in_week": 498,
+      "input_rows": 498,
+      "last_bogota": "2026-09-20T23:40:52-05:00",
+      "last_ref": {
+        "line_end": 499,
+        "line_start": 499
+      },
+      "last_utc": "2026-09-21T04:40:52+00:00",
+      "outside_week": 0,
+      "physical_lines": 499,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "TimeCreated",
+            "LogName",
+            "ProviderName",
+            "Id",
+            "LevelDisplayName",
+            "MachineName",
+            "Message"
+          ],
+          "line": 1,
+          "valid": true
+        }
+      ],
+      "sha256": "14a36469c470624e13ab9f28c76e35d62a0198731d6b6ea11616f5e08fc68849",
+      "source": "events",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {
+        "timezone_assumed_bogota": 498
+      }
+    },
+    {
+      "accepted": 2016,
+      "blank_lines": 0,
+      "bytes": 165729,
+      "comment_lines": 0,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+      "first_bogota": "2026-09-14T00:00:00-05:00",
+      "first_ref": {
+        "line_end": 2,
+        "line_start": 2
+      },
+      "first_utc": "2026-09-14T05:00:00+00:00",
+      "in_week": 2016,
+      "input_rows": 2016,
+      "last_bogota": "2026-09-20T23:55:00-05:00",
+      "last_ref": {
+        "line_end": 2017,
+        "line_start": 2017
+      },
+      "last_utc": "2026-09-21T04:55:00+00:00",
+      "outside_week": 0,
+      "physical_lines": 2017,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "(PDH-CSV 4.0) (SA Pacific Standard Time)(300)",
+            "\\\\WEB-PAGOS-01\\Processor(_Total)\\% Processor Time",
+            "\\\\WEB-PAGOS-01\\Memory\\Available MBytes",
+            "\\\\WEB-PAGOS-01\\LogicalDisk(C:)\\% Free Space",
+            "\\\\WEB-PAGOS-01\\LogicalDisk(C:)\\Free Megabytes",
+            "\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes",
+            "\\\\WEB-PAGOS-01\\Web Service(PortalPagos)\\Current Connections"
+          ],
+          "line": 1,
+          "valid": true
+        }
+      ],
+      "sha256": "59e25098c7120a94f9ddafe00f551154637fee5cbb378bafccddfb0db41ef1b1",
+      "source": "metrics",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {
+        "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes": 13
+      }
+    },
+    {
+      "accepted": 8,
+      "blank_lines": 0,
+      "bytes": 1209,
+      "comment_lines": 0,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "tickets/tickets_mesa_servicio.csv",
+      "first_bogota": "2026-09-16T08:40:00-05:00",
+      "first_ref": {
+        "line_end": 2,
+        "line_start": 2
+      },
+      "first_utc": "2026-09-16T13:40:00+00:00",
+      "in_week": 8,
+      "input_rows": 8,
+      "last_bogota": "2026-09-20T09:15:00-05:00",
+      "last_ref": {
+        "line_end": 9,
+        "line_start": 9
+      },
+      "last_utc": "2026-09-20T14:15:00+00:00",
+      "outside_week": 0,
+      "physical_lines": 9,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [
+        {
+          "fields": [
+            "Id",
+            "FechaHoraReporte",
+            "Prioridad",
+            "Grupo",
+            "Descripcion",
+            "Estado",
+            "NotaCierre"
+          ],
+          "line": 1,
+          "valid": true
+        }
+      ],
+      "sha256": "2d5419c69c6ddb0d17754828e68816228379caa12e07a2cf2265b38502212926",
+      "source": "tickets",
+      "timestamp_backsteps": 0,
+      "undated": 0,
+      "warnings": {
+        "timezone_assumed_bogota": 8
+      }
+    },
+    {
+      "accepted": 30,
+      "blank_lines": 0,
+      "bytes": 360,
+      "comment_lines": 0,
+      "copy_name_hint": false,
+      "duplicate_file_rows": 0,
+      "file": "scripts/mantenimiento.log",
+      "first_bogota": null,
+      "first_ref": null,
+      "first_utc": null,
+      "in_week": 0,
+      "input_rows": 30,
+      "last_bogota": null,
+      "last_ref": null,
+      "last_utc": null,
+      "outside_week": 0,
+      "physical_lines": 30,
+      "reasons": {},
+      "rejected": 0,
+      "schemas": [],
+      "sha256": "edb82bae5aaa2ae8dfbdfc4e2886bb0c579463a27ba860b29feeea683aad16c8",
+      "source": "maintenance",
+      "timestamp_backsteps": 0,
+      "undated": 30,
+      "warnings": {
+        "missing_timestamp": 30
+      }
+    }
+  ],
+  "input_unchanged": true,
+  "limitations": [
+    "No disponibilidad, causa raiz ni pronosticos.",
+    "Sin ID global no se demuestra identidad entre fuentes.",
+    "Eventos y tickets carecen de offset; conversion provisional.",
+    "Cobertura de registros no demuestra continuidad de servicio."
+  ],
+  "not_read": [
+    "scripts/mantenimiento_diario.bat",
+    "alertas/alerta_ejemplo.json",
+    "enunciado DOCX"
+  ],
+  "quality": {
+    "cross_source_candidates_retained": {
+      "candidate_pairs": 0,
+      "examples": [],
+      "httperr_rows": 0,
+      "iis_rows": 0
+    },
+    "cross_source_rule": "R10",
+    "metric_cadence": {
+      "missing_expected_slots": 0,
+      "non_300_second_intervals": 0,
+      "rows": 2016,
+      "rule": "R08; expected=2016 instantes cada 5 minutos en semana local",
+      "unexpected_slots": 0,
+      "unique_timestamps": 2016
+    },
+    "quarantine": [],
+    "same_source_candidates_retained": [
+      {
+        "extra_rows": 29,
+        "groups": 1,
+        "source": "maintenance"
+      }
+    ],
+    "same_source_examples": [
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 1,
+        "line_start": 1,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 2,
+        "line_start": 2,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 3,
+        "line_start": 3,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 4,
+        "line_start": 4,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 5,
+        "line_start": 5,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 6,
+        "line_start": 6,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 7,
+        "line_start": 7,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 8,
+        "line_start": 8,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 9,
+        "line_start": 9,
+        "source": "maintenance"
+      },
+      {
+        "file": "scripts/mantenimiento.log",
+        "line_end": 10,
+        "line_start": 10,
+        "source": "maintenance"
+      }
+    ],
+    "warning_references": [
+      {
+        "file": "logs/httperr/httperr1.log",
+        "line_end": 1546,
+        "line_start": 1546,
+        "warning": "incomplete_http_request"
+      },
+      {
+        "file": "logs/httperr/httperr1.log",
+        "line_end": 1546,
+        "line_start": 1546,
+        "warning": "missing_numeric:sc-status"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 332,
+        "line_start": 332,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 364,
+        "line_start": 364,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 512,
+        "line_start": 512,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 813,
+        "line_start": 813,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 847,
+        "line_start": 847,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 884,
+        "line_start": 884,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 1330,
+        "line_start": 1330,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 1331,
+        "line_start": 1331,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 1332,
+        "line_start": 1332,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 1333,
+        "line_start": 1333,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 1334,
+        "line_start": 1334,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 1535,
+        "line_start": 1535,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      },
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_end": 1618,
+        "line_start": 1618,
+        "warning": "missing_numeric:\\\\WEB-PAGOS-01\\Process(w3wp)\\Private Bytes"
+      }
+    ]
+  },
+  "rules": {
+    "R01": "UTF-8 estricto con BOM opcional; error de codificacion aborta, sin sustitucion silenciosa.",
+    "R02": "Archivo identico por SHA256 dentro de una fuente: conservar primero por nombre mas corto y orden lexical; inventariar todas las copias.",
+    "R03": "W3C: cada #Fields inicia un esquema; cardinalidad exacta y nombres unicos; nunca inferir columnas por posicion fija.",
+    "R04": "CSV estricto con coma y comillas; multilinea permitida; conservar lineas fisicas inicial/final; cardinalidad exacta.",
+    "R05": "Fecha invalida, esquema incompatible, cardinalidad o numero obligatorio invalido: cuarentena por referencia, sin reparar.",
+    "R06": "Guion W3C y celda CSV vacia o solo espacios: null. Numeros opcionales faltantes se conservan y cuentan; no imputar ceros. HTTPERR sin peticion HTTP se conserva sin estado/metodo/URI y no participa en matching de peticiones.",
+    "R07": "IIS W3C y HTTPERR: UTC segun formato oficial. Perfmon: SA Pacific Standard Time(300), UTC-05. Eventos/tickets sin offset: supuesto explicito Bogota segun LEEME, contrastado pero no demostrado.",
+    "R08": "Normalizar a ISO8601 UTC y America/Bogota UTC-05; conservar timestamp original. Ventana semiabierta semanal; fuera de ventana se conserva y se marca.",
+    "R09": "Filas identicas dentro de fuente solo se marcan como candidatas y se conservan: no hay identificador global de peticion/evento.",
+    "R10": "IIS/HTTPERR: coincidencia por segundo UTC, metodo, URI sin query, estado e IP servidor es candidata, no prueba de identidad; no unir ni eliminar.",
+    "R11": "Mantenimiento: texto sin fecha se conserva como registro no temporal; no inferir ejecuciones ni exito.",
+    "R12": "Publicar solo conteos, hashes de archivo, esquemas, rangos y referencias; filas normalizadas y cuarentena quedan en work-private."
+  },
+  "scope": "H1 quality only",
+  "temporal_contrast": {
+    "conclusion": "Compatibilidad temporal no demuestra zona de exportacion ni causalidad.",
+    "event_anchor": {
+      "delta_seconds_if_bogota": 5.0,
+      "delta_seconds_if_utc": -17995.0,
+      "file": "eventos/eventos_WEB-PAGOS-01.csv",
+      "line": 366,
+      "raw_timestamp": "2026-09-18 14:38:05"
+    },
+    "events_and_tickets_timezone": "assumed_bogota_not_proven",
+    "httperr_anchor": {
+      "file": "logs/httperr/httperr1.log",
+      "line": 5,
+      "utc": "2026-09-18T19:38:00+00:00"
+    },
+    "nearby_tickets_if_bogota": [
+      {
+        "file": "tickets/tickets_mesa_servicio.csv",
+        "line_start": 6,
+        "raw_timestamp": "2026-09-18 14:26",
+        "utc": "2026-09-18T19:26:00+00:00"
+      },
+      {
+        "file": "tickets/tickets_mesa_servicio.csv",
+        "line_start": 7,
+        "raw_timestamp": "2026-09-18 14:42",
+        "utc": "2026-09-18T19:42:00+00:00"
+      }
+    ],
+    "nearest_iis_using_w3c_utc": [
+      {
+        "bogota": "2026-09-18T14:37:59-05:00",
+        "file": "logs/iis/W3SVC2/u_ex260918.log",
+        "line_start": 27228,
+        "raw_timestamp": "2026-09-18 19:37:59",
+        "utc": "2026-09-18T19:37:59+00:00"
+      }
+    ],
+    "nearest_metric_if_header_zone": [
+      {
+        "file": "metricas/perfmon_WEB-PAGOS-01.csv",
+        "line_start": 1330,
+        "raw_timestamp": "09/18/2026 14:40:00.000",
+        "utc": "2026-09-18T19:40:00+00:00"
+      }
+    ],
+    "rule": "R07; comparar evento WAS 5002 mas cercano al primer AppOffline bajo dos interpretaciones"
+  },
+  "totals": {
+    "accepted": 170050,
+    "duplicate_file_rows": 25882,
+    "in_week": 170020,
+    "input_rows": 195932,
+    "outside_week": 0,
+    "rejected": 0,
+    "undated": 30
+  },
+  "window_bogota": [
+    "2026-09-14T00:00:00-05:00",
+    "2026-09-21T00:00:00-05:00"
+  ]
+}
