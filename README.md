@@ -2,6 +2,8 @@
 
 Caso sintético PortalPagos. **Estado: H0, H1 y H2 aprobados; Reto 1 cerrado.** H1 cubre ingesta, normalización y calidad; H2 entrega el diagnóstico y post-mortem del Reto 1. Los retos 2–5 no se han iniciado. No se han ejecutado comandos contra Azure ni creado recursos.
 
+H2 fue revisado y aprobado; el cierre del Reto 1 se registró el 2026-10-04 a las 02:29:13 (America/Bogota). Sus entregables quedaron versionados en el commit `97c4245` y enviados a GitHub.
+
 Entregables H2: [diagnóstico técnico](reto1-diagnostico/H2_DIAGNOSTICO.md), [post-mortem fuente](reto1-diagnostico/POSTMORTEM.md), [PDF ejecutivo](reto1-diagnostico/POSTMORTEM.pdf) y [evidencias](evidencias/publicables/h2-evidence.json). Los comandos de análisis están en el diagnóstico. H1/H2 analíticos usan biblioteca estándar; únicamente la creación/verificación de PDF requiere paquetes opcionales:
 
 ```powershell
@@ -26,22 +28,22 @@ El kit no se distribuye con el repositorio. La reproducción futura requerirá a
 
 ```text
 input-private/              # Originales locales; nunca Git
-reto1-diagnostico/          # Ingestión y diagnóstico futuros
+reto1-diagnostico/          # Ingestión, diagnóstico y post-mortem completados
 reto2-powershell/           # Mantenimiento futuro
 reto3-azure/                # Laboratorio futuro, sujeto a autorización
 reto4-triage-ia/            # Componente de sugerencias futuro
 reto5-propuesta/            # Propuesta futura de 90 días
-tests/                     # Pruebas futuras
+tests/                     # Pruebas de H1 y H2
 evidencias/publicables/    # Solo evidencia revisada y redactada
 evidencias/private/        # Evidencia cruda; nunca Git
 work-private/              # Derivados locales; nunca Git
 ```
 
-Las carpetas nuevas están vacías. Git no conserva carpetas vacías: se incluyen en esta documentación y se conservarán en el repositorio cuando tengan entregables autorizados; no se crearon archivos de relleno.
+Las carpetas de los retos 2–5 siguen reservadas para hitos futuros. Git no conserva carpetas vacías: se incluyen en esta documentación y se conservarán en el repositorio cuando tengan entregables autorizados; no se crearon archivos de relleno.
 
 ## Inventario observado y formatos
 
-Inspección de solo lectura del enunciado, LEEME, encabezados/muestras y estructura de los archivos; no constituye diagnóstico del incidente. Se encontraron **18 archivos** incluyendo el DOCX y el LEEME.
+Inventario histórico de H0: inspección de solo lectura del enunciado, LEEME, encabezados/muestras y estructura de los archivos. Se encontraron **18 archivos** incluyendo el DOCX y el LEEME. Las validaciones entonces pendientes y los supuestos de preparación siguientes se contrastaron posteriormente en H1/H2; su resultado y sus límites vigentes están en [H1_CALIDAD.md](reto1-diagnostico/H1_CALIDAD.md) y [H2_DIAGNOSTICO.md](reto1-diagnostico/H2_DIAGNOSTICO.md).
 
 | Fuente relativa a `input-private/` | Hecho observado | Validación pendiente en H1 |
 |---|---|---|
@@ -57,7 +59,7 @@ Inspección de solo lectura del enunciado, LEEME, encabezados/muestras y estruct
 
 Las rutas abreviadas de datos en la tabla pertenecen a `kit_prueba_portalpagos/`. CSV leídos con UTF-8 e `Import-Csv`; no se ha completado una auditoría de codificación de todo el kit. Los logs ignorados por Git se inventariaron con `Get-ChildItem -Recurse -File`, pues una búsqueda que respete `.gitignore` los omite.
 
-## Hechos, hipótesis y supuestos
+## Hechos, hipótesis y supuestos de preparación (H0)
 
 - **Hechos:** los requisitos provienen de las secciones 1–6 del DOCX y del LEEME; los formatos y conteos anteriores se observaron localmente. El commit preexistente `aa212c5` contiene `.gitignore`; no fue creado en esta etapa.
 - **Hipótesis de preparación:** el archivo del 21 podría ser necesario para cubrir el último día local si su tiempo está en UTC; se contrastará antes de filtrar. No se afirma ninguna causa del incidente.
@@ -67,4 +69,4 @@ Las rutas abreviadas de datos en la tabla pertenecen a `kit_prueba_portalpagos/`
 
 ## Evidencia y controles
 
-Los resultados de preparación se registran en [IA_BITACORA.md](IA_BITACORA.md). Aún no existen resultados de disponibilidad, causa raíz, pronóstico, mantenimiento, Azure ni triage. La alerta de presupuesto se configurará manualmente antes del primer despliegue. Las alertas operativas se crearán después de contar con VM, Log Analytics y fuentes válidas. Cambios Azure, commit y push requieren autorización conforme a AGENTS.
+Los resultados de H0, H1 y H2 se registran en [IA_BITACORA.md](IA_BITACORA.md). El Reto 1 está cerrado con diagnóstico, cronología, indicadores de éxito HTTP, análisis causal con incertidumbre, escenarios condicionales de disco y post-mortem de dos páginas. No se afirma disponibilidad temporal exacta ni una causa de código demostrada. El cierre registra 33 pruebas aprobadas (21 H1 + 12 H2), 33 controles H1 y revisión visual del PDF con fuentes TrueType incrustadas. Mantenimiento, Azure y triage siguen pendientes. La alerta de presupuesto se configurará manualmente antes del primer despliegue. Las alertas operativas se crearán después de contar con VM, Log Analytics y fuentes válidas. Cambios Azure, commit y push requieren autorización conforme a AGENTS.
