@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-03 (America/Bogota). Alcance inicial máximo: **20 horas**, incluidas preparación, pruebas, evidencia, revisión y reserva. El enunciado estima 12–16 horas y fija 5 días desde la recepción; la fecha de recepción no está confirmada, por lo que no se calcula vencimiento.
 
-Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-03 a las 20:37:32 y 21:47:09 (Bogotá), respectivamente. **H2 completado y aprobado; Reto 1 cerrado**, el 2026-10-04 a las 02:29:13 (America/Bogota, UTC-05). **H3 implementado y probado localmente, pendiente de revisión y aceptación del usuario**; no versionado ni publicado. H4–H7 no iniciados. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
+Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-03 a las 20:37:32 y 21:47:09 (Bogotá), respectivamente. **H2 completado y aprobado; Reto 1 cerrado**, el 2026-10-04 a las 02:29:13 (America/Bogota, UTC-05). **H3 completado y aprobado; Reto 2 cerrado**, versionado en `df48a5851bcb54c6309b321f1c4125bfa7af8d36`. H4 aprobado conceptualmente, sin autorización de despliegue ni creación de recursos; H4–H7 no implementados. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
 
 ## Secuencia y prioridades
 
@@ -94,13 +94,13 @@ Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-
 #### Resultado verificado de H3
 
 - Evaluación del BAT escrita antes del reemplazo: `reto2-powershell/H3_EVALUACION.md`, con prioridades, líneas originales y tabla conservar/rediseñar/reemplazar/eliminar. BAT leído estáticamente en memoria, nunca ejecutado ni copiado.
-- Implementación: `SafeMaintenance.psm1` y entrada `Invoke-Maintenance.ps1`; guía en `reto2-powershell/README.md`. Solo temporales vencidos incluidos en manifiesto, bajo raíz sintética fija; parámetros y límites, ShouldProcess/WhatIf, bloqueo exclusivo, log JSONL, verificación de eliminación y resumen. Preservación de logs/dumps y hold de investigación. Sin IIS, servicios, red o Azure.
+- Implementación: `SafeMaintenance.psm1` y entrada `Invoke-Maintenance.ps1`; guía en `reto2-powershell/README.md`. Solo temporales vencidos incluidos en manifiesto, bajo raíz exacta autorizada por configuración; pruebas exclusivamente sintéticas. Parámetros y límites, ShouldProcess/WhatIf, bloqueo exclusivo, log JSONL, verificación de eliminación y resumen. Preservación de logs/dumps y hold de investigación. Sin IIS, servicios, red o Azure.
 - **38/38 pruebas Pester 5.7.1 aprobadas en cada motor**, Windows PowerShell **5.1.26100.9444** y PowerShell **7.6.5**; cero omitidas. Evidencia revisada: `evidencias/publicables/h3-tests.json`. Resultados crudos y dependencias privadas en `work-private/`.
 - WhatIf del módulo y CLI: estructura, hashes y fechas de modificación iguales antes/después; sin log nuevo ni adquisición de bloqueo. Pruebas de errores parciales y permisos simulados, proceso propietario del lock, preservación, repetición, límites, rutas/enlaces y JSONL. Códigos reales de proceso 0–5 verificados.
 - Integridad: 18 originales mantienen hashes iniciales; H1/H2, evidencias anteriores, diagnóstico y post-mortem sin cambios. No se repitió análisis ni se ejecutaron pruebas sobre datos reales.
 - **Medición parcial:** control de reloj 2026-10-04 02:48:27.886–03:09:45.904 Bogotá: 21 min 18 s transcurridos observados. Excluye lectura previa al primer control y cierre/revisión posteriores; no es esfuerzo total. Máximo de H3 permanece en 3 h.
-- **Pendientes para aceptación:** P0 revisión humana de decisiones, límites y política de retención/manifiesto. P1 adopción en producción no autorizada: ACLs, carreras con escritores ajenos, retención/archivo de logs y rotación de la credencial requieren alcance propio. Impacto: no se afirma solución del riesgo de disco ni validación en Windows Server.
-- **Detención:** H3 queda implementado para revisión; no commit/push, H4 ni Azure. Aceptación del usuario aún pendiente.
+- **Aceptación registrada:** el usuario aprobó H3 con sus decisiones y límites. P1 adopción en producción no autorizada: ACLs, carreras con escritores ajenos, retención/archivo de logs y rotación de la credencial requieren alcance propio. Impacto: no se afirma solución del riesgo de disco ni validación en Windows Server.
+- **Detención:** H3 cerrado en el commit indicado. Su aprobación no autoriza activar producción, Task Scheduler ni recursos de H4/Azure.
 
 ### H4 Laboratorio del Reto 3
 
