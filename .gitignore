@@ -1,13 +1,18 @@
-# Datos originales de la prueba, se omitenn
+# Entradas originales: solo lectura, nunca versionar ni forzar su inclusion
 input-private/
 
 # Credenciales y configuración local
 .env
 .env.*
-!.env.example
+# Los ejemplos de configuracion tambien requieren revision de secretos
 *.pem
 *.key
 *.publishsettings
+*.pfx
+*.p12
+*.secrets.*
+secrets/
+credentials/
 
 # Python
 __pycache__/
@@ -20,9 +25,13 @@ __pycache__/
 *.tfstate
 *.tfstate.*
 crash.log
+*.tfvars
+*.tfvars.json
+*.tfplan
 
 # Azure
 .azure/
+.aws/
 
 # Visual Studio y compilaciones
 .vs/
@@ -32,3 +41,15 @@ obj/
 # Archivos temporales
 *.tmp
 *.log
+*.zip
+*.bak
+*.tmp.*
+
+# Datos derivados, capturas y ejecuciones sin revisar
+work-private/
+evidencias/private/
+
+# Archivos locales del editor
+.vscode/
+.idea/
+.gitingore
