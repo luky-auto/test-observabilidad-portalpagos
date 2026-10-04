@@ -1,0 +1,10 @@
+{
+  "schema": "h3.routes.v1",
+  "mode": "laboratory",
+  "enabled": true,
+  "computerName": null,
+  "managedRoot": "work-private/h3-sandboxes/FIXTURE_NAME",
+  "laboratoryBoundary": "work-private/h3-sandboxes",
+  "markerName": ".synthetic-maintenance-sandbox",
+  "markerValue": "H3_SYNTHETIC_ONLY_V1"
+}

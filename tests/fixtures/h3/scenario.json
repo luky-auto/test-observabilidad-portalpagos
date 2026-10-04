@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "description": "Generated test data only; no original contents or secrets.",
+  "files": [
+    {"path": "temp/expired.tmp", "ageDays": 30, "disposable": true},
+    {"path": "temp/recent.tmp", "ageDays": 1, "disposable": true},
+    {"path": "temp/unlisted.tmp", "ageDays": 30, "disposable": false},
+    {"path": "temp/evidence.dmp", "ageDays": 30, "disposable": false},
+    {"path": "logs/synthetic.log", "ageDays": 30, "disposable": false},
+    {"path": "dumps/synthetic.dmp", "ageDays": 30, "disposable": false}
+  ]
+}

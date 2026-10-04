@@ -1,0 +1,10 @@
+{
+  "schema": "h3.routes.v1",
+  "mode": "deployment",
+  "enabled": false,
+  "computerName": "WEB-PAGOS-01",
+  "managedRoot": "D:\\PortalPagos\\Maintenance",
+  "laboratoryBoundary": null,
+  "markerName": ".maintenance-managed",
+  "markerValue": "WEB-PAGOS-01_MAINTENANCE_V1"
+}

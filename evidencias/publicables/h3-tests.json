@@ -1,0 +1,360 @@
+{
+  "schema": "h3.reviewed-tests.v1",
+  "synthetic_only": true,
+  "source": "tests/H3.Tests.ps1",
+  "runner": "tests/Run-H3Tests.ps1",
+  "runs": [
+    {
+      "schema": "h3.tests.v1",
+      "synthetic": true,
+      "engine": "5.1.26100.9444",
+      "edition": "Desktop",
+      "pester": "5.7.1",
+      "startedUtc": "2026-10-04T08:30:57.0419710Z",
+      "finishedUtc": "2026-10-04T08:31:09.6333306Z",
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0,
+      "total": 38,
+      "cases": [
+        {
+          "result": "Passed",
+          "name": "WhatIf preserves the complete snapshot and creates no audit file"
+        },
+        {
+          "result": "Passed",
+          "name": "removes only allowlisted expired files and preserves evidence byte for byte"
+        },
+        {
+          "result": "Passed",
+          "name": "repeats safely with no second deletion"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects a nonexistent root without creating it"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects a root outside the sandbox boundary without changes"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects empty paths at parameter binding"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects traversal and network path syntax"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects invalid retention at parameter binding"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects unsafe manifest names before any mutation"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects duplicate names and dumps even if explicitly listed"
+        },
+        {
+          "result": "Passed",
+          "name": "preserves all files during investigation hold"
+        },
+        {
+          "result": "Passed",
+          "name": "preserves all files with an empty disposal manifest"
+        },
+        {
+          "result": "Passed",
+          "name": "enforces quantity and size limits before deletion"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects a missing synthetic marker"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects a junction without traversing its target"
+        },
+        {
+          "result": "Passed",
+          "name": "simulates permission denial without altering ACLs or deleting the file"
+        },
+        {
+          "result": "Passed",
+          "name": "reports partial failures and verifies the independent successful removal"
+        },
+        {
+          "result": "Passed",
+          "name": "detects a deletion command that returns without removing the file"
+        },
+        {
+          "result": "Passed",
+          "name": "stops before cleanup when audit writing fails"
+        },
+        {
+          "result": "Passed",
+          "name": "does not acquire the lock even when WhatIf encounters an existing owner"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects concurrent ownership and succeeds after the owner releases the lock"
+        },
+        {
+          "result": "Passed",
+          "name": "writes valid JSON Lines with intent before success and a reconciled summary"
+        },
+        {
+          "result": "Passed",
+          "name": "returns actual process exit codes for valid invalid and binding cases"
+        },
+        {
+          "result": "Passed",
+          "name": "returns process code 4 for a held lock"
+        },
+        {
+          "result": "Passed",
+          "name": "returns process code 3 for a fixture file locked against deletion"
+        },
+        {
+          "result": "Passed",
+          "name": "returns process code 5 when the fixture lock is read-only"
+        },
+        {
+          "result": "Passed",
+          "name": "CLI WhatIf preserves the whole tree including audit and lock metadata"
+        },
+        {
+          "result": "Passed",
+          "name": "fails closed for malformed JSON"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects a junction used as the sandbox root"
+        },
+        {
+          "result": "Passed",
+          "name": "authorizes only the exact configured root, not siblings or descendants"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects disabled configuration without modifying the sandbox"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects unknown fields, duplicate keys, wrong schema and wrong types"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects drive roots UNC traversal wildcards and alternate streams in route policy"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects a laboratory root outside its configured laboratory boundary"
+        },
+        {
+          "result": "Passed",
+          "name": "requires matching marker content even when the root is authorized"
+        },
+        {
+          "result": "Passed",
+          "name": "rejects configuration loaded through a reparse ancestor"
+        },
+        {
+          "result": "Passed",
+          "name": "exercises deployment path resolution only with a synthetic policy and synthetic files"
+        },
+        {
+          "result": "Passed",
+          "name": "checks the deployment example as data only, disabled and free of extra fields"
+        }
+      ]
+    },
+    {
+      "schema": "h3.tests.v1",
+      "synthetic": true,
+      "engine": "7.6.5",
+      "edition": "Core",
+      "pester": "5.7.1",
+      "startedUtc": "2026-10-04T08:30:57.8161237Z",
+      "finishedUtc": "2026-10-04T08:31:10.1256885Z",
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0,
+      "total": 38,
+      "cases": [
+        {
+          "name": "WhatIf preserves the complete snapshot and creates no audit file",
+          "result": "Passed"
+        },
+        {
+          "name": "removes only allowlisted expired files and preserves evidence byte for byte",
+          "result": "Passed"
+        },
+        {
+          "name": "repeats safely with no second deletion",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects a nonexistent root without creating it",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects a root outside the sandbox boundary without changes",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects empty paths at parameter binding",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects traversal and network path syntax",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects invalid retention at parameter binding",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects unsafe manifest names before any mutation",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects duplicate names and dumps even if explicitly listed",
+          "result": "Passed"
+        },
+        {
+          "name": "preserves all files during investigation hold",
+          "result": "Passed"
+        },
+        {
+          "name": "preserves all files with an empty disposal manifest",
+          "result": "Passed"
+        },
+        {
+          "name": "enforces quantity and size limits before deletion",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects a missing synthetic marker",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects a junction without traversing its target",
+          "result": "Passed"
+        },
+        {
+          "name": "simulates permission denial without altering ACLs or deleting the file",
+          "result": "Passed"
+        },
+        {
+          "name": "reports partial failures and verifies the independent successful removal",
+          "result": "Passed"
+        },
+        {
+          "name": "detects a deletion command that returns without removing the file",
+          "result": "Passed"
+        },
+        {
+          "name": "stops before cleanup when audit writing fails",
+          "result": "Passed"
+        },
+        {
+          "name": "does not acquire the lock even when WhatIf encounters an existing owner",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects concurrent ownership and succeeds after the owner releases the lock",
+          "result": "Passed"
+        },
+        {
+          "name": "writes valid JSON Lines with intent before success and a reconciled summary",
+          "result": "Passed"
+        },
+        {
+          "name": "returns actual process exit codes for valid invalid and binding cases",
+          "result": "Passed"
+        },
+        {
+          "name": "returns process code 4 for a held lock",
+          "result": "Passed"
+        },
+        {
+          "name": "returns process code 3 for a fixture file locked against deletion",
+          "result": "Passed"
+        },
+        {
+          "name": "returns process code 5 when the fixture lock is read-only",
+          "result": "Passed"
+        },
+        {
+          "name": "CLI WhatIf preserves the whole tree including audit and lock metadata",
+          "result": "Passed"
+        },
+        {
+          "name": "fails closed for malformed JSON",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects a junction used as the sandbox root",
+          "result": "Passed"
+        },
+        {
+          "name": "authorizes only the exact configured root, not siblings or descendants",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects disabled configuration without modifying the sandbox",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects unknown fields, duplicate keys, wrong schema and wrong types",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects drive roots UNC traversal wildcards and alternate streams in route policy",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects a laboratory root outside its configured laboratory boundary",
+          "result": "Passed"
+        },
+        {
+          "name": "requires matching marker content even when the root is authorized",
+          "result": "Passed"
+        },
+        {
+          "name": "rejects configuration loaded through a reparse ancestor",
+          "result": "Passed"
+        },
+        {
+          "name": "exercises deployment path resolution only with a synthetic policy and synthetic files",
+          "result": "Passed"
+        },
+        {
+          "name": "checks the deployment example as data only, disabled and free of extra fields",
+          "result": "Passed"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Windows laboratory only; not Windows Server validation",
+    "Deletion permissions simulated with Pester mocks; no system ACL changes",
+    "No IIS, service, share, Azure or original BAT execution",
+    "WhatIf compared structure, hashes and last-write timestamps; no log or lock writes"
+  ],
+  "artifact_sha256": {
+    "reto2-powershell/SafeMaintenance.psm1": "e849e12784a18168f8dc07639cf0441f8189a2d8d3b4bde46ad5981616c2a6a1",
+    "reto2-powershell/Invoke-Maintenance.ps1": "f6054adbbf5573b2c059ab82eeb0c9a98e0752756beb980e48d06b17b093f275",
+    "tests/H3.Tests.ps1": "ae955d6b081aaf277f8b451a32d64d333edd73188a9729853195fc8c851ab4db",
+    "tests/Run-H3Tests.ps1": "f897e6d1b063ab6520909f68606d1972dbee3c2b3321b7151c6e29a010f166b6",
+    "tests/fixtures/h3/scenario.json": "a4cd88addddb4f96f916acd68e75ca244a117a7d45c33d31c96f14bc1f08798f",
+    "tests/fixtures/h3/New-SyntheticSandbox.ps1": "1ee864fbd1cd75876d1ffa3ad1645de9d3303a4630b414a1b03862bb5c5dd265",
+    "tests/fixtures/h3/routes.synthetic.json": "9947cc28020454ae40d0e5ece4fef96206ffde2c52c6a600a6dd6f78094c6687",
+    "reto2-powershell/config/WEB-PAGOS-01.example.json": "c11d0c669d6338947195323c2303092e2c7dea881d04a99d354a67818da6a43b"
+  },
+  "deployment_template_executed": false,
+  "configuration_tests": "Deployment logic exercised only with a generated synthetic sandbox policy; server template read as data only."
+}
