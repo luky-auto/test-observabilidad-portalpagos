@@ -1,0 +1,510 @@
+﻿{
+    "schema":  "h4.local-evidence.v1",
+    "synthetic":  true,
+    "azureExecuted":  false,
+    "limits":  [
+                   "No Kusto query execution",
+                   "No effective Azure RBAC validation",
+                   "No Windows Server IIS or scheduled task execution",
+                   "No real HTTP or email",
+                   "No deployment or paid call"
+               ],
+    "runs":  [
+                 {
+                     "schema":  "h4.tests.v1",
+                     "synthetic":  true,
+                     "azureExecuted":  false,
+                     "engine":  "5.1.26100.9444",
+                     "pester":  "5.7.1",
+                     "startedUtc":  "2026-10-05T07:58:05.1575229Z",
+                     "finishedUtc":  "2026-10-05T07:58:08.4422967Z",
+                     "passed":  55,
+                     "failed":  0,
+                     "skipped":  0,
+                     "total":  55,
+                     "cases":  [
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "accepts Fired with exact workspace, VM, site and pool"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "Resolved does not request remediation"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects legacy Activated rather than infer an adapter"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects malformed JSON without exposing its content"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects oversized requests"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects a different subscription target"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects a different resource group"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects another VM"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects another site"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects pool injection"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects missing or duplicate dimensions"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects wrong rule even with correct resources"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects multiple targets"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects stale alerts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects future alerts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "disabled policy ignores requests"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "maintenance ignores requests"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects placeholders before any integration"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects additional policy fields"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects arbitrary HTTP destination and greater attempt limit"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "WhatIf neither changes files nor calls the pool adapter"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "recovers stopped pool and verifies HTTP body and state"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "duplicate delivery never starts a second time"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "does not restart an already healthy pool"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "running pool with failed HTTP escalates without restart"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "HTTP 200 with wrong body is not recovery"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "counts failed starts and stops after two attempts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rolling limit also prevents new incident IDs bypassing two attempts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "exclusive lock prevents concurrent effects"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "crash after durable claim requires human review and cannot reset budget"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "corrupt ledger fails closed"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "missing ledger never initializes new attempt allowance"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "wrong site to pool mapping forbids action"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "wrong binding forbids action"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "transitional state never starts the pool"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "HTTP checker rejects redirects, failures and empty content"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "two consecutive fresh failures trigger"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "one failure does not trigger"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "duplicate is not a second observation"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "a success between failures prevents trigger"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "missing or stale telemetry is unknown"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "Fired invokes only the configured VM with fixed command and hex incident"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "Resolved never connects to Azure or submits a command"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "invalid resource never connects to Azure"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "transport failure never resubmits an indeterminate Run Command"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "unexpected guest output fails rather than logging arbitrary output"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "attempt exhaustion becomes a failed job for human-only alert B"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "claimed recovery without HTTP verification is rejected"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "fault injection waits for the asynchronous pool stop with a bounded timeout"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "all delivered PowerShell artifacts parse on this engine"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "custom role has only the three reviewed actions, no wildcard or Contributor"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "VM template declares only the reviewed VM and references the existing NIC"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "VM template fixes the approved compute, image, disk and managed identity"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "VM template requires Portal-only credentials and stores no defaults"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "AMA template declares exactly one extension and no DCR association"
+                                   }
+                               ]
+                 },
+                 {
+                     "schema":  "h4.tests.v1",
+                     "synthetic":  true,
+                     "azureExecuted":  false,
+                     "engine":  "7.6.5",
+                     "pester":  "5.7.1",
+                     "startedUtc":  "2026-10-05T07:58:35.3355579Z",
+                     "finishedUtc":  "2026-10-05T07:58:37.6492791Z",
+                     "passed":  55,
+                     "failed":  0,
+                     "skipped":  0,
+                     "total":  55,
+                     "cases":  [
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "accepts Fired with exact workspace, VM, site and pool"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "Resolved does not request remediation"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects legacy Activated rather than infer an adapter"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects malformed JSON without exposing its content"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects oversized requests"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects a different subscription target"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects a different resource group"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects another VM"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects another site"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects pool injection"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects missing or duplicate dimensions"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects wrong rule even with correct resources"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects multiple targets"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects stale alerts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects future alerts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "disabled policy ignores requests"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "maintenance ignores requests"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects placeholders before any integration"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects additional policy fields"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rejects arbitrary HTTP destination and greater attempt limit"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "WhatIf neither changes files nor calls the pool adapter"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "recovers stopped pool and verifies HTTP body and state"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "duplicate delivery never starts a second time"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "does not restart an already healthy pool"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "running pool with failed HTTP escalates without restart"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "HTTP 200 with wrong body is not recovery"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "counts failed starts and stops after two attempts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "rolling limit also prevents new incident IDs bypassing two attempts"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "exclusive lock prevents concurrent effects"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "crash after durable claim requires human review and cannot reset budget"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "corrupt ledger fails closed"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "missing ledger never initializes new attempt allowance"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "wrong site to pool mapping forbids action"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "wrong binding forbids action"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "transitional state never starts the pool"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "HTTP checker rejects redirects, failures and empty content"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "two consecutive fresh failures trigger"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "one failure does not trigger"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "duplicate is not a second observation"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "a success between failures prevents trigger"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "missing or stale telemetry is unknown"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "Fired invokes only the configured VM with fixed command and hex incident"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "Resolved never connects to Azure or submits a command"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "invalid resource never connects to Azure"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "transport failure never resubmits an indeterminate Run Command"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "unexpected guest output fails rather than logging arbitrary output"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "attempt exhaustion becomes a failed job for human-only alert B"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "claimed recovery without HTTP verification is rejected"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "fault injection waits for the asynchronous pool stop with a bounded timeout"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "all delivered PowerShell artifacts parse on this engine"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "custom role has only the three reviewed actions, no wildcard or Contributor"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "VM template declares only the reviewed VM and references the existing NIC"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "VM template fixes the approved compute, image, disk and managed identity"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "VM template requires Portal-only credentials and stores no defaults"
+                                   },
+                                   {
+                                       "result":  "Passed",
+                                       "name":  "AMA template declares exactly one extension and no DCR association"
+                                   }
+                               ]
+                 }
+             ],
+    "sha256":  {
+                   "reto3-azure/arm/ama-h4.json":  "06c9fbe7b4510200a6b84fde35a477df653b4ff2bd61f7984d8da1efe1f0663e",
+                   "reto3-azure/arm/vm-h4.json":  "5fdeb15f1eb17a51879187af50156e4a382c72aa74adcc71997f80d97c3ca9f9",
+                   "reto3-azure/config/collection-and-alerts.example.json":  "27fe03af1e5b5bd8210ef779752568f27933a2932964f4039327897bcfa46f2e",
+                   "reto3-azure/config/H4.example.json":  "aecbbea80ab6d56cbd2037b393d0c848626d0eb3dea727f00e1bfbe403af72df",
+                   "reto3-azure/kql/01-availability.kql":  "37a5901cbdaef9ecade6ed0308d4b1e765ea312372b743edaca2178b228f100c",
+                   "reto3-azure/kql/02-iis.kql":  "dc3001aced2941afe0081eb8a7608a215efccfecdb339500da28bff7bf676a79",
+                   "reto3-azure/kql/03-pool-events.kql":  "092f834ec0d2d53f929bce6221ab4ecd86b2b7d4b43f9d84e5e63f76860a3b76",
+                   "reto3-azure/kql/04-alert-a.kql":  "20ef954b61c5d0895abebcb7e2ca0d8790083d7e5c0419a8176b40b7ecf423af",
+                   "reto3-azure/kql/05-alert-b.kql":  "3bf5e4089ecbe8137b402acf2135686d87e1798edd9a945f9de684ac589e40f2",
+                   "reto3-azure/kql/06-ingestion-and-performance.kql":  "d130b7f79d833210f18e75e0936cf434c5138bb359233048bbf0976cc97f95c1",
+                   "reto3-azure/modules/H4SafeAutomation/H4SafeAutomation.psd1":  "720c0c432275ec3e2ff3fd0aa62a6b7158486eb2c64f50b89fb8cbeb1b24b7bb",
+                   "reto3-azure/modules/H4SafeAutomation/H4SafeAutomation.psm1":  "d7197ebda7d9d64c9bd574b7005df69c04ab1aa2c6a1293bf32c3df266155c12",
+                   "reto3-azure/roles/H4-RunCommand-LabVM.example.json":  "677f11b7591bdada5a24463919c51391cc7caf5257017e5e02056cf322a56c86",
+                   "reto3-azure/runbooks/Invoke-H4Remediation.ps1":  "efd6bb9a075d498c53868d8451be2b250e5f74c5236ed4126fb7cc7d3bce3f3d",
+                   "reto3-azure/scripts/Build-H4Package.ps1":  "9516ede9cde5c0eed3eeae1f932cb22017699283185417e633344e817182f596",
+                   "reto3-azure/scripts/Install-H4Guest.ps1":  "5326e8f1b1611e2abd70184b61f7882721a07c361b902f9aeb2931e19e07d368",
+                   "reto3-azure/scripts/Invoke-H4GuestRecovery.ps1":  "f5bdaec3fdb862aa9b9fa75547853ecc8d17bc5e35c117e5fb6624c3f627ba74",
+                   "reto3-azure/scripts/Invoke-H4LabFault.ps1":  "3e5aae78e8ca806622014af6d99245e354138aedcf8d5e99180c53168ea9cfcb",
+                   "reto3-azure/scripts/Invoke-H4Probe.ps1":  "8b53bd5df33e778bb1bfe2a386017f71f26252e36441a7c5038d9ef58065a1dc",
+                   "tests/fixtures/h4/New-H4SyntheticCase.ps1":  "3e1ff611b9cf9a2a9c3970b246599e4f0c9a3395f9ed7777990b36161ab13342",
+                   "tests/fixtures/h4/policy.synthetic.json":  "8562cc9e70c23794ff9910db30731b8f305c1657046c69e3bc009ca833b3e63a",
+                   "tests/H4.Tests.ps1":  "6c45c65a2e37e5da7dec660ec563b5d229d6032b3d166f5389f01e8a94a727bf",
+                   "tests/Run-H4Tests.ps1":  "8652fecf23fc9fabd7d2ecdc093c3dc34b23b57d23d55dc3e6663f31fcd9394b",
+                   "reto3-azure/workbooks/wb-h4-observabilidad.workbook.json":  "4013e0cb3fdf42c03781be4247b5287d9fdd0717fc070b707df798cd6a9e5404"
+               }
+}

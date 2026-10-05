@@ -1,0 +1,16 @@
+// Alert A: one workspace, no resourceIdColumn override. Dimensions exactly _ResourceId, Site, Pool.
+// Evaluation 5m (Portal rejected 1m for this query), window 5m, rows >0, Sev1, stateful/auto-resolve.
+Event
+| where _ResourceId endswith '/virtualMachines/vm-h4-iis'
+| where Source == 'H4AvailabilityProbe' and EventID == 100
+| extend p=parse_json(RenderedDescription)
+| where p.schema == 'h4.probe.v1' and p.site == 'H4LabSite' and p.pool == 'H4LabPool'
+| extend ProbeTime=todatetime(p.timestampUtc), ProbeId=tostring(p.probeId), Ok=tobool(p.success), Site=tostring(p.site), Pool=tostring(p.pool)
+| where isnotempty(ProbeId) and isnotnull(Ok) and ProbeTime <= now()
+| summarize arg_max(TimeGenerated, *) by ProbeId
+| top 2 by ProbeTime desc
+| sort by ProbeTime asc
+| serialize PreviousTime=prev(ProbeTime), PreviousOk=prev(Ok)
+| where Ok == false and PreviousOk == false
+| where ProbeTime - PreviousTime between (45s .. 90s) and ProbeTime > ago(5m)
+| project _ResourceId, Site, Pool, ProbeTime

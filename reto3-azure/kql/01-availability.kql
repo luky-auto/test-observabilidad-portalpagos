@@ -1,0 +1,20 @@
+// Local VM perspective, not end-to-end. Resource suffix avoids storing subscription IDs.
+let finish = bin(now(), 1m);
+let start = finish - 1h;
+let minutes = range Minute from start to (finish - 1m) step 1m;
+let probes = Event
+| where TimeGenerated between (start .. finish)
+| where _ResourceId endswith '/virtualMachines/vm-h4-iis'
+| where Source == 'H4AvailabilityProbe' and EventID == 100
+| extend p = parse_json(RenderedDescription)
+| where p.schema == 'h4.probe.v1' and p.site == 'H4LabSite' and p.pool == 'H4LabPool'
+| extend ProbeTime=todatetime(p.timestampUtc), Ok=tobool(p.success), ProbeId=tostring(p.probeId)
+| where ProbeTime >= start and ProbeTime < finish and isnotempty(ProbeId) and isnotnull(Ok)
+| summarize arg_max(TimeGenerated, *) by ProbeId
+| summarize Healthy=countif(Ok), Failed=countif(not(Ok)) by Minute=bin(ProbeTime,1m);
+minutes
+| join kind=leftouter probes on Minute
+| extend State=case(Failed > 0, 'Failed', Healthy > 0, 'Healthy', 'Unknown')
+| summarize ExpectedMinutes=count(), HealthyMinutes=countif(State=='Healthy'), FailedMinutes=countif(State=='Failed'), UnknownMinutes=countif(State=='Unknown')
+| extend CoveragePct=100.0*(HealthyMinutes+FailedMinutes)/ExpectedMinutes,
+    ObservedAvailabilityPct=iff(HealthyMinutes+FailedMinutes == 0, real(null),100.0*HealthyMinutes/(HealthyMinutes+FailedMinutes))

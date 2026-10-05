@@ -1,6 +1,6 @@
 # Prueba técnica de Observabilidad y Automatización
 
-Caso sintético PortalPagos. **Estado: H0, H1 y H2 aprobados; Reto 1 cerrado. H3 completado y aprobado; Reto 2 cerrado.** H1 cubre ingesta, normalización y calidad; H2 entrega el diagnóstico y post-mortem del Reto 1. H4 tiene aprobación conceptual, sin autorización de despliegue; los retos 3–5 no se han implementado. No se han ejecutado comandos contra Azure ni creado recursos.
+Caso sintético PortalPagos. **Estado: Reto 1 y Reto 2 cerrados; Reto 3 funcionalmente demostrado y en cierre de evidencia.** H4 validó ingestión, KQL, dos alertas, notificación humana, auto-remediación, HTTP 200 y un Workbook con vistas Dirección/NOC. Faltan sustituir cuatro capturas con redacción incompleta y eliminar/verificar los recursos cuando el usuario autorice el alcance. Los retos 4–5 no se han implementado. El agente no ejecutó comandos contra Azure; el usuario realizó los pasos en Portal.
 
 H2 fue revisado y aprobado; el cierre del Reto 1 se registró el 2026-10-04 a las 02:29:13 (America/Bogota). Sus entregables quedaron versionados en el commit `97c4245` y enviados a GitHub.
 
@@ -17,12 +17,14 @@ py -3.11 -m venv .venv
 
 Omitir la creación si `.venv` ya existe; si no tiene pip, ejecutar `python -m ensurepip` con ese entorno. Las versiones fijadas son las usadas para verificar el PDF, no requisitos del parser. Para inspección visual instalar Poppler y ejecutar `pdftoppm -png reto1-diagnostico/POSTMORTEM.pdf work-private/h2/page` (crear antes `work-private/h2/`). Revisar cada imagen; el conteo automático no reemplaza la revisión. Objetivo de compatibilidad Python 3.11+; ejecución real en 3.12.14, sin validación directa de 3.11.
 
+H4/Reto 3: [resultado y artefactos](reto3-azure/README.md), [pasos de Azure Portal](reto3-azure/PORTAL.md), [permisos y salvaguardas](reto3-azure/SEGURIDAD.md) y [evidencias revisadas](evidencias/publicables/h4/README.md). **55/55** pruebas sintéticas aprobadas por motor (5.1 y 7.6.5), además de la comprobación real del laboratorio realizada por el usuario en Portal. Portal obligó a usar North Central US y `Standard_B2als_v2`; el workspace vigente es `law-h4-test`. Costo observado USD 0,06 y presupuesto preventivo USD 15. La eliminación sigue pendiente de autorización.
+
 ## Cómo empezar
 
 1. Leer [AGENTS.md](AGENTS.md), [PLAN.md](PLAN.md) y [DECISION_LOG.md](DECISION_LOG.md).
 2. Mantener localmente el kit autorizado en `input-private/kit_prueba_portalpagos/` y el enunciado DOCX en `input-private/`. Esta carpeta está excluida de Git y es de solo lectura por regla de trabajo; no se han cambiado sus permisos del sistema.
 3. Verificar con `git status --short` y `git check-ignore input-private/kit_prueba_portalpagos/scripts/mantenimiento_diario.bat` que las entradas no se proponen para versionar. No abrir ni ejecutar el BAT sin protección de su credencial.
-4. Seguir la [guía de reproducción de H1](reto1-diagnostico/README.md): objetivo de compatibilidad Python 3.11 o posterior; ejecución comprobada en Python 3.12.14, sin validación directa de 3.11. Ingestión y análisis usan biblioteca estándar; los paquetes opcionales anteriores son solo para PDF. H2 y H3 completados y aprobados; despliegue de H4 pendiente de autorización explícita.
+4. Seguir la [guía de reproducción de H1](reto1-diagnostico/README.md): objetivo de compatibilidad Python 3.11 o posterior; ejecución comprobada en Python 3.12.14, sin validación directa de 3.11. Ingestión y análisis usan biblioteca estándar; los paquetes opcionales anteriores son solo para PDF. H2 y H3 están cerrados; H4 está en cierre de evidencia y limpieza.
 
 El kit no se distribuye con el repositorio. La reproducción futura requerirá acceso legítimo al kit o fixtures sintéticos claramente identificados. El plazo es de cinco días desde la recepción según el enunciado; la fecha de recepción no está confirmada.
 
@@ -32,16 +34,16 @@ El kit no se distribuye con el repositorio. La reproducción futura requerirá a
 input-private/              # Originales locales; nunca Git
 reto1-diagnostico/          # Ingestión, diagnóstico y post-mortem completados
 reto2-powershell/           # Mantenimiento sintético y evaluación del BAT
-reto3-azure/                # Laboratorio futuro, sujeto a autorización
+reto3-azure/                # Laboratorio H4, consultas, automatización y Workbook
 reto4-triage-ia/            # Componente de sugerencias futuro
 reto5-propuesta/            # Propuesta futura de 90 días
-tests/                     # Pruebas de H1, H2 y H3
+tests/                     # Pruebas H1–H3 y sintéticas H4
 evidencias/publicables/    # Solo evidencia revisada y redactada
 evidencias/private/        # Evidencia cruda; nunca Git
 work-private/              # Derivados locales; nunca Git
 ```
 
-Las carpetas de los retos 3–5 siguen reservadas para hitos futuros. Git no conserva carpetas vacías: se incluyen en esta documentación y se conservarán en el repositorio cuando tengan entregables autorizados; no se crearon archivos de relleno.
+Las carpetas de los retos 4–5 siguen reservadas para hitos futuros. Git no conserva carpetas vacías: se incluyen en esta documentación y se conservarán en el repositorio cuando tengan entregables autorizados; no se crearon archivos de relleno.
 
 ## Inventario observado y formatos
 
@@ -71,4 +73,4 @@ Las rutas abreviadas de datos en la tabla pertenecen a `kit_prueba_portalpagos/`
 
 ## Evidencia y controles
 
-Los resultados de H0–H3 se registran en [IA_BITACORA.md](IA_BITACORA.md). El Reto 1 está cerrado con diagnóstico, cronología, indicadores de éxito HTTP, análisis causal con incertidumbre, escenarios condicionales de disco y post-mortem de dos páginas. No se afirma disponibilidad temporal exacta ni una causa de código demostrada. El cierre registra 33 pruebas aprobadas (21 H1 + 12 H2), 33 controles H1 y revisión visual del PDF con fuentes TrueType incrustadas. H3 añade 38 pruebas aprobadas en cada uno de dos motores PowerShell, únicamente con datos sintéticos; aceptación humana registrada. Azure y triage siguen pendientes. La alerta de presupuesto se configurará manualmente antes del primer despliegue. Las alertas operativas se crearán después de contar con VM, Log Analytics y fuentes válidas. Cambios Azure, commit y push requieren autorización conforme a AGENTS.
+Los resultados de H0–H4 se registran en [IA_BITACORA.md](IA_BITACORA.md). El Reto 1 está cerrado con diagnóstico, cronología, indicadores de éxito HTTP, análisis causal con incertidumbre, escenarios condicionales de disco y post-mortem de dos páginas. H3 añade 38 pruebas aprobadas en cada motor PowerShell. H4 añade 55 pruebas por motor y evidencia real de Azure, con los límites temporales descritos en su README. Capturas públicas, eliminación, commit y push se someten a las puertas de AGENTS.

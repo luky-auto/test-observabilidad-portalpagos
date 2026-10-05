@@ -1,0 +1,7 @@
+W3CIISLog
+| where TimeGenerated > ago(1h)
+| where _ResourceId endswith '/virtualMachines/vm-h4-iis'
+| where sSiteName == 'H4LabSite'
+| summarize Requests=count(), Errors5xx=countif(toint(scStatus) between (500 .. 599)), P95ms=percentile(todouble(TimeTaken),95) by bin(TimeGenerated,5m)
+| extend ErrorRatePct=100.0*Errors5xx/Requests
+// No rows means no collected requests, not zero errors or perfect availability.

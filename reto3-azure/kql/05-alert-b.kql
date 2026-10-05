@@ -1,0 +1,8 @@
+// Alert B: evaluation 5m, window 30m, count >0, Sev1, human notification ONLY.
+AzureDiagnostics
+| where _ResourceId endswith '/automationAccounts/aa-h4-remediation'
+| where ResourceProvider == 'MICROSOFT.AUTOMATION' and RunbookName_s == 'rb-h4-recover-pool'
+| extend outcome=parse_json(ResultDescription)
+| where (Category == 'JobLogs' and ResultType in ('Failed','Suspended'))
+    or (Category == 'JobStreams' and StreamType_s == 'Output' and tostring(outcome.status) in ('AttemptsExhausted','EscalationRequired'))
+| summarize LastSeen=max(TimeGenerated), Records=count() by JobId_g, RunbookName_s

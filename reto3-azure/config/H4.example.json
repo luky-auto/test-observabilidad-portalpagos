@@ -1,0 +1,16 @@
+{
+  "schema": "h4.policy.v1",
+  "enabled": false,
+  "maintenance": false,
+  "subscriptionId": "<SUBSCRIPTION_ID>",
+  "resourceGroup": "rg-h4-observabilidad",
+  "vmName": "vm-h4-iis",
+  "workspaceName": "law-h4-test",
+  "alertRule": "alert-h4-http-failed",
+  "site": "H4LabSite",
+  "pool": "H4LabPool",
+  "uri": "http://127.0.0.1:8080/health.txt",
+  "expectedBody": "H4_OK",
+  "maxAttempts": 2,
+  "windowMinutes": 15
+}

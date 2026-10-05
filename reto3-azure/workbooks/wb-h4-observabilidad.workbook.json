@@ -1,0 +1,322 @@
+{
+    "version":  "Notebook/1.0",
+    "items":  [
+                  {
+                      "type":  1,
+                      "content":  {
+                                      "json":  "# H4 — Observabilidad de IIS\n\n**Laboratorio / disponibilidad desde la VM, no extremo a extremo**\n\nLas métricas corresponden al sitio sintético H4LabSite. Los minutos sin sondeo son Unknown y no se consideran saludables."
+                                  },
+                      "name":  "H4 title"
+                  },
+                  {
+                      "type":  9,
+                      "content":  {
+                                      "version":  "KqlParameterItem/1.0",
+                                      "crossComponentResources":  [
+                                                                      "{Subscription}"
+                                                                  ],
+                                      "parameters":  [
+                                                         {
+                                                             "id":  "76f04b28-ccf5-41be-9203-a3dc41778848",
+                                                             "version":  "KqlParameterItem/1.0",
+                                                             "name":  "Subscription",
+                                                             "label":  "Subscription",
+                                                             "type":  6,
+                                                             "isRequired":  true,
+                                                             "multiSelect":  false,
+                                                             "query":  "resources\n| where type =~ \u0027microsoft.operationalinsights/workspaces\u0027\n| summarize by subscriptionId\n| project value=subscriptionId, label=subscriptionId",
+                                                             "crossComponentResources":  [
+                                                                                             "value::selected"
+                                                                                         ],
+                                                             "typeSettings":  {
+                                                                                  "additionalResourceOptions":  [
+
+                                                                                                                ],
+                                                                                  "showDefault":  false
+                                                                              },
+                                                             "queryType":  1,
+                                                             "resourceType":  "microsoft.resourcegraph/resources"
+                                                         },
+                                                         {
+                                                             "id":  "688a01f2-901a-4db5-a441-6e16704f2640",
+                                                             "version":  "KqlParameterItem/1.0",
+                                                             "name":  "Workspace",
+                                                             "label":  "Log Analytics workspace",
+                                                             "type":  5,
+                                                             "isRequired":  true,
+                                                             "multiSelect":  false,
+                                                             "query":  "where type =~ \u0027microsoft.operationalinsights/workspaces\u0027\n| project id",
+                                                             "crossComponentResources":  [
+                                                                                             "{Subscription}"
+                                                                                         ],
+                                                             "value":  "",
+                                                             "typeSettings":  {
+                                                                                  "resourceTypeFilter":  {
+                                                                                                             "microsoft.operationalinsights/workspaces":  true
+                                                                                                         },
+                                                                                  "additionalResourceOptions":  [
+
+                                                                                                                ],
+                                                                                  "showDefault":  false
+                                                                              },
+                                                             "queryType":  1,
+                                                             "resourceType":  "microsoft.resourcegraph/resources"
+                                                         },
+                                                         {
+                                                             "id":  "d37fae32-511f-4f56-aeb2-821ff8f5df20",
+                                                             "version":  "KqlParameterItem/1.0",
+                                                             "name":  "TimeRange",
+                                                             "label":  "Time range (UTC)",
+                                                             "type":  4,
+                                                             "isRequired":  true,
+                                                             "value":  {
+                                                                           "durationMs":  3600000
+                                                                       },
+                                                             "typeSettings":  {
+                                                                                  "selectableValues":  [
+                                                                                                           {
+                                                                                                               "durationMs":  3600000,
+                                                                                                               "displayName":  "Last 1 hour"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "durationMs":  21600000,
+                                                                                                               "displayName":  "Last 6 hours"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "durationMs":  86400000,
+                                                                                                               "displayName":  "Last 24 hours"
+                                                                                                           }
+                                                                                                       ],
+                                                                                  "allowCustom":  true
+                                                                              }
+                                                         },
+                                                         {
+                                                             "id":  "4b11815d-41b4-4e9c-a103-24a58df11b45",
+                                                             "version":  "KqlParameterItem/1.0",
+                                                             "name":  "View",
+                                                             "type":  1,
+                                                             "isRequired":  true,
+                                                             "value":  "Direction",
+                                                             "isHiddenWhenLocked":  true
+                                                         }
+                                                     ],
+                                      "style":  "pills",
+                                      "queryType":  1,
+                                      "resourceType":  "microsoft.resourcegraph/resources"
+                                  },
+                      "name":  "H4 parameters"
+                  },
+                  {
+                      "type":  11,
+                      "content":  {
+                                      "version":  "LinkItem/1.0",
+                                      "style":  "tabs",
+                                      "links":  [
+                                                    {
+                                                        "cellValue":  "View",
+                                                        "linkTarget":  "parameter",
+                                                        "linkLabel":  "Dirección",
+                                                        "subTarget":  "Direction"
+                                                    },
+                                                    {
+                                                        "cellValue":  "View",
+                                                        "linkTarget":  "parameter",
+                                                        "linkLabel":  "NOC",
+                                                        "subTarget":  "NOC"
+                                                    }
+                                                ]
+                                  },
+                      "name":  "H4 navigation"
+                  },
+                  {
+                      "type":  12,
+                      "content":  {
+                                      "version":  "NotebookGroup/1.0",
+                                      "groupType":  "editable",
+                                      "items":  [
+                                                    {
+                                                        "type":  1,
+                                                        "content":  {
+                                                                        "json":  "## Resumen para Dirección\n**Qué muestra:** disponibilidad observada junto con cobertura, solicitudes HTTP, errores 5xx y latencia p95. El laboratorio mide desde la VM y no representa experiencia extremo a extremo ni transacciones reales de pagos."
+                                                                    },
+                                                        "name":  "Direction section"
+                                                    },
+                                                    {
+                                                        "type":  3,
+                                                        "content":  {
+                                                                        "version":  "KqlItem/1.0",
+                                                                        "query":  "// Local VM perspective, not end-to-end. Resource suffix avoids storing subscription IDs.\nlet finish = bin(now(), 1m);\nlet start = finish - 1h;\nlet minutes = range Minute from start to (finish - 1m) step 1m;\nlet probes = Event\n| where TimeGenerated between (start .. finish)\n| where _ResourceId endswith \u0027/virtualMachines/vm-h4-iis\u0027\n| where Source == \u0027H4AvailabilityProbe\u0027 and EventID == 100\n| extend p = parse_json(RenderedDescription)\n| where p.schema == \u0027h4.probe.v1\u0027 and p.site == \u0027H4LabSite\u0027 and p.pool == \u0027H4LabPool\u0027\n| extend ProbeTime=todatetime(p.timestampUtc), Ok=tobool(p.success), ProbeId=tostring(p.probeId)\n| where ProbeTime \u003e= start and ProbeTime \u003c finish and isnotempty(ProbeId) and isnotnull(Ok)\n| summarize arg_max(TimeGenerated, *) by ProbeId\n| summarize Healthy=countif(Ok), Failed=countif(not(Ok)) by Minute=bin(ProbeTime,1m);\nminutes\n| join kind=leftouter probes on Minute\n| extend State=case(Failed \u003e 0, \u0027Failed\u0027, Healthy \u003e 0, \u0027Healthy\u0027, \u0027Unknown\u0027)\n| summarize ExpectedMinutes=count(), HealthyMinutes=countif(State==\u0027Healthy\u0027), FailedMinutes=countif(State==\u0027Failed\u0027), UnknownMinutes=countif(State==\u0027Unknown\u0027)\n| extend CoveragePct=100.0*(HealthyMinutes+FailedMinutes)/ExpectedMinutes,\n    ObservedAvailabilityPct=iff(HealthyMinutes+FailedMinutes == 0, real(null),100.0*HealthyMinutes/(HealthyMinutes+FailedMinutes))\n",
+                                                                        "size":  0,
+                                                                        "title":  "Disponibilidad observada y cobertura — última hora",
+                                                                        "timeContextFromParameter":  "TimeRange",
+                                                                        "queryType":  0,
+                                                                        "resourceType":  "microsoft.operationalinsights/workspaces",
+                                                                        "crossComponentResources":  [
+                                                                                                        "{Workspace}"
+                                                                                                    ],
+                                                                        "visualization":  "table",
+                                                                        "showExportToExcel":  true
+                                                                    },
+                                                        "name":  "Availability summary"
+                                                    },
+                                                    {
+                                                        "type":  3,
+                                                        "content":  {
+                                                                        "version":  "KqlItem/1.0",
+                                                                        "query":  "W3CIISLog\n| where TimeGenerated \u003e ago(1h)\n| where _ResourceId endswith \u0027/virtualMachines/vm-h4-iis\u0027\n| where sSiteName == \u0027H4LabSite\u0027\n| summarize Requests=count(), Errors5xx=countif(toint(scStatus) between (500 .. 599)), P95ms=percentile(todouble(TimeTaken),95) by bin(TimeGenerated,5m)\n| extend ErrorRatePct=100.0*Errors5xx/Requests\n// No rows means no collected requests, not zero errors or perfect availability.\n",
+                                                                        "size":  0,
+                                                                        "title":  "Solicitudes IIS, errores 5xx y p95",
+                                                                        "timeContextFromParameter":  "TimeRange",
+                                                                        "queryType":  0,
+                                                                        "resourceType":  "microsoft.operationalinsights/workspaces",
+                                                                        "crossComponentResources":  [
+                                                                                                        "{Workspace}"
+                                                                                                    ],
+                                                                        "visualization":  "timechart",
+                                                                        "showExportToExcel":  true
+                                                                    },
+                                                        "name":  "IIS requests"
+                                                    },
+                                                    {
+                                                        "type":  1,
+                                                        "content":  {
+                                                                        "json":  "### Último ensayo controlado\n\nResultado observado: **Recovered**, un intento y HTTP **200**. Las políticas de remediación y el webhook quedaron deshabilitados después de la prueba. El tiempo de detección se obtiene de los eventos y la alerta, no de la hora de esta nota.",
+                                                                        "style":  "success"
+                                                                    },
+                                                        "name":  "Controlled test result"
+                                                    }
+                                                ]
+                                  },
+                      "conditionalVisibility":  {
+                                                    "parameterName":  "View",
+                                                    "comparison":  "isEqualTo",
+                                                    "value":  "Direction"
+                                                },
+                      "name":  "Direction group"
+                  },
+                  {
+                      "type":  12,
+                      "content":  {
+                                      "version":  "NotebookGroup/1.0",
+                                      "groupType":  "editable",
+                                      "items":  [
+                                                    {
+                                                        "type":  1,
+                                                        "content":  {
+                                                                        "json":  "## Vista NOC\nFuentes, rendimiento, eventos del pool y condiciones de alertamiento. Un job Completed no demuestra recuperación sin la comprobación HTTP."
+                                                                    },
+                                                        "name":  "NOC section"
+                                                    },
+                                                    {
+                                                        "type":  3,
+                                                        "content":  {
+                                                                        "version":  "KqlItem/1.0",
+                                                                        "query":  "// Run each section separately in Portal.\nunion withsource=TableName Heartbeat, Event, Perf, W3CIISLog\n| where TimeGenerated \u003e ago(30m)\n| where _ResourceId endswith \u0027/virtualMachines/vm-h4-iis\u0027\n| summarize Rows=count(), LastSeen=max(TimeGenerated) by TableName",
+                                                                        "size":  0,
+                                                                        "title":  "Última ingestión por fuente",
+                                                                        "timeContextFromParameter":  "TimeRange",
+                                                                        "queryType":  0,
+                                                                        "resourceType":  "microsoft.operationalinsights/workspaces",
+                                                                        "crossComponentResources":  [
+                                                                                                        "{Workspace}"
+                                                                                                    ],
+                                                                        "visualization":  "table",
+                                                                        "showExportToExcel":  true
+                                                                    },
+                                                        "name":  "Ingestion status"
+                                                    },
+                                                    {
+                                                        "type":  3,
+                                                        "content":  {
+                                                                        "version":  "KqlItem/1.0",
+                                                                        "query":  "Perf\n| where TimeGenerated \u003e ago(1h)\n| where _ResourceId endswith \u0027/virtualMachines/vm-h4-iis\u0027\n| where (ObjectName == \u0027Processor Information\u0027 and CounterName == \u0027% Processor Time\u0027 and InstanceName == \u0027_Total\u0027)\n    or (ObjectName == \u0027Memory\u0027 and CounterName == \u0027Available Bytes\u0027)\n    or (ObjectName == \u0027LogicalDisk\u0027 and CounterName == \u0027% Free Space\u0027 and InstanceName == \u0027C:\u0027)\n| extend DisplayValue=iff(ObjectName == \u0027Memory\u0027, CounterValue / 1048576.0, CounterValue),\n    Unit=case(ObjectName == \u0027Memory\u0027, \u0027MiB\u0027, CounterName startswith \u0027%\u0027, \u0027Percent\u0027, \u0027Value\u0027)\n| summarize Average=avg(DisplayValue), Minimum=min(DisplayValue), Maximum=max(DisplayValue) by ObjectName, CounterName, InstanceName, Unit, bin(TimeGenerated,5m)",
+                                                                        "size":  0,
+                                                                        "title":  "CPU, memoria disponible y espacio libre en C:",
+                                                                        "timeContextFromParameter":  "TimeRange",
+                                                                        "queryType":  0,
+                                                                        "resourceType":  "microsoft.operationalinsights/workspaces",
+                                                                        "crossComponentResources":  [
+                                                                                                        "{Workspace}"
+                                                                                                    ],
+                                                                        "visualization":  "timechart",
+                                                                        "showExportToExcel":  true
+                                                                    },
+                                                        "name":  "Performance"
+                                                    },
+                                                    {
+                                                        "type":  3,
+                                                        "content":  {
+                                                                        "version":  "KqlItem/1.0",
+                                                                        "query":  "let matches = materialize(\nEvent\n| where TimeGenerated \u003e ago(1h)\n| where _ResourceId endswith \u0027/virtualMachines/vm-h4-iis\u0027\n| where Source in~ (\u0027Microsoft-Windows-WAS\u0027,\u0027WAS\u0027,\u0027Microsoft-Windows-IIS-W3SVC-WP\u0027,\u0027W3SVC-WP\u0027)\n| where RenderedDescription contains \u0027H4LabPool\u0027 or tostring(EventData) contains \u0027H4LabPool\u0027\n| project TimeGenerated, Source, EventID, EventLevelName, RenderedDescription\n| order by TimeGenerated asc\n);\nunion matches,\n(\n    print TimeGenerated=now(), Source=\u0027Workbook\u0027, EventID=0,\n        EventLevelName=\u0027Information\u0027,\n        RenderedDescription=\u0027No matching pool events in this period; absence is not evidence of health.\u0027\n    | where toscalar(matches | count) == 0\n)",
+                                                                        "size":  0,
+                                                                        "title":  "Eventos observados del application pool",
+                                                                        "timeContextFromParameter":  "TimeRange",
+                                                                        "queryType":  0,
+                                                                        "resourceType":  "microsoft.operationalinsights/workspaces",
+                                                                        "crossComponentResources":  [
+                                                                                                        "{Workspace}"
+                                                                                                    ],
+                                                                        "visualization":  "table",
+                                                                        "showExportToExcel":  true
+                                                                    },
+                                                        "name":  "Pool events"
+                                                    },
+                                                    {
+                                                        "type":  3,
+                                                        "content":  {
+                                                                        "version":  "KqlItem/1.0",
+                                                                        "query":  "let matches = materialize(\n// Alert A: one workspace, no resourceIdColumn override. Dimensions exactly _ResourceId, Site, Pool.\n// Evaluation 5m (Portal rejected 1m for this query), window 5m, rows \u003e0, Sev1, stateful/auto-resolve.\nEvent\n| where _ResourceId endswith \u0027/virtualMachines/vm-h4-iis\u0027\n| where Source == \u0027H4AvailabilityProbe\u0027 and EventID == 100\n| extend p=parse_json(RenderedDescription)\n| where p.schema == \u0027h4.probe.v1\u0027 and p.site == \u0027H4LabSite\u0027 and p.pool == \u0027H4LabPool\u0027\n| extend ProbeTime=todatetime(p.timestampUtc), ProbeId=tostring(p.probeId), Ok=tobool(p.success), Site=tostring(p.site), Pool=tostring(p.pool)\n| where isnotempty(ProbeId) and isnotnull(Ok) and ProbeTime \u003c= now()\n| summarize arg_max(TimeGenerated, *) by ProbeId\n| top 2 by ProbeTime desc\n| sort by ProbeTime asc\n| serialize PreviousTime=prev(ProbeTime), PreviousOk=prev(Ok)\n| where Ok == false and PreviousOk == false\n| where ProbeTime - PreviousTime between (45s .. 90s) and ProbeTime \u003e ago(5m)\n| project _ResourceId, Site, Pool, ProbeTime\n| extend Status=\u0027Triggered\u0027\n);\nunion matches,\n(\n    print _ResourceId=\u0027\u0027, Site=\u0027H4LabSite\u0027, Pool=\u0027H4LabPool\u0027,\n        ProbeTime=now(),\n        Status=\u0027No active matching condition; verify probe ingestion separately.\u0027\n    | where toscalar(matches | count) == 0\n)",
+                                                                        "size":  0,
+                                                                        "title":  "Condición A — dos sondeos HTTP fallidos consecutivos",
+                                                                        "timeContextFromParameter":  "TimeRange",
+                                                                        "queryType":  0,
+                                                                        "resourceType":  "microsoft.operationalinsights/workspaces",
+                                                                        "crossComponentResources":  [
+                                                                                                        "{Workspace}"
+                                                                                                    ],
+                                                                        "visualization":  "table",
+                                                                        "showExportToExcel":  true
+                                                                    },
+                                                        "name":  "Alert A condition"
+                                                    },
+                                                    {
+                                                        "type":  3,
+                                                        "content":  {
+                                                                        "version":  "KqlItem/1.0",
+                                                                        "query":  "let matches = materialize(\n// Alert B: evaluation 5m, window 30m, count \u003e0, Sev1, human notification ONLY.\nAzureDiagnostics\n| where _ResourceId endswith \u0027/automationAccounts/aa-h4-remediation\u0027\n| where ResourceProvider == \u0027MICROSOFT.AUTOMATION\u0027 and RunbookName_s == \u0027rb-h4-recover-pool\u0027\n| extend outcome=parse_json(ResultDescription)\n| where (Category == \u0027JobLogs\u0027 and ResultType in (\u0027Failed\u0027,\u0027Suspended\u0027))\n    or (Category == \u0027JobStreams\u0027 and StreamType_s == \u0027Output\u0027 and tostring(outcome.status) in (\u0027AttemptsExhausted\u0027,\u0027EscalationRequired\u0027))\n| summarize LastSeen=max(TimeGenerated), Records=count() by JobId_g, RunbookName_s\n| project LastSeen, Records, JobId=tostring(JobId_g),\n    RunbookName=tostring(RunbookName_s), Status=\u0027Human review required\u0027\n);\nunion matches,\n(\n    print LastSeen=now(), Records=long(0), JobId=\u0027\u0027,\n        RunbookName=\u0027rb-h4-recover-pool\u0027,\n        Status=\u0027No matching failure or escalation in this period; verify diagnostic ingestion separately.\u0027\n    | where toscalar(matches | count) == 0\n)",
+                                                                        "size":  0,
+                                                                        "title":  "Condición B — fallo, suspensión o escalamiento del runbook",
+                                                                        "timeContextFromParameter":  "TimeRange",
+                                                                        "queryType":  0,
+                                                                        "resourceType":  "microsoft.operationalinsights/workspaces",
+                                                                        "crossComponentResources":  [
+                                                                                                        "{Workspace}"
+                                                                                                    ],
+                                                                        "visualization":  "table",
+                                                                        "showExportToExcel":  true
+                                                                    },
+                                                        "name":  "Alert B condition"
+                                                    },
+                                                    {
+                                                        "type":  1,
+                                                        "content":  {
+                                                                        "json":  "### Salvaguardas\n\n- Objetivo exacto: vm-h4-iis / H4LabSite / H4LabPool.\n- Máximo dos intentos y deduplicación por incidente.\n- Run Command se ejecuta como SYSTEM y admite una sola ejecución simultánea.\n- Alertas Resolved no ejecutan remediación.\n- Escalar a una persona si la recuperación falla o agota intentos.",
+                                                                        "style":  "info"
+                                                                    },
+                                                        "name":  "Safeguards"
+                                                    }
+                                                ]
+                                  },
+                      "conditionalVisibility":  {
+                                                    "parameterName":  "View",
+                                                    "comparison":  "isEqualTo",
+                                                    "value":  "NOC"
+                                                },
+                      "name":  "NOC group"
+                  }
+              ],
+    "fallbackResourceIds":  [
+                                "Azure Monitor"
+                            ],
+    "$schema":  "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

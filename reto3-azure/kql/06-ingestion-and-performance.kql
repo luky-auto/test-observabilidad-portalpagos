@@ -1,0 +1,15 @@
+// Run each section separately in Portal.
+union withsource=TableName Heartbeat, Event, Perf, W3CIISLog
+| where TimeGenerated > ago(30m)
+| where _ResourceId endswith '/virtualMachines/vm-h4-iis'
+| summarize Rows=count(), LastSeen=max(TimeGenerated) by TableName;
+
+Perf
+| where TimeGenerated > ago(1h)
+| where _ResourceId endswith '/virtualMachines/vm-h4-iis'
+| where (ObjectName == 'Processor Information' and CounterName == '% Processor Time' and InstanceName == '_Total')
+    or (ObjectName == 'Memory' and CounterName == 'Available Bytes')
+    or (ObjectName == 'LogicalDisk' and CounterName == '% Free Space' and InstanceName == 'C:')
+| extend DisplayValue=iff(ObjectName == 'Memory', CounterValue / 1048576.0, CounterValue),
+    Unit=case(ObjectName == 'Memory', 'MiB', CounterName startswith '%', 'Percent', 'Value')
+| summarize Average=avg(DisplayValue), Minimum=min(DisplayValue), Maximum=max(DisplayValue) by ObjectName, CounterName, InstanceName, Unit, bin(TimeGenerated,5m)

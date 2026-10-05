@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "Install only Azure Monitor Agent on the existing H4 Windows VM. Does not create a DCR association."
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "apiVersion": "2023-03-01",
+      "name": "vm-h4-iis/AzureMonitorWindowsAgent",
+      "location": "northcentralus",
+      "properties": {
+        "publisher": "Microsoft.Azure.Monitor",
+        "type": "AzureMonitorWindowsAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "enableAutomaticUpgrade": true,
+        "settings": {}
+      }
+    }
+  ],
+  "outputs": {
+    "extensionName": {
+      "type": "string",
+      "value": "AzureMonitorWindowsAgent"
+    }
+  }
+}

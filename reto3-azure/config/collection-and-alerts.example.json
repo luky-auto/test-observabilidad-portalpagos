@@ -1,0 +1,27 @@
+{
+  "schema": "h4.portal-design.v1",
+  "notice": "Design inputs, not an ARM deployment template. Validate in Portal before activation.",
+  "region": "northcentralus",
+  "subscription": "<SUBSCRIPTION_ID>",
+  "recipient": "<ALERT_EMAIL_CONFIGURED_MANUALLY>",
+  "webhook": "<PORTAL_ONLY_NEVER_STORE_URL>",
+  "preventiveBudgetUSD": 15,
+  "budgetScope": "Subscription",
+  "actualCostThresholdsPercent": [10, 50, 80, 100],
+  "forecastCostThresholdPercent": 80,
+  "forecastFallbackThresholdPercent": 100,
+  "forecastOnlyIfAvailable": true,
+  "budgetStopsConsumption": false,
+  "costDataMayBeDelayed": true,
+  "primaryContainment": "Delete rg-h4-observabilidad the same day after evidence review and deletion approval",
+  "dcr": {
+    "name": "dcr-h4-windows",
+    "destination": "law-h4-test",
+    "events": ["Application!*[System[Provider[@Name='H4AvailabilityProbe'] and EventID=100]]", "System!*[System[Provider[@Name='Microsoft-Windows-WAS'] or Provider[@Name='Microsoft-Windows-IIS-W3SVC-WP']]]"],
+    "performanceIntervalSeconds": 60,
+    "performanceCounters": ["\\Processor Information(_Total)\\% Processor Time", "\\Memory\\Available Bytes", "\\LogicalDisk(C:)\\% Free Space"],
+    "iisLogs": "W3C; include site name, HTTP status, time-taken; verify W3CIISLog schema"
+  },
+  "alertA": {"name": "alert-h4-http-failed", "enabled": false, "severity": 1, "frequencyMinutes": 1, "windowMinutes": 5, "dimensions": ["_ResourceId", "Site", "Pool"], "actionGroup": "ag-h4-remediation", "commonAlertSchema": true},
+  "alertB": {"name": "alert-h4-remediation-failed", "enabled": false, "severity": 1, "frequencyMinutes": 5, "windowMinutes": 30, "actionGroup": "ag-h4-human", "automaticRemediation": false}
+}

@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-03 (America/Bogota). Alcance inicial máximo: **20 horas**, incluidas preparación, pruebas, evidencia, revisión y reserva. El enunciado estima 12–16 horas y fija 5 días desde la recepción; la fecha de recepción no está confirmada, por lo que no se calcula vencimiento.
 
-Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-03 a las 20:37:32 y 21:47:09 (Bogotá), respectivamente. **H2 completado y aprobado; Reto 1 cerrado**, el 2026-10-04 a las 02:29:13 (America/Bogota, UTC-05). **H3 completado y aprobado; Reto 2 cerrado**, versionado en `df48a5851bcb54c6309b321f1c4125bfa7af8d36`. H4 aprobado conceptualmente, sin autorización de despliegue ni creación de recursos; H4–H7 no implementados. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
+Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-03 a las 20:37:32 y 21:47:09 (Bogotá), respectivamente. **H2 completado y aprobado; Reto 1 cerrado**, el 2026-10-04 a las 02:29:13 (America/Bogota, UTC-05). **H3 completado y aprobado; Reto 2 cerrado**, versionado en `df48a5851bcb54c6309b321f1c4125bfa7af8d36`. H4 activo: diseño y preparación local aprobados; el usuario creó manualmente presupuesto, RG, workspace y red base paso a paso. La VM y los componentes posteriores aún no están autorizados; H5–H7 no implementados. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
 
 ## Secuencia y prioridades
 
@@ -111,6 +111,18 @@ Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-
 - **Aceptación:** puertas satisfechas, dos alertas operativas verificadas después de existir las fuentes, remediación automática trazable y segura; distinguir tiempos observados de objetivos. Preservar evidencia antes de limpieza autorizada.
 - **Riesgos:** costo, cuotas, demora de ingestión, permisos o proveedor no disponibles; no prometer crédito gratuito suficiente.
 - **Tiempo máximo:** 5 h. Si se bloquea, registrar lo ejecutado y lo pendiente; no simular evidencia de Azure.
+
+#### Preparación local de H4, autorizada el 2026-10-04
+
+Corrección presupuestaria vigente: **USD 15**, independiente del crédito Student. Alertas de costo real 10/50/80/100 % y pronosticado al 80 % (o 100 %) si está disponible; destinatario `<ALERT_EMAIL_CONFIGURED_MANUALLY>`, solo usuario en Portal. Ámbito suscripción como control previo y conservador; atribución H4 mediante filtro del RG. No detiene consumo, admite retraso de datos. Contención principal: eliminar `rg-h4-observabilidad` el mismo día tras evidencia revisada y autorización. ZIP opcionales descritos en `reto3-azure/ZIP_CONTENTS.md`.
+
+- Diseño inicial East US/B2s sustituido tras comprobación real: la política rechazó East US y B2s no estuvo disponible para la suscripción. Alcance vigente: North Central US, Windows Server 2022 Azure Edition y `Standard_B2als_v2`; techo preventivo USD 15, laboratorio eliminado el mismo día tras evidencia revisada y autorización de borrado. Webhook temporal aceptado; correo manual; sin datos reales ni secretos en Git/chat.
+- Entregables locales en `reto3-azure/`: módulo, runbook, scripts de instalación futura/sondeo/falla/empaquetado, rol personalizado, seis archivos KQL, guía Portal, diseño de Workbook y plantilla de evidencias. Fixtures y pruebas separados en `tests/`.
+- **55/55 pruebas Pester 5.7.1 PASS por motor**, Windows PowerShell 5.1.26100.9444 y PowerShell 7.6.5. Incluyen la espera acotada que corrige la verificación prematura del apagado del pool. Stubs/mocks sustituyen cmdlets Az; estas pruebas locales no sustituyen la evidencia real de Azure.
+- Alerta A: workspace exacto y dimensiones VM/sitio/pool. Rol de tres acciones explícitas asignado solo a la VM; catálogo no agregado. Permisos efectivos pendientes, sin ampliación automática.
+- **Estado real del laboratorio:** VM/IIS, tarea, ingestión, KQL, runtime/RBAC, alertas A/B, correo, falla controlada, recuperación HTTP y Workbook Dirección/NOC fueron comprobados. Desde el segundo 503 hasta el job: 2 min 52,554 s; hasta el primer 200: 4 min 00,069 s. El Fired solo se conserva al minuto, así que no se declara precisión de segundos para detección.
+- **P1 para cerrar H4:** trece capturas públicas revisadas; preservar esta evidencia y eliminar/verificar recursos dentro del alcance que autorice el usuario. No iniciar H5.
+- Máximo H4: 5 h sin ampliación; medición parcial y errores reales en IA_BITACORA. Sin commit/push ni cambios Azure.
 
 ### H5 Triage del Reto 4
 

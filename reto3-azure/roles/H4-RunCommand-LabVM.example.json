@@ -1,0 +1,14 @@
+{
+  "Name": "H4-RunCommand-LabVM",
+  "IsCustom": true,
+  "Description": "H4 only: execute Action Run Command on the separately scoped lab VM assignment.",
+  "Actions": [
+    "Microsoft.Compute/virtualMachines/read",
+    "Microsoft.Compute/virtualMachines/instanceView/read",
+    "Microsoft.Compute/virtualMachines/runCommand/action"
+  ],
+  "NotActions": [],
+  "DataActions": [],
+  "NotDataActions": [],
+  "AssignableScopes": ["/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/rg-h4-observabilidad"]
+}

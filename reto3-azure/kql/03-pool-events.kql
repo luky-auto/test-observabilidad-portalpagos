@@ -1,0 +1,7 @@
+Event
+| where TimeGenerated > ago(1h)
+| where _ResourceId endswith '/virtualMachines/vm-h4-iis'
+| where Source in~ ('Microsoft-Windows-WAS','WAS','Microsoft-Windows-IIS-W3SVC-WP','W3SVC-WP')
+| where RenderedDescription contains 'H4LabPool' or tostring(EventData) contains 'H4LabPool'
+| project TimeGenerated, Source, EventID, EventLevelName, RenderedDescription
+| order by TimeGenerated asc
