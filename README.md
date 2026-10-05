@@ -1,6 +1,6 @@
 # Prueba técnica de Observabilidad y Automatización
 
-Caso sintético PortalPagos. **Estado: Reto 1 y Reto 2 cerrados; Reto 3 funcionalmente demostrado y en cierre de evidencia.** H4 validó ingestión, KQL, dos alertas, notificación humana, auto-remediación, HTTP 200 y un Workbook con vistas Dirección/NOC. Faltan sustituir cuatro capturas con redacción incompleta y eliminar/verificar los recursos cuando el usuario autorice el alcance. Los retos 4–5 no se han implementado. El agente no ejecutó comandos contra Azure; el usuario realizó los pasos en Portal.
+Caso sintético PortalPagos. **Estado: Retos 1, 2 y 3 cerrados; Reto 4 diferido; Reto 5 creado para revisión.** H4 validó ingestión, KQL, alertas, notificación humana, auto-remediación, HTTP 200 y un Workbook para Dirección/NOC. El usuario declaró eliminados los recursos de Azure después de preservar la evidencia; el agente no hizo llamadas Azure ni verificó esa eliminación de forma independiente.
 
 H2 fue revisado y aprobado; el cierre del Reto 1 se registró el 2026-10-04 a las 02:29:13 (America/Bogota). Sus entregables quedaron versionados en el commit `97c4245` y enviados a GitHub.
 
@@ -17,7 +17,11 @@ py -3.11 -m venv .venv
 
 Omitir la creación si `.venv` ya existe; si no tiene pip, ejecutar `python -m ensurepip` con ese entorno. Las versiones fijadas son las usadas para verificar el PDF, no requisitos del parser. Para inspección visual instalar Poppler y ejecutar `pdftoppm -png reto1-diagnostico/POSTMORTEM.pdf work-private/h2/page` (crear antes `work-private/h2/`). Revisar cada imagen; el conteo automático no reemplaza la revisión. Objetivo de compatibilidad Python 3.11+; ejecución real en 3.12.14, sin validación directa de 3.11.
 
-H4/Reto 3: [resultado y artefactos](reto3-azure/README.md), [pasos de Azure Portal](reto3-azure/PORTAL.md), [permisos y salvaguardas](reto3-azure/SEGURIDAD.md) y [evidencias revisadas](evidencias/publicables/h4/README.md). **55/55** pruebas sintéticas aprobadas por motor (5.1 y 7.6.5), además de la comprobación real del laboratorio realizada por el usuario en Portal. Portal obligó a usar North Central US y `Standard_B2als_v2`; el workspace vigente es `law-h4-test`. Costo observado USD 0,06 y presupuesto preventivo USD 15. La eliminación sigue pendiente de autorización.
+H4/Reto 3: [resultado y artefactos](reto3-azure/README.md), [pasos de Azure Portal](reto3-azure/PORTAL.md), [permisos y salvaguardas](reto3-azure/SEGURIDAD.md) y [evidencias revisadas](evidencias/publicables/h4/README.md). **55/55** pruebas sintéticas aprobadas por motor (5.1 y 7.6.5), además de la comprobación real del laboratorio realizada por el usuario en Portal. Portal obligó a usar North Central US y `Standard_B2als_v2`; el workspace fue `law-h4-test`. Costo observado USD 0,06 y presupuesto preventivo USD 15. El usuario confirmó la eliminación posterior de los recursos.
+
+[Reto 4](reto4-ia/README.md) está **no implementado**: quedó diferido, no completado. No existe ni se afirma una integración de IA. Al alcanzar el límite de tiempo se priorizaron entregables terminados, probados y sustentables, siguiendo la recomendación del enunciado de entregar menos componentes bien hechos y probados en vez de presentar todo a medias. No se entrega código demostrativo sin pruebas.
+
+Reto 5: [fuente del plan de 90 días](reto5-90-dias/PLAN_90_DIAS.md) y [entregable ejecutivo PDF](reto5-90-dias/PLAN_90_DIAS.pdf). El PDF tiene exactamente dos páginas A4 y presenta cinco iniciativas, cronograma, métricas, desbloqueos y límites operativos.
 
 ## Cómo empezar
 
@@ -35,8 +39,8 @@ input-private/              # Originales locales; nunca Git
 reto1-diagnostico/          # Ingestión, diagnóstico y post-mortem completados
 reto2-powershell/           # Mantenimiento sintético y evaluación del BAT
 reto3-azure/                # Laboratorio H4, consultas, automatización y Workbook
-reto4-triage-ia/            # Componente de sugerencias futuro
-reto5-propuesta/            # Propuesta futura de 90 días
+reto4-ia/                   # Justificación y backlog; no implementado
+reto5-90-dias/              # Propuesta ejecutiva de 90 días
 tests/                     # Pruebas H1–H3 y sintéticas H4
 evidencias/publicables/    # Solo evidencia revisada y redactada
 evidencias/private/        # Evidencia cruda; nunca Git

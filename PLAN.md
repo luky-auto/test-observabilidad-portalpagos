@@ -121,10 +121,12 @@ Corrección presupuestaria vigente: **USD 15**, independiente del crédito Stude
 - **55/55 pruebas Pester 5.7.1 PASS por motor**, Windows PowerShell 5.1.26100.9444 y PowerShell 7.6.5. Incluyen la espera acotada que corrige la verificación prematura del apagado del pool. Stubs/mocks sustituyen cmdlets Az; estas pruebas locales no sustituyen la evidencia real de Azure.
 - Alerta A: workspace exacto y dimensiones VM/sitio/pool. Rol de tres acciones explícitas asignado solo a la VM; catálogo no agregado. Permisos efectivos pendientes, sin ampliación automática.
 - **Estado real del laboratorio:** VM/IIS, tarea, ingestión, KQL, runtime/RBAC, alertas A/B, correo, falla controlada, recuperación HTTP y Workbook Dirección/NOC fueron comprobados. Desde el segundo 503 hasta el job: 2 min 52,554 s; hasta el primer 200: 4 min 00,069 s. El Fired solo se conserva al minuto, así que no se declara precisión de segundos para detección.
-- **P1 para cerrar H4:** trece capturas públicas revisadas; preservar esta evidencia y eliminar/verificar recursos dentro del alcance que autorice el usuario. No iniciar H5.
+- **Cierre H4:** trece capturas públicas revisadas y commit `0244b7f`. El usuario declaró eliminados los recursos Azure después de preservar la evidencia. No hubo verificación independiente mediante Portal/CLI desde el agente; esa limitación permanece explícita.
 - Máximo H4: 5 h sin ampliación; medición parcial y errores reales en IA_BITACORA. Sin commit/push ni cambios Azure.
 
 ### H5 Triage del Reto 4
+
+**Estado del hito: diferido, no completado.**
 
 - **Objetivo:** resumir alerta y contexto mediante un modelo, sin ejecutar acciones.
 - **Entregable:** componente, esquema JSON, catálogo cerrado de runbooks, validación de referencias y manejo de timeout/error/respuesta inválida; proveedor y manejo de secretos documentados.
@@ -133,6 +135,12 @@ Corrección presupuestaria vigente: **USD 15**, independiente del crédito Stude
 - **Aceptación:** schema y referencias validados, confianza explícita, fallo seguro y decisión humana; demostrar integración real con modelo o declarar esa parte pendiente. Conexión al Reto 3 es opcional.
 - **Riesgos:** exfiltración, inyección de instrucciones, falsa confianza; acceso al proveedor no confirmado.
 - **Tiempo máximo:** 2,5 h.
+
+#### Priorización formal
+
+Reto 4 **diferido, no completado** por límite de tiempo. No existe código, integración ni prueba de IA y no se entrega una demostración sin pruebas. La decisión protege calidad, seguridad y verificabilidad, conforme a la indicación del enunciado de preferir menos componentes bien hechos y probados frente a una entrega incompleta.
+
+Orden futuro: (1) contrato JSON cerrado; (2) catálogo versionado de runbooks; (3) preparación y minimización de evidencia; (4) clasificación y recomendación estructurada; (5) validación estricta de respuestas; (6) timeout, indisponibilidad y JSON inválido; (7) pruebas de memoria, pool/503 y disco; (8) evaluación de precisión y utilidad; (9) revisión humana obligatoria; (10) IA inicialmente sin permisos para ejecutar cambios.
 
 ### H6 Propuesta del Reto 5
 
@@ -143,6 +151,13 @@ Corrección presupuestaria vigente: **USD 15**, independiente del crédito Stude
 - **Aceptación:** métricas medibles sin inventar mejoras ni líneas base; priorización defendible.
 - **Riesgos:** propuesta genérica o metas sin sustento.
 - **Tiempo máximo:** 1 h.
+
+#### Resultado para revisión
+
+- Fuente única: `reto5-90-dias/PLAN_90_DIAS.md`; entregable oficial: `PLAN_90_DIAS.pdf`.
+- Cinco iniciativas con impacto, esfuerzo y riesgo; entregas incrementales de días 1-5 a 61-90; métricas con líneas base durante los primeros 30 días; desbloqueos y límites explícitos.
+- PDF A4 de exactamente dos páginas, renderizado e inspeccionado visualmente: texto legible, tablas y márgenes sin cortes o colisiones, páginas equilibradas y fuentes Bitstream Vera TrueType incorporadas.
+- Sin Azure, llamadas pagadas ni cambios en entregables técnicos H1-H4. Pendiente de revisión humana; no commit/push.
 
 ### H7 Revisión, entrega y reserva
 

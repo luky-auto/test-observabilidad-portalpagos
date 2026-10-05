@@ -198,3 +198,17 @@ Son errores observados de código/harness/edición, no fallos inventados de Azur
 **Revisión de evidencia:** ocho capturas quedaron aprobadas o aprobadas con límite. Cuatro se movieron a `evidencias/private/h4/capturas-originales/` porque exponían identificadores o fragmentos de destinatarios; deben sustituirse antes de versionar. No se desactivan alertas por decisión del usuario. La política y el webhook sí quedaron deshabilitados. Falta autorización explícita para eliminar y verificar recursos; sin commit/push ni inicio de H5.
 
 **Revisión posterior:** las cuatro capturas sustitutas se inspeccionaron nuevamente después de aumentar la cobertura. Ya no se distinguen caracteres de Job ID, incidente, destinatarios ni Object ID. Se renombraron a sus nombres finales y, junto con la captura adicional de configuración de alerta A, completan trece PNG públicos revisados. Puntos negros aislados son artefactos visuales sin contenido. El material rechazado permanece privado. Continúan pendientes autorización de commit y limpieza de Azure.
+
+## Prompt importante 09: priorización del Reto 4 y propuesta ejecutiva de 90 días
+
+**Solicitud real resumida:** registrar Reto 4 como diferido, no parcial ni completado, porque terminó el tiempo disponible; no afirmar integración de IA ni entregar demostración no probada. Después crear solo `reto5-90-dias/PLAN_90_DIAS.md` y PDF oficial de máximo dos páginas, actualizar cuatro documentos de control, inspeccionar visualmente y detenerse antes de commit/push.
+
+**Priorización registrada:** la decisión final de no implementar el Reto 4 fue humana. La IA ayudó únicamente a organizar el backlog pendiente: contrato JSON cerrado; catálogo versionado y permitido de runbooks; minimización de evidencia; clasificación/recomendación estructurada; validación estricta; timeout/indisponibilidad/JSON inválido; pruebas de memoria, pool/503 y disco; evaluación de precisión/utilidad; revisión humana; sin ejecución automática de cambios en la primera versión. La decisión protege calidad, seguridad y verificabilidad.
+
+**Uso real de IA:** estructuración ejecutiva, condensación del contenido solicitado, diseño de tablas, generación programática del PDF y revisión visual. La IA no aportó datos históricos, no ejecutó Azure, no hizo llamadas pagadas y no sustituyó la revisión humana solicitada.
+
+**Correcciones reales:** la primera generación tuvo dos páginas, pero una tabla introdujo Helvetica no incorporada; se fijó Vera en todas las celdas y Poppler confirmó solo dos fuentes TrueType incorporadas. La primera distribución dejó la página 1 demasiado vacía y la 2 demasiado densa; se movieron los desbloqueos a la primera página y se regeneró. La segunda inspección mostró páginas equilibradas, texto legible, tablas completas, márgenes y pies correctos.
+
+**Validación:** dos páginas A4 exactas; PDF reabierto; texto sustancial en ambas; Vera Roman/Bold con `emb yes`, `sub yes`, `uni yes`; render PNG de las dos páginas inspeccionado sin cortes ni colisiones. El usuario declaró eliminados los recursos Azure; se registra como declaración, no verificación independiente. Sin commit/push.
+
+**Corrección final solicitada:** por decisión humana, la tabla del Reto 5 cambió su última columna a `Riesgo` y calificó explícitamente cinco iniciativas como Bajo, Bajo, Medio, Bajo y Medio. La explicación del Reto 4 quedó en `reto4-ia/README.md` y no se incorporó al PDF ejecutivo. La IA organizó el contenido y regeneró el PDF; la aprobación de legibilidad y la decisión de diferir el Reto 4 corresponden al usuario.
