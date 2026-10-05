@@ -87,14 +87,14 @@ Resultados detallados revisados: [evidencia publicable](../evidencias/publicable
 - Un fallo de disco o terminación abrupta puede dejar una intención sin resultado final; nunca deducir éxito de una intención. Si falla el cierre del log, stdout/código del proceso prevalecen. No hay rollback del temporal borrado.
 - Solo se aprobará un manifiesto real después de determinar qué temporales son prescindibles y qué evidencia está bajo retención. Los 14 días son un supuesto de laboratorio, no una política acordada para producción.
 - Revisar personalmente las operaciones eliminadas, la restricción a sandbox, los límites, la retención y la suspensión por investigación. La rotación/revocación de la credencial original es una acción humana pendiente, fuera de esta implementación.
-- H4/Azure permanecen sin iniciar. Commit de H3 autorizado; push y activaci?n en producci?n no autorizados.
+- H4/Azure permanecen sin iniciar. Commit de H3 autorizado; push y activación en producción no autorizados.
 
 
-## Pol?tica de rutas versionable
+## Política de rutas versionable
 
-[Configuraci?n sint?tica](../tests/fixtures/h3/routes.synthetic.json): el generador sustituye `FIXTURE_NAME` por el nombre del sandbox reci?n creado y guarda una configuraci?n exacta en ?l. No autoriza todos los hermanos ni sus descendientes. Las rutas del modo laboratorio son relativas al repositorio, no al directorio de trabajo del proceso.
+[Configuración sintética](../tests/fixtures/h3/routes.synthetic.json): el generador sustituye `FIXTURE_NAME` por el nombre del sandbox recién creado y guarda una configuración exacta en él. No autoriza todos los hermanos ni sus descendientes. Las rutas del modo laboratorio son relativas al repositorio, no al directorio de trabajo del proceso.
 
-[Plantilla WEB-PAGOS-01](config/WEB-PAGOS-01.example.json): ejemplo local `D:\PortalPagos\Maintenance`, no una ruta observada ni validada del servidor. `enabled=false` bloquea incluso WhatIf hasta que un responsable prepare una copia revisada. No contiene identidades de usuario, contrase?as, tokens, recursos compartidos ni acciones de servicios. `computerName` identifica el host, no una cuenta.
+[Plantilla WEB-PAGOS-01](config/WEB-PAGOS-01.example.json): ejemplo local `D:\PortalPagos\Maintenance`, no una ruta observada ni validada del servidor. `enabled=false` bloquea incluso WhatIf hasta que un responsable prepare una copia revisada. No contiene identidades de usuario, contraseñas, tokens, recursos compartidos ni acciones de servicios. `computerName` identifica el host, no una cuenta.
 
 El esquema cerrado se valida en `Get-AuthorizedRoot`, compatible con 5.1 sin dependencias. Se exigen exactamente estos ocho campos; se rechazan duplicados, campos desconocidos y tipos incorrectos:
 
@@ -102,26 +102,26 @@ El esquema cerrado se valida en `Get-AuthorizedRoot`, compatible con 5.1 sin dep
 |---|---|
 | `schema` | Literal `h3.routes.v1` |
 | `mode` | `laboratory` o `deployment` |
-| `enabled` | Booleano; debe ser true para cualquier ejecuci?n |
+| `enabled` | Booleano; debe ser true para cualquier ejecución |
 | `computerName` | null en laboratorio; host exacto actual en despliegue |
-| `managedRoot` | Una ?nica ra?z exacta: relativa al repositorio en laboratorio, absoluta en despliegue |
-| `laboratoryBoundary` | L?mite relativo expl?cito que contiene estrictamente la ra?z del laboratorio; null en despliegue |
+| `managedRoot` | Una única raíz exacta: relativa al repositorio en laboratorio, absoluta en despliegue |
+| `laboratoryBoundary` | Límite relativo explícito que contiene estrictamente la raíz del laboratorio; null en despliegue |
 | `markerName` | Nombre de archivo simple que comienza por punto, sin subrutas; fijo en laboratorio |
 | `markerValue` | Valor no secreto que debe coincidir con el archivo marcador; fijo en laboratorio |
 
-La configuraci?n se limita a 16 KiB. Tanto configuraci?n como directorio administrado deben estar en un volumen local fijo. Se rechazan ra?ces de unidad, UNC, traversal, comodines, streams alternos y reparse points/symlinks en rutas o ancestros. Se exige igualdad de ruta normalizada, no coincidencia por prefijo. La configuraci?n y el marcador se revalidan antes de cada borrado. El contenido del marcador identifica el directorio; no constituye autenticaci?n ni reemplaza ACLs.
+La configuración se limita a 16 KiB. Tanto configuración como directorio administrado deben estar en un volumen local fijo. Se rechazan raíces de unidad, UNC, traversal, comodines, streams alternos y reparse points/symlinks en rutas o ancestros. Se exige igualdad de ruta normalizada, no coincidencia por prefijo. La configuración y el marcador se revalidan antes de cada borrado. El contenido del marcador identifica el directorio; no constituye autenticación ni reemplaza ACLs.
 
-**L?mite de confianza:** quien pueda modificar c?digo, configuraci?n o el argumento `ConfigurationPath` de la tarea puede cambiar la pol?tica. La seguridad del despliegue requiere que solo administradores autorizados puedan hacerlo; la identidad de ejecuci?n debe tener solo lectura sobre ellos. El m?dulo no certifica autom?ticamente dichas ACLs. Pasar otra configuraci?n escrita por el invocador no demuestra aprobaci?n operativa.
+**Límite de confianza:** quien pueda modificar código, configuración o el argumento `ConfigurationPath` de la tarea puede cambiar la política. La seguridad del despliegue requiere que solo administradores autorizados puedan hacerlo; la identidad de ejecución debe tener solo lectura sobre ellos. El módulo no certifica automáticamente dichas ACLs. Pasar otra configuración escrita por el invocador no demuestra aprobación operativa.
 
-## Instalaci?n futura conceptual en Task Scheduler
+## Instalación futura conceptual en Task Scheduler
 
-No se ha instalado una tarea ni ejecutado la plantilla de despliegue. Procedimiento para una futura aprobaci?n en Windows Server:
+No se ha instalado una tarea ni ejecutado la plantilla de despliegue. Procedimiento para una futura aprobación en Windows Server:
 
-1. Instalar m?dulo y CLI en un directorio local administrado, separado de datos temporales, con escritura exclusiva de administradores. Preparar una copia revisada de la plantilla y sustituir la ruta de ejemplo por el directorio realmente autorizado. No hace falta editar el m?dulo.
-2. Preparar previamente la ra?z, `temp`, `audit`, `disposable.json`, `.maintenance.lock` y el marcador indicado. Empezar con manifiesto vac?o o `hold=true`; aprobar expl?citamente qu? temporales son desechables. No mover originales, logs o dumps para hacerlos candidatos.
-3. Asignar una identidad de servicio de m?nimo privilegio: lectura/ejecuci?n del c?digo; solo lectura de configuraci?n, marcador y manifiesto; lectura/borrado limitado a temporales autorizados; escritura de logs en `audit` y apertura del lock. Sin administrador local, privilegios de reinicio ni permisos de red. Si el entorno permite una gMSA, Windows gestiona su contrase?a; la identidad se configura en Task Scheduler y nunca dentro del JSON o argumentos del script.
-4. Mantener la tarea deshabilitada. Tras autorizar la validaci?n en Windows Server, habilitar ?nicamente la copia de configuraci?n revisada (`enabled=true`) y ejecutar manualmente con `-WhatIf` bajo la misma identidad. Verificar candidatos, esquema, marcador y ausencia de mutaciones; WhatIf no demuestra que los permisos de escritura sean suficientes. Validar esos permisos y fallos con fixtures sint?ticos en ese servidor antes de la activaci?n.
-5. Configurar como acci?n Windows PowerShell 5.1 con `-NoProfile -NonInteractive -File "<ruta local de Invoke-Maintenance.ps1>" -ConfigurationPath "<configuraci?n aprobada>" -ManagedRoot "<ra?z exacta aprobada>" -WhatIf`. Todos los marcadores entre ?ngulos son valores a resolver, no comandos ejecutados. Nunca pasar contrase?a, usuario o token al script; respetar la pol?tica de ejecuci?n/firma del entorno, sin bypass.
-6. Tras aprobaci?n expl?cita de activaci?n real y validaci?n en Windows Server, retirar WhatIf y habilitar la tarea en horario acordado. Configurar no iniciar otra instancia si ya est? en ejecuci?n, adem?s del lock del script. Supervisar Last Run Result/c?digo de proceso, stdout y JSONL; ante 3?5, investigar sin reintentos ciegos. Para detener la automatizaci?n, deshabilitar la tarea y revisar ejecuciones ya iniciadas.
+1. Instalar módulo y CLI en un directorio local administrado, separado de datos temporales, con escritura exclusiva de administradores. Preparar una copia revisada de la plantilla y sustituir la ruta de ejemplo por el directorio realmente autorizado. No hace falta editar el módulo.
+2. Preparar previamente la raíz, `temp`, `audit`, `disposable.json`, `.maintenance.lock` y el marcador indicado. Empezar con manifiesto vacío o `hold=true`; aprobar explícitamente qué temporales son desechables. No mover originales, logs o dumps para hacerlos candidatos.
+3. Asignar una identidad de servicio de mínimo privilegio: lectura/ejecución del código; solo lectura de configuración, marcador y manifiesto; lectura/borrado limitado a temporales autorizados; escritura de logs en `audit` y apertura del lock. Sin administrador local, privilegios de reinicio ni permisos de red. Si el entorno permite una gMSA, Windows gestiona su contraseña; la identidad se configura en Task Scheduler y nunca dentro del JSON o argumentos del script.
+4. Mantener la tarea deshabilitada. Tras autorizar la validación en Windows Server, habilitar únicamente la copia de configuración revisada (`enabled=true`) y ejecutar manualmente con `-WhatIf` bajo la misma identidad. Verificar candidatos, esquema, marcador y ausencia de mutaciones; WhatIf no demuestra que los permisos de escritura sean suficientes. Validar esos permisos y fallos con fixtures sintéticos en ese servidor antes de la activación.
+5. Configurar como acción Windows PowerShell 5.1 con `-NoProfile -NonInteractive -File "<ruta local de Invoke-Maintenance.ps1>" -ConfigurationPath "<configuración aprobada>" -ManagedRoot "<raíz exacta aprobada>" -WhatIf`. Todos los marcadores entre ángulos son valores a resolver, no comandos ejecutados. Nunca pasar contraseña, usuario o token al script; respetar la política de ejecución/firma del entorno, sin bypass.
+6. Tras aprobación explícita de activación real y validación en Windows Server, retirar WhatIf y habilitar la tarea en horario acordado. Configurar no iniciar otra instancia si ya está en ejecución, además del lock del script. Supervisar Last Run Result/código de proceso, stdout y JSONL; ante 3–5, investigar sin reintentos ciegos. Para detener la automatización, deshabilitar la tarea y revisar ejecuciones ya iniciadas.
 
-Referencias oficiales consultadas: [principal y nivel de privilegio de tareas](https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtaskprincipal) y [cuentas de servicio administradas](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-service-accounts). Son opciones de instalaci?n futura; no se ha creado ninguna identidad ni tarea.
+Referencias oficiales consultadas: [principal y nivel de privilegio de tareas](https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtaskprincipal) y [cuentas de servicio administradas](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-service-accounts). Son opciones de instalación futura; no se ha creado ninguna identidad ni tarea.

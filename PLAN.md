@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-03 (America/Bogota). Alcance inicial máximo: **20 horas**, incluidas preparación, pruebas, evidencia, revisión y reserva. El enunciado estima 12–16 horas y fija 5 días desde la recepción; la fecha de recepción no está confirmada, por lo que no se calcula vencimiento.
 
-Estado: **H0 y H1 completados y aprobados**, con cierres registrados el 2026-10-03 a las 20:37:32 y 21:47:09 (Bogotá), respectivamente. **H2 completado y aprobado; Reto 1 cerrado**, el 2026-10-04 a las 02:29:13 (America/Bogota, UTC-05). **H3 completado y aprobado; Reto 2 cerrado**, versionado en `df48a5851bcb54c6309b321f1c4125bfa7af8d36`. H4 activo: diseño y preparación local aprobados; el usuario creó manualmente presupuesto, RG, workspace y red base paso a paso. La VM y los componentes posteriores aún no están autorizados; H5–H7 no implementados. Los tiempos siguientes son límites planificados, no horas ejecutadas. Un único hito activo. Esperas externas no habilitan trabajo simultáneo ni extensión del presupuesto de esfuerzo.
+Estado: **H0–H4 completados y aprobados**; Retos 1, 2 y 3 cerrados con la evidencia disponible. H4 quedó versionado en `0244b7f`; el usuario declaró eliminados todos los recursos Azure y confirmó ausencia de costos residuales, sin verificación pública independiente posterior al borrado. **H5/Reto 4 diferido y no implementado. H6/Reto 5 terminado y aprobado**, versionado con la justificación de H5 en `2021de7`. H7 permanece como cierre documental. Los tiempos siguientes son límites planificados, no horas ejecutadas.
 
 ## Secuencia y prioridades
 
@@ -122,7 +122,7 @@ Corrección presupuestaria vigente: **USD 15**, independiente del crédito Stude
 - Alerta A: workspace exacto y dimensiones VM/sitio/pool. Rol de tres acciones explícitas asignado solo a la VM; catálogo no agregado. Permisos efectivos pendientes, sin ampliación automática.
 - **Estado real del laboratorio:** VM/IIS, tarea, ingestión, KQL, runtime/RBAC, alertas A/B, correo, falla controlada, recuperación HTTP y Workbook Dirección/NOC fueron comprobados. Desde el segundo 503 hasta el job: 2 min 52,554 s; hasta el primer 200: 4 min 00,069 s. El Fired solo se conserva al minuto, así que no se declara precisión de segundos para detección.
 - **Cierre H4:** trece capturas públicas revisadas y commit `0244b7f`. El usuario declaró eliminados los recursos Azure después de preservar la evidencia. No hubo verificación independiente mediante Portal/CLI desde el agente; esa limitación permanece explícita.
-- Máximo H4: 5 h sin ampliación; medición parcial y errores reales en IA_BITACORA. Sin commit/push ni cambios Azure.
+- Máximo H4: 5 h sin ampliación; medición parcial y errores reales en IA_BITACORA. Reto 3 cerrado en `0244b7f`; la limpieza final de Azure fue declarada por el usuario.
 
 ### H5 Triage del Reto 4
 
@@ -152,12 +152,12 @@ Orden futuro: (1) contrato JSON cerrado; (2) catálogo versionado de runbooks; (
 - **Riesgos:** propuesta genérica o metas sin sustento.
 - **Tiempo máximo:** 1 h.
 
-#### Resultado para revisión
+#### Resultado verificado
 
 - Fuente única: `reto5-90-dias/PLAN_90_DIAS.md`; entregable oficial: `PLAN_90_DIAS.pdf`.
 - Cinco iniciativas con impacto, esfuerzo y riesgo; entregas incrementales de días 1-5 a 61-90; métricas con líneas base durante los primeros 30 días; desbloqueos y límites explícitos.
 - PDF A4 de exactamente dos páginas, renderizado e inspeccionado visualmente: texto legible, tablas y márgenes sin cortes o colisiones, páginas equilibradas y fuentes Bitstream Vera TrueType incorporadas.
-- Sin Azure, llamadas pagadas ni cambios en entregables técnicos H1-H4. Pendiente de revisión humana; no commit/push.
+- Sin Azure, llamadas pagadas ni cambios en entregables técnicos H1-H4. PDF aprobado por el usuario y versionado en `2021de7`; push no autorizado.
 
 ### H7 Revisión, entrega y reserva
 
@@ -169,9 +169,9 @@ Orden futuro: (1) contrato JSON cerrado; (2) catálogo versionado de runbooks; (
 - **Riesgos:** falta de tiempo, recursos facturando, capturas sensibles, evidencia no reproducible.
 - **Tiempo máximo:** 2,5 h.
 
-## Diseño preliminar permitido para Azure
+## Diseño preliminar histórico de Azure
 
-Hipótesis de arquitectura por evaluar en H4: VM con sitio/pool de laboratorio → agente y reglas de recolección → Log Analytics → consultas/alertas y tablero; alerta → mecanismo de remediación con identidad limitada y trazas. La herramienta concreta, región, tamaño, umbrales y costos siguen sin decidirse. Confirmar compatibilidad y precios oficiales al implementar. La alerta manual de presupuesto es previa al despliegue y distinta de las alertas operativas.
+Antecedente ya sustituido por H4: se propuso VM con sitio/pool de laboratorio → agente y reglas de recolección → Log Analytics → consultas/alertas y tablero; alerta → remediación con identidad limitada y trazas. La región, tamaño, umbrales, permisos, costo y resultados finales están documentados en `reto3-azure/` y en la evidencia publicable. Se conserva este párrafo solo como trazabilidad del diseño inicial.
 
 ## Control de alcance
 

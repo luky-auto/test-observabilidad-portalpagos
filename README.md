@@ -1,6 +1,6 @@
 # Prueba técnica de Observabilidad y Automatización
 
-Caso sintético PortalPagos. **Estado: Retos 1, 2 y 3 cerrados; Reto 4 diferido; Reto 5 creado para revisión.** H4 validó ingestión, KQL, alertas, notificación humana, auto-remediación, HTTP 200 y un Workbook para Dirección/NOC. El usuario declaró eliminados los recursos de Azure después de preservar la evidencia; el agente no hizo llamadas Azure ni verificó esa eliminación de forma independiente.
+Caso sintético PortalPagos. **Estado: Retos 1, 2, 3 y 5 terminados; Reto 4 diferido y no implementado.** H4 validó ingestión, KQL, alertas, notificación humana, auto-remediación, HTTP 200 y un Workbook para Dirección/NOC. El usuario declaró eliminados todos los recursos de Azure y confirmó que no existen costos residuales; el agente no hizo llamadas Azure ni verificó esa eliminación de forma independiente.
 
 H2 fue revisado y aprobado; el cierre del Reto 1 se registró el 2026-10-04 a las 02:29:13 (America/Bogota). Sus entregables quedaron versionados en el commit `97c4245` y enviados a GitHub.
 
@@ -21,14 +21,14 @@ H4/Reto 3: [resultado y artefactos](reto3-azure/README.md), [pasos de Azure Port
 
 [Reto 4](reto4-ia/README.md) está **no implementado**: quedó diferido, no completado. No existe ni se afirma una integración de IA. Al alcanzar el límite de tiempo se priorizaron entregables terminados, probados y sustentables, siguiendo la recomendación del enunciado de entregar menos componentes bien hechos y probados en vez de presentar todo a medias. No se entrega código demostrativo sin pruebas.
 
-Reto 5: [fuente del plan de 90 días](reto5-90-dias/PLAN_90_DIAS.md) y [entregable ejecutivo PDF](reto5-90-dias/PLAN_90_DIAS.pdf). El PDF tiene exactamente dos páginas A4 y presenta cinco iniciativas, cronograma, métricas, desbloqueos y límites operativos.
+Reto 5 **terminado y aprobado**: [fuente del plan de 90 días](reto5-90-dias/PLAN_90_DIAS.md) y [entregable ejecutivo PDF](reto5-90-dias/PLAN_90_DIAS.pdf). El PDF tiene exactamente dos páginas A4 y presenta cinco iniciativas, cronograma, métricas, desbloqueos y límites operativos.
 
 ## Cómo empezar
 
 1. Leer [AGENTS.md](AGENTS.md), [PLAN.md](PLAN.md) y [DECISION_LOG.md](DECISION_LOG.md).
 2. Mantener localmente el kit autorizado en `input-private/kit_prueba_portalpagos/` y el enunciado DOCX en `input-private/`. Esta carpeta está excluida de Git y es de solo lectura por regla de trabajo; no se han cambiado sus permisos del sistema.
 3. Verificar con `git status --short` y `git check-ignore input-private/kit_prueba_portalpagos/scripts/mantenimiento_diario.bat` que las entradas no se proponen para versionar. No abrir ni ejecutar el BAT sin protección de su credencial.
-4. Seguir la [guía de reproducción de H1](reto1-diagnostico/README.md): objetivo de compatibilidad Python 3.11 o posterior; ejecución comprobada en Python 3.12.14, sin validación directa de 3.11. Ingestión y análisis usan biblioteca estándar; los paquetes opcionales anteriores son solo para PDF. H2 y H3 están cerrados; H4 está en cierre de evidencia y limpieza.
+4. Seguir la [guía de reproducción de H1](reto1-diagnostico/README.md): objetivo de compatibilidad Python 3.11 o posterior; ejecución comprobada en Python 3.12.14, sin validación directa de 3.11. Ingestión y análisis usan biblioteca estándar; los paquetes opcionales anteriores son solo para PDF. Los Retos 1, 2, 3 y 5 están cerrados; el Reto 4 quedó diferido.
 
 El kit no se distribuye con el repositorio. La reproducción futura requerirá acceso legítimo al kit o fixtures sintéticos claramente identificados. El plazo es de cinco días desde la recepción según el enunciado; la fecha de recepción no está confirmada.
 
@@ -47,7 +47,7 @@ evidencias/private/        # Evidencia cruda; nunca Git
 work-private/              # Derivados locales; nunca Git
 ```
 
-Las carpetas de los retos 4–5 siguen reservadas para hitos futuros. Git no conserva carpetas vacías: se incluyen en esta documentación y se conservarán en el repositorio cuando tengan entregables autorizados; no se crearon archivos de relleno.
+Las carpetas de los retos 4–5 contienen sus entregables finales: justificación y backlog del Reto 4 diferido, y propuesta ejecutiva Markdown/PDF del Reto 5 terminado.
 
 ## Inventario observado y formatos
 

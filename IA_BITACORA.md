@@ -1,214 +1,224 @@
-# Bitácora real de uso de IA
+# Bitácora auditada de uso de IA
 
-## Herramientas y alcance
+## Criterio de auditoría
 
-2026-10-03 (America/Bogota). Asistente Codex, basado en GPT-6 según la configuración de esta sesión; variante exacta no verificada. Uso: lectura y planificación, documentación inicial y comprobaciones locales mediante PowerShell/.NET y Git. Habilidad `documents` consultada para lectura de DOCX; extracción OOXML de solo lectura, sin generar un documento Word ni revisar su diseño visual. Sin subagentes, servicios de modelos externos ni comandos Azure.
+Registro consolidado al 2026-10-05 a partir del historial Git, `PLAN.md`, `DECISION_LOG.md`, `README.md`, entregables y evidencia publicable. No reproduce conversaciones completas. Distingue:
 
-## Prompt importante 01
+- **Verificado:** existe soporte en Git, documentos o evidencia publicable.
+- **Declarado por el usuario:** decisión o acción humana informada durante el trabajo, sin verificación independiente completa.
+- **No verificable:** no existe soporte suficiente en el repositorio o en la evidencia conservada.
 
-**Origen:** solicitud inicial real del usuario; resumen fiel, no transcripción literal. Preparar una prueba de Especialista en Observabilidad y Automatización: leer enunciado y LEEME, inspeccionar datos, no resolver los cinco retos; crear únicamente documentación, `.gitignore` y estructura; planificar hasta 20 h con hitos verificables; proteger originales y credencial; trabajar un hito por vez; registrar decisiones y uso real de IA; no modificar Azure ni hacer commit/push sin autorización; posponer Reto 3 hasta revisión de retos 1 y 2; presupuesto manual previo y alertas operativas posteriores a recursos/fuentes.
+Los horarios incluidos en entregables técnicos proceden de sus evidencias. Los tiempos máximos de `PLAN.md` son presupuestos, no horas consumidas.
 
-**Respuesta generada:** documentación inicial con ocho hitos y sus siete campos de verificación; inventario de formatos, hechos/hipótesis/supuestos, puertas de Azure y protección de entradas. No se generaron soluciones de retos.
+## Herramientas, responsabilidades y control humano
+
+- **Codex:** utilizado para inspección, implementación, pruebas locales, documentación, revisión de evidencias, generación y validación de PDF, y operaciones de control de versiones autorizadas. Git demuestra los cambios y commits, pero no identifica por sí solo qué herramienta produjo cada línea.
+- **ChatGPT:** según declaración del usuario, se utilizó para interpretar el enunciado, revisar resultados de Codex, cuestionar decisiones técnicas, controlar alcance y preparar instrucciones. No hay conversaciones ni artefactos versionados que permitan auditar sesiones, modelo, fechas o aportes exactos; ese detalle es **no verificable**.
+- **Decisión humana:** la aprobación de cada hito, costos, creación o eliminación de recursos Azure, permisos, cambios de alcance, aceptación de riesgos, commits y publicaciones correspondió al usuario. La IA propuso, ejecutó trabajo local autorizado y señaló límites; no sustituyó esas decisiones.
+- **Control de datos sensibles:** según las reglas y el registro operativo, el usuario no entregó secretos ni credenciales a Codex o ChatGPT mediante prompts. La credencial conocida del BAT se trató localmente de forma redactada y solo se registraron resultados booleanos. Los escaneos documentados no hallaron su valor en archivos rastreados ni en el historial alcanzable. Esto no certifica objetos inalcanzables, remotos ni secretos desconocidos.
 
-**Validación:** contraste con texto del DOCX y LEEME; inspección de fuentes y Git; verificaciones finales detalladas abajo. **Decisiones no delegadas:** autorización Azure, configuración manual de presupuesto, aceptación de revisiones, publicación y decisiones humanas sobre sugerencias de triage.
+### Herramientas y modelos identificados
 
-Solo hay un prompt clave registrado. Los comandos rutinarios no se presentan como nuevos prompts del usuario. El objetivo del enunciado de 5–10 prompts se completará únicamente con interacciones relevantes reales.
-
-## Errores y correcciones que sí ocurrieron
-
-1. **Inventario inicial incompleto:** se usó `rg --files --hidden input-private`, que omitió logs por respetar `.gitignore`. Se detectó al contrastar con el LEEME, que sí anunciaba logs. Se corrigió con `Get-ChildItem input-private -Recurse -File`, que encontró 18 archivos. No se declaró que faltaran fuentes ni se cambió su contenido.
-2. **Lectura con codificación inadecuada:** la primera lectura de texto con `Get-Content` sin codificación explícita mostró caracteres acentuados mal decodificados. Se corrigió la lectura de LEEME y muestras con `-Encoding UTF8`; no se alteraron los originales. La salida conjunta de habilidad y LEEME también quedó truncada: el LEEME se volvió a leer completo por separado.
-3. **Supuesto de herramienta no confirmado:** se intentó `python --version` antes de verificar su disponibilidad; el comando falló porque no estaba en PATH. Para la extracción de texto del DOCX se usó .NET disponible en PowerShell, sin instalar software. No se concluyó que Python no exista en el equipo.
-
-Estos son fallos de procedimiento observados, no errores de diagnóstico ni alucinaciones del modelo de triage. No se inventan equivocaciones técnicas para cumplir la cuota del enunciado; su pertinencia para esa evaluación se revisará al cierre.
-
-## Verificaciones realizadas durante la inspección
-
-- DOCX: lectura de párrafos y tablas a través de `word/document.xml`; leídas secciones 1–6. LEEME: lectura completa UTF-8. Resultado: requisitos incorporados al plan; sin resolver retos.
-- CSV: `Import-Csv -Encoding UTF8` permitió observar 498 eventos, 2016 muestras de métricas y 8 tickets. Resultado: estructura legible; aún no es validación de calidad ni continuidad temporal.
-- IIS/HTTPERR: encabezados y muestras inspeccionados; se identificaron variantes de campos. SHA256 de los dos archivos del 16 coincide. Resultado: duplicado exacto confirmado, pendiente tratamiento en H1.
-- BAT: lectura redactada, omitiendo líneas potencialmente sensibles; no ejecutado ni copiado. JSON de alerta: estructura inspeccionada y `ConvertFrom-Json` completado; `schemaId` coincide con el esquema declarado.
-- Git: `git status --short`, `git ls-files`, `git log --all --format=%h --name-only` y `git check-ignore` sobre el BAT. Resultado inicial: solo `.gitignore` rastreado, un commit previo `aa212c5`, BAT ignorado. Advertencia real: archivo global de exclusiones inaccesible; reglas locales comprobables.
-- Se tomaron hashes SHA256 en memoria de los 18 originales antes de escribir documentación y se compararon después: los 18 permanecen iguales. No se publica el valor del secreto ni un hash de la credencial.
-- Exclusiones: `git check-ignore -q` para cada uno de los 18 originales; cero entradas sin exclusión. La advertencia del archivo global persiste, pero no impidió comprobar las reglas locales.
-- Secreto: valor aislado del BAT únicamente en memoria; búsqueda literal en los seis entregables y en contenido de blobs/commits/tags enumerados por `git rev-list --objects --all --reflog`; cero coincidencias. Alcance: objetos alcanzables y reflogs disponibles, no objetos inalcanzables ni remotos; no equivale a un escaneo universal de secretos desconocidos.
-- `git diff --check`: sin errores. `git status --short`: únicamente `.gitignore` modificado y los cinco Markdown nuevos. `git ls-files`: solo `.gitignore`. No se modificó el índice ni se hizo commit/push. Carpetas vacías verificadas durante su creación; no hay archivos de implementación.
-
-## Límites de evidencia
-
-No hay pruebas de soluciones, resultados del incidente ni evidencia de Azure. Los tiempos del PLAN son presupuestos, no mediciones de trabajo ejecutado. La inspección de formatos y lectura del BAT no equivalen a resolver retos 1 o 2.
-
-## Prompt importante 02 y trabajo real de H1
-
-**Fecha:** 2026-10-03, Bogotá. **Origen:** nueva solicitud real del usuario; resumen fiel, no transcripción literal. Implementar únicamente H1 del PLAN vigente, leer lo necesario, preservar originales y secretos, identificar duplicados/esquemas/horarios/incompletos, verificar UTC W3C contra las demás fuentes, cargar/validar/normalizar/resumir reproduciblemente, justificar exclusiones, probar con fixtures sintéticos y ejecutar reproducción; actualizar documentación con hechos, entregar resultados y revisión, sin Azure, llamadas pagadas, commit/push ni H2.
-
-**Herramientas:** Codex de esta sesión; PowerShell para comandos locales; Python 3.12.14 del runtime local, `csv`, `sqlite3`, `hashlib`, `datetime` y `unittest`; consulta web de documentación oficial Microsoft sobre formatos W3C y HTTPERR. No se usaron subagentes ni proveedor externo de inferencia. El lanzador `py -0p` no encontró instalaciones registradas, pero la inspección del runtime sí encontró Python: no se confundieron esas dos observaciones.
-
-**Respuesta generada:** cargador H1, verificador independiente, 21 tests con fixtures sintéticos construidos en código, guía, informe de calidad y resumen JSON publicable. Reglas R01–R12 y referencias de líneas permiten reproducir las cuentas. Detalle normalizado solo en carpetas ignoradas.
-
-**Error real y corrección:** la primera versión del validador fue demasiado estricta: rechazó 13 filas de Perfmon por un espacio en memoria privada y una fila HTTPERR sin petición completa. Ejecución inicial: 170036 aceptados, 14 rechazados y 25882 excluidos por copia. Se detectó al revisar las referencias de cuarentena contra las líneas originales. Se cambió R06 para conservar ausencia como null y el registro de conexión sin estado/método/URI; se añadieron tests específicos. Resultado final: 170050 conservados, 0 rechazados, 25882 excluidos por copia. Los 13 valores siguen siendo desconocidos; no se ocultó el defecto rellenando ceros. No se produjo una conclusión de incidente a partir del resultado inicial.
-
-**Validación real:**
-
-- `python -m unittest discover -s tests -p test_h1.py -v` con el ejecutable documentado: **21/21 PASS**. Incluye fixtures corruptos, multilinea, esquemas variables, límites temporales, duplicados conservados, entradas intactas, reproducción, rutas protegidas y eliminación del resumen obsoleto ante fallo.
-- Dos ejecuciones finales de `h1_ingest.py`, salidas `work-private/h1` y `work-private/h1-repro`: ambas con **195932 entradas, 170050 conservados, 25882 filas de copia excluidas, 0 rechazados, 170020 fechados en semana y 30 sin fecha**.
-- `verify_h1.py --output work-private/h1-repro --reference evidencias/publicables/h1-summary.json`: **33 comprobaciones PASS**, incluida igualdad byte a byte. JSON de 29.899 bytes, SHA256 `9aa56a99c0cf0e9b8d078f87840f26f05b6a310b6346b9b9be6570adc2c95c3f`.
-- Comparación SHA256 de los **18 originales** antes/después: sin cambios. El cargador también verifica sus 14 archivos al finalizar y el verificador los contrasta con el inventario.
-- `git diff --check`: sin errores al revisar implementación; bases y salidas privadas ignoradas; ningún archivo de `input-private/` o `work-private/` rastreado. No se hizo staging, commit ni push.
-
-**No delegado:** aceptación de la zona supuesta de eventos/tickets y de las reglas de calidad, aprobación de H1 y autorización de H2/publicación. No se convierten coincidencias horarias en causa raíz. Este registro añade un prompt importante real y un error de validación ocurrido; no inventa fallos de IA para cumplir cuotas.
-
-Los límites anteriores correspondían a H0. En H1 sí existen pruebas de ingestión y calidad; siguen sin existir diagnóstico H2, evidencia Azure, disponibilidad calculada ni pronósticos.
-
-## Prompt importante 03 y corrección de portabilidad
-
-**Solicitud real, resumida:** eliminar rutas específicas del computador de documentos y comandos, documentar Python 3.11 mediante lanzador o `.venv`, aclarar biblioteca estándar y alcance parcial de H1; programar todos los entregables restantes del Reto 1 y un post-mortem independiente en Markdown/PDF con paginación verificable; repetir 21 pruebas, 33 controles y revisión de rutas, sin commit ni H2.
-
-**Error real señalado por el usuario:** la guía inicial de H1 usaba una ruta absoluta al intérprete del equipo. Aunque permitía la ejecución local, hacía que el comando no fuera portable. Se reemplazó por comandos de lanzador y entorno virtual relativo; el código de ingestión no necesitó cambios. No se registra como error del análisis del incidente.
-
-**Ejecución real:** `py -3.11 --version` indicó que no existe una instalación registrada. Se creó una `.venv` local ignorada, sin paquetes externos, con el Python 3.12.14 disponible. Desde `.venv` se ejecutaron `-m unittest discover -s tests -p test_h1.py -v` (**21 PASS**), `h1_ingest.py --output work-private/h1-repro` y `verify_h1.py --output work-private/h1-repro --reference evidencias/publicables/h1-summary.json` (**33 PASS**). La referencia publicada no cambió. No se afirma haber probado Python 3.11 ni otro sistema operativo.
-
-**Revisión:** búsqueda de rutas locales en archivos rastreados y candidatos no ignorados: 12 archivos, cero coincidencias; `git diff --check` sin errores. Se actualizaron ambas guías, el alcance de H1 en el informe y la planificación de H2; no se redactó el post-mortem. Sin staging, commit, push ni inicio de H2.
-
-## Prompt importante 04 y ejecución de H2
-
-**2026-10-04, Bogotá. Solicitud real resumida:** completar exclusivamente el diagnóstico Reto 1 usando H1; explicar cronología, causa con incertidumbre, disponibilidad de negocio frente a salud, señales y riesgos/pronóstico; correlacionar todas las fuentes, producir evidencias estables y pruebas, ejecutar dos veces, redactar post-mortem independiente máximo tres páginas y verificar renderizado. Sin Azure, commit/push ni H3.
-
-**Herramientas y respuesta:** Codex, PowerShell, Python 3.12.14 y biblioteca estándar para consultas, cálculos y pruebas. Habilidad PDF consultada; ReportLab 4.4.9 y pypdf 6.10.0 disponibles para autoría/conteo, Poppler para renderizado y visor de imágenes para inspección real. No subagentes ni servicios Azure. Código generado: análisis H2, pruebas críticas, informes Markdown reproducibles y renderer PDF; catálogo E-001–E-009.
-
-**Validación real:** H1 pasó 33 verificaciones antes del análisis; 33 pruebas unitarias (21 H1 y 12 H2) pasaron. Se ejecutó dos veces la versión final del análisis y se compararon hashes con la copia publicable: iguales. Indicadores generados: API 82617/84004 éxitos, salud 20101/20153; se documentó que son métricas por solicitud y no de tiempo. El contraste IIS/HTTPERR impidió presentar el 100% parcial de salud como resultado integrado.
-
-**Incidencia real de generación:** el primer generador Markdown emitió `SyntaxWarning` por escapes de rutas relativas en un literal Python; se cambió a literal raw y se regeneró sin esa advertencia. No afectó las cifras ni fue un error causal del diagnóstico. Poppler emitió una advertencia sobre la fuente Symbol; ambos PNG se generaron y fueron inspeccionados sin caracteres rotos, recortes o solapamientos. No se inventan otras equivocaciones.
-
-**PDF verificado:** dos páginas con texto extraíble, renderizadas por separado y vistas completas. Contenido ejecutivo sin código, hashes o instrucciones de parsing; referencias discretas a E-001–E-009. Datos derivados masivos y PNG solo en `work-private/`.
-
-**Decisiones no delegadas:** aceptar alcance/denominadores de operaciones, comprobar zona de exportación de eventos/tickets, investigar caché con dumps/código, aprobar mitigaciones, autorizar H3 o commit/push. Confianza alta en mecanismo inmediato no equivale a defecto de código demostrado. Los escenarios de disco no se convierten en certeza.
-
-**Integridad de cierre:** comparación SHA256 de los 18 originales contra el inicio de H2: sin cambios. Bases normalizadas y PNG permanecen ignorados. El resumen H1 y sus parsers no se modificaron.
-
-## Corrección final de tipografía del post-mortem
-
-**Solicitud real:** conservar el contenido aprobado de H2, corregir exclusivamente el renderizado con TrueType incrustada y redistribuible, comprobar `pdffonts`, inspeccionar las dos páginas, agregar relación hitos/retos y repetir pruebas y controles sin análisis, commit ni H3.
-
-**Error real de la revisión anterior:** la primera inspección automática declaró correcto el PDF, pero una revisión independiente encontró tipografía no incrustada y renderizado visual defectuoso, con separación y colisión entre caracteres. La inspección visual inicial del asistente tampoco detectó ese defecto. El conteo de páginas y la extracción de texto no eran evidencia suficiente de corrección tipográfica.
-
-**Corrección:** reemplazo de Helvetica por Bitstream Vera normal/negrita, TrueType distribuida con ReportLab; resolución relativa al paquete, sin rutas de fuentes del sistema. Licencia redistribuible incluida en `reto1-diagnostico/FONT_LICENSE.txt`. Se añadió una validación que rechaza fuentes sin FontFile2. Esta validación detectó inicialmente Helvetica residual del documento y obligó a configurar también la fuente inicial del documento, además del texto y el canvas.
-
-**Validación final:** `pdffonts` de Poppler 26.09.0 confirmó BitstreamVeraSans-Roman y BitstreamVeraSans-Bold como TrueType, ambas `emb yes`, `sub yes`, `uni yes`; sin Helvetica. El paquete local inicial no incluía pdffonts: se obtuvo una copia adicional de Poppler únicamente en `work-private/`, excluida de Git. PDF de **2 páginas**, ambas renderizadas a PNG e inspeccionadas completas; sin letras separadas, superpuestas o cortadas, títulos y párrafos legibles. La comparación del texto extraído con el Markdown, excluyendo formato y pies, resultó idéntica; horas, cifras y referencias se conservaron.
-
-Se repitieron las **33 pruebas (21 H1 + 12 H2), todas PASS**. No se ejecutó el análisis ni se regeneró el contenido Markdown; se preservaron diagnóstico, post-mortem fuente y catálogo aprobado. Solo se agregó al PLAN la tabla breve de correspondencia hitos/retos. Sin commit, push ni inicio de H3.
-
-## Prompt importante 05: H3 autorizado y ejecutado localmente
-
-**Solicitud real, 2026-10-04, resumida:** implementar solo modernización del mantenimiento; evaluar primero el BAT por riesgo y justificar cada operación con Reto 1; objetivo Windows PowerShell 5.1, compatibilidad 7 y Pester 5; validaciones, WhatIf, JSONL, errores/códigos, idempotencia, concurrencia, preservación y comprobación de resultados. Probar únicamente sandboxes/fixtures, sin BAT original, secretos, IIS, servicios, logs reales, dumps o recursos compartidos. Actualizar controles y detenerse para revisión, sin commit/push, H4 ni Azure.
-
-**Herramientas y respuesta real:** PowerShell 5.1.26100.9444 y runtime PowerShell 7.6.5; Pester 5.7.1; Python de `.venv` para inspección redactada y agregación de resultados. Documentación oficial Microsoft ShouldProcess y Pester consultada. Sin subagentes. Evaluación previa, módulo, CLI, fixture JSON/generador, suite de 29 casos, runner, guía y evidencia revisada. Se eliminaron operaciones de servicios/red y se preservaron logs/dumps; limpieza limitada a temporales sintéticos explícitos, con manifiesto, hold, límites y bloqueo.
-
-**Dependencia real:** solo Pester 3.4.0 estaba instalado. Descarga local de 5.7.1 desde PowerShell Gallery: primer intento de conexión falló en sandbox; repetición autorizada fuera de esa restricción descargó el paquete a `work-private/h3-tools/`. Importación de 5.7.1 comprobada. No se instaló globalmente ni se necesitó un sustituto de Pester.
-
-**Incidencias reales y correcciones:**
-
-1. La primera configuración Pester intentó crear su TestRegistry y el entorno negó acceso al registro; ningún test funcional se ejecutó. Se desactivaron TestRegistry y TestDrive: la suite no los necesita porque crea fixtures explícitos dentro del repositorio. No se amplió acceso al registro para ejecutar las pruebas.
-2. La primera ejecución funcional pasó 24/26 casos. Un test de JSONL suponía que la intención era el segundo evento; había antes una omisión válida por orden de enumeración. Se corrigió para filtrar los eventos de eliminación y comprobar su orden relativo, preservando la comprobación de hash y resumen.
-3. Otro test convirtió el stderr esperado por parámetro inválido del proceso hijo en excepción de Pester. Se aisló temporalmente la preferencia de errores del test y se comprobó el código real 1. Se añadieron validaciones CLI WhatIf, JSON malformado y raíz junction; ejecución final 29/29 en ambos motores.
-
-Estas incidencias son errores de preparación/pruebas ocurridos, no fallos inventados del mantenimiento ni alucinaciones de un proveedor. No se probó producción.
-
-**Comandos/método y resultados finales:** `tests/Run-H3Tests.ps1 -PesterManifest ./work-private/h3-tools/Pester-5.7.1/Pester.psd1 -Label ps51` desde 5.1 y el mismo runner con `-Label ps7` desde 7.6.5: **29 PASS, 0 FAIL, 0 SKIP por motor**. Invocación de 7 mediante ruta local del runtime no publicada en los comandos portables. Reportes privados `work-private/h3-results/ps51.json` y `ps7.json`; agregación revisada en `evidencias/publicables/h3-tests.json`, con versiones, timestamps y resultado por caso.
-
-**Validaciones reales:** snapshot WhatIf igual en estructura, SHA256 y LastWriteTimeUtc (módulo y CLI), sin log ni adquisición del lock. Eliminación del temporal vencido permitido; recientes/no listados/dumps/logs preservados por hash; repetición sin segunda eliminación. Fallo de permiso simulado, fallo parcial y falsa eliminación detectados. Segundo proceso propietario del lock y liberación comprobados. JSONL parseable, intención previa al éxito y resumen conciliado. Códigos 0–5 comprobados en procesos; 3 también con temporal sintético bloqueado y 5 con lock sintético de solo lectura. Los 18 originales mantienen sus hashes; H1/H2 y sus evidencias no se modificaron.
-
-**Tiempo parcial medido:** 02:48:27.886–03:09:45.904 Bogotá, 21 min 18 s de tiempo transcurrido observado; no incluye lectura anterior ni cierre documental posterior y no es esfuerzo total. Límite H3: 3 h, sin ampliación.
-
-**Decisiones humanas pendientes:** aceptar alcance restringido a laboratorio, 14 días provisionales y manifiesto de temporales; preservar/archivar evidencia; retirar credencial del entorno real con autorización propia; evaluar producción/ACLs y carreras. H3 queda para revisión; no commit/push, H4 ni Azure.
-
-**Revisión final real:** se añadió el nombre relativo a las omisiones del log y el detalle de candidatos en WhatIf; ambas suites se repitieron con 29/29 PASS y se renovó la evidencia con hashes SHA256 de los seis artefactos ejecutables/de fixtures. `git diff --check` y comprobación de whitespace de archivos nuevos: correctos; enlaces locales H3 válidos. Escaneo literal de la credencial conocida en archivos rastreados/candidatos no ignorados: cero coincidencias; búsqueda de rutas personales: cero. Esto no certifica ausencia universal de secretos desconocidos. Índice y H1/H2 sin cambios; 18 originales intactos. Exclusiones de dependencias, resultados crudos y sandboxes verificadas con `git check-ignore`. README raíz actualizado para evitar describir H3 como no iniciado. No se hizo staging, commit ni push.
-
-## Prompt importante 06: aplicabilidad operativa de H3
-
-**Solicitud real resumida:** corregir el límite de rutas embebido que impedía instalar el módulo sin editarlo; mantener protecciones y operaciones excluidas, configuración versionable sintética y plantilla WEB-PAGOS-01 sin secretos, esquema/rutas exactas/marcador, guía conceptual de Task Scheduler, pruebas exclusivamente sintéticas en 5.1 y 7. No ejecutar producción, hacer commit ni iniciar H4.
-
-**Corrección real señalada por el usuario:** el diseño inicial restringía correctamente las pruebas, pero también impedía desplegar el mismo módulo. Se separó autorización de rutas en JSON `h3.routes.v1`: `ConfigurationPath` obligatorio, raíz exacta, esquema cerrado, modo laboratorio/despliegue, host y marcador. La plantilla queda `enabled=false`. Se conserva la validación de volumen fijo, rechazo de rutas inseguras y enlaces, límites, manifiesto, hold, ShouldProcess, concurrencia y auditoría. Se revalida configuración/marcador antes de cada eliminación.
-
-**Ejecuciones reales:** nueve casos nuevos de configuración y las 29 pruebas anteriores: **38/38 PASS en Windows PowerShell 5.1.26100.9444 y 7.6.5**, Pester 5.7.1. Se repitieron tras comprobar volumen local antes de acceder a configuración/raíz y endurecer revalidación del marcador. No hubo fallos nuevos de tests en este ajuste; no se inventan errores. La rama de despliegue se ejercitó con una configuración distinta generada para archivos sintéticos y el host local; la plantilla WEB-PAGOS-01 solo se leyó como datos, nunca se pasó al módulo/CLI. WhatIf volvió a mantener iguales los snapshots.
-
-**Documentación consultada y entregada:** Microsoft Learn sobre New-ScheduledTaskPrincipal y cuentas de servicio; referencias en la guía. Instalación conceptual con identidad de servicio de mínimo privilegio, sin contraseña en argumentos, ACLs para código/configuración/manifiesto/marcador, tarea inicialmente deshabilitada y primera ejecución WhatIf. Activación real exige aprobación y validación en Windows Server; no se registró tarea ni identidad.
-
-**Límites:** configuración y argumentos de tarea son parte del límite de confianza y requieren protección administrativa. El script no prueba esas ACLs ni elimina carreras con escritores ajenos. La ruta de ejemplo de despliegue es ilustrativa, no una ruta personal o verificada del servidor. No se ha medido de forma completa el esfuerzo adicional; no se inventa duración ni se amplía el máximo del hito. Sin commit/push, H4 o Azure.
-
-**Controles finales de esta revisión:** evidencia H3 actualizada con las dos ejecuciones de 38 casos y hashes de ocho artefactos/configuraciones. Escaneo de la credencial conocida en rastreados/candidatos: cero coincidencias; rutas personales: cero. La ruta local ilustrativa de WEB-PAGOS-01 es intencional y no corresponde al equipo del desarrollador. Plantilla inspeccionada con ocho campos permitidos, desactivada y sin campos de cuenta, secreto, recurso compartido o acciones. Los 18 originales, H1/H2 e índice siguen intactos. `git diff --check`, whitespace de nuevos archivos y enlaces locales H3 correctos.
-
-## Aprobación y comprobación previa al commit de H3
-
-Solicitud real del usuario: H3 aprobado; repetir comprobaciones finales y crear únicamente `feat: add configurable safe PowerShell maintenance`, sin push, H4 ni Azure. El registro de aprobación quedó en decisiones y bitácora; una revisión posterior detectó que PLAN y README seguían pendientes, corregido en la conciliación documental descrita abajo.
-
-Se ejecutó nuevamente `tests/Run-H3Tests.ps1` con Pester 5.7.1 en Windows PowerShell 5.1.26100.9444 y PowerShell 7.6.5: **38/38 PASS por motor**, cero fallos u omisiones. Reportes adicionales privados con etiquetas `final-ps51` y `final-ps7`; los hashes de los ocho artefactos coinciden con la evidencia publicable existente. La plantilla WEB-PAGOS-01 sigue desactivada. Exclusión de `input-private/` y `work-private/` comprobada; inventario candidato sin datos privados ni temporales. Búsqueda literal de credencial conocida en archivos/índice/historial alcanzable y reflogs: cero coincidencias; rutas personales en rastreados/candidatos: cero. No garantiza ausencia universal de otros secretos ni cubre objetos inalcanzables. `git diff --check` correcto.
-
-## Conciliación documental de H3
-
-Solicitud real: registrar H3 aprobado en PLAN/README, corregir caracteres dañados de la aprobación y crear un commit documental separado; presentar H4 concretado sin desplegar. Error real anterior: la escritura de texto a través del shell sustituyó acentos por signos de interrogación y varias sustituciones de estado no se aplicaron. Se corrigen mediante edición UTF-8, sin cambiar código, pruebas ni evidencia técnica aprobada. El diseño H4 se presenta en conversación; no se crean recursos ni se ejecuta Azure. La aprobación conceptual no equivale a autorización de despliegue.
-
-## Prompt importante 07: preparación local de H4
-
-**Validación de la corrección presupuestaria:** repetidas 50/50 pruebas por motor 5.1 y 7.6.5, cero fallos/omisiones; evidencia local renovada con hashes. Regenerados los dos ZIP vigentes: 9 y 2 miembros, idénticos a fuentes; configuración interna USD 15, marcadores y ejemplos desactivados. Inspeccionadas en memoria las seis copias ZIP de las tres generaciones: cero coincidencias de secreto conocido, rutas personales, correos, URLs webhook o IDs de suscripción reales; sin miembros de evidencia privada. Generaciones anteriores obsoletas. Escaneo de 61 archivos candidatos/índice sin coincidencias de credencial conocida ni rutas personales, originales 18/18 intactos, exclusiones e índice conservados, diff --check correcto. No se cambió código de recuperación ni pruebas; solo política presupuestaria/documentación y evidencia derivada. Sin Azure, commit ni push.
-
-**Corrección posterior solicitada:** el usuario rechazó el importe presupuestario anterior y fijó **USD 15**, distinguiéndolo del posible crédito Student. Las referencias y el resumen de alcance de este registro se actualizan al importe vigente; esto no afirma que ese fuera el importe del mensaje inicial ni que se hubiera creado presupuesto alguno. Se agregan alertas reales 10/50/80/100 %, pronosticada 80 % o 100 % si disponible, marcador de destinatario, demora de datos y eliminación del RG el mismo día como contención principal. Se mantiene ámbito suscripción por la puerta previa al RG y cobertura de gastos fuera, con atribución separada por RG. ZIP opcionales e inventario exacto documentados; regeneración y revisión solicitadas, sin Azure ni commit/push.
-
-**Revisión final tras la solicitud de continuar:** paquetes regenerados con la versión final; los nueve archivos de H4Guest.zip y los dos de H4SafeAutomation.zip coinciden por SHA256 con sus fuentes. Ambos ZIP permanecen ignorados. `git diff --check` correcto, índice sin cambios y ningún diff en H1/H2/H3 técnico. Resumen de revisión: 27 archivos nuevos y cuatro Markdown de control modificados; diff completo local en `work-private/h4-results/review.diff`.
-
-**Solicitud real resumida, 2026-10-04:** diseño aprobado; East US, Windows Server 2022/B2s pendiente de precio/cuota, techo preventivo USD 15 con cuenta Student, eliminación el mismo día tras evidencia, webhook temporal aceptado sin URL registrada, correo manual y ningún secreto compartido. Crear solo scripts, KQL, runbook, rol, guía Portal y plantilla; probar webhook/destinos/estados/duplicados/intentos/HTTP sintéticamente, revisar permisos Run Command y detenerse antes de Azure, commit/push.
-
-**Trabajo y fuentes:** releídos controles y párrafos OOXML 63–72 del enunciado. Árbol inicial limpio, H3 df48a58 y conciliación e66c348. Documentación oficial Microsoft de CAS, Run Command/cmdlet/REST, webhooks, módulos Automation, diagnósticos, AMA/DCR, tablas y presupuestos; enlaces en guías. Intentos de consultar fuente pública del SDK en GitHub no recuperaron el archivo: no se afirma auditoría del SDK. Sin subagentes, SDK Azure real, IIS, tareas del equipo ni HTTP real de pruebas. Stubs/mocks con nombres Az simulan la integración.
-
-**Resultados reales:** Pester 5.7.1, **50/50 PASS por motor**, cero fallos/omisiones, Windows PowerShell 5.1.26100.9444 y 7.6.5. `tests/Run-H4Tests.ps1`, mismo Pester privado de H3, etiquetas ps51/ps7; reportes en `work-private/h4-results/`. WhatIf conserva SHA256/LastWriteTimeUtc y no llama adaptador de inicio. Pool/HTTP y permiso denegado son simulados. PowerShell parseado en ambos motores; rol sin comodines ni Contributor. ZIP locales generados con Build-H4Package, sin carga a servicios.
-
-**Errores reales corregidos:**
-
-1. El harness reutilizó la variable automática `$args`, sustituida por Pester con argumentos internos; el stub Identity tampoco era switch. Primera ejecución 32/48 PASS. Se renombró la variable y tipó el switch; nunca se ejecutó cmdlet Az real.
-2. Measure-Object de colección vacía bajo StrictMode no ofrecía Sum; luego `$null` a File.Replace desde 5.1 se convertía en ruta vacía. Se corrigió con acumulador explícito y `[NullString]::Value`; después 48/48 en 5.1, sin omitir persistencia.
-3. Primera prueba 7.6.5: 45/48; ConvertFrom-Json convertía timestamp ISO a DateTime y rompía validación textual UTC. Se detecta DateKind para conservar texto en 7.5+; 5.1 mantiene alternativa sin ese parámetro. Después 48/48; dos nuevos casos de escalamiento/éxito HTTP falso llevaron a 50/50 finales por motor.
-4. Parches documentales agrupados con contexto incompleto fueron rechazados. Se inspeccionó el diff y aplicó cada sección con contexto exacto; no se asumieron cambios que no estaban presentes.
-
-Son errores observados de código/harness/edición, no fallos inventados de Azure. KQL/Kusto, RBAC efectivo, Server/IIS, ACL, módulos Az gestionados, ingestión, correo, dashboard y recuperación real siguen sin probar. H4 preparado localmente para revisión, Reto 3 sin cerrar, sin H5.
-
-**Controles:** cero coincidencias de secreto conocido en archivos candidatos e índice y cero rutas personales; 18 originales conservan hashes iniciales. H3/entregables técnicos previos intactos. Ejemplos desactivados con suscripción/correo/webhook como marcadores, GUID solo en fixture sintético. ZIP/dependencias/sandboxes ignorados; índice preservado, sin commit/push. Advertencia de ignore global sin modificación; exclusiones locales comprobadas. El escaneo no certifica ausencia universal de secretos desconocidos.
-
-**Medición parcial:** reloj observado 10:10:29–10:29:00 America/Bogota, 18 min 31 s; excluye lectura anterior y cierre posterior. No es tiempo total del hito ni amplía máximo 5 h/20 h globales.
-
-**Decisión humana pendiente:** presupuesto manual confirmado, saldo/precio/cuota, revisión del privilegio SYSTEM indirecto y autorización de despliegue. Ante permiso faltante, registrar operación/alcance redactados y esperar aprobación. Aceptar webhook temporal no autoriza todavía crearlo.
-
-## Continuación manual de H4: red y preparación de VM, 2026-10-04
-
-**Hechos declarados por el usuario:** el presupuesto fue creado. La política de Azure for Students rechazó East US y enumeró regiones permitidas; B2s no estuvo disponible para esta suscripción en Canada Central ni North Central US. En North Central US, Portal mostró `Standard_B2als_v2` con 2 vCPU, 4 GiB y USD 34,16/mes. Se creó `law-h4-test` Pay-as-you-go; la vista de costos mostró 0,00 GB y USD 0,00 antes de ingerir datos. El workspace previo `law-h4` fue eliminado por el usuario. También se declararon activos `nsg-h4`, `vnet-h4`/`snet-h4` privada, `pip-h4` Standard y `nic-h4`, con asociaciones `snet-h4 → nsg-h4` y `pip-h4 → nic-h4/ipconfig1`. No se copiaron al repositorio los identificadores ni la dirección IP compartidos durante la navegación.
-
-**Cambio local:** se sustituyeron los valores operativos de workspace/región/tamaño por `law-h4-test`, North Central US y `Standard_B2als_v2`, preservando como historia las decisiones iniciales. Se creó `arm/vm-h4.json` para una sola VM `vm-h4-iis` que referencia la NIC existente. La plantilla exige usuario y `secureString` sin valores predeterminados; fija Windows Server 2022 Azure Edition, Trusted Launch, identidad administrada y disco Standard SSD. Azure debe crear el disco administrado junto con la VM; por eso la próxima autorización debe abarcar ambos. No hay extensiones ni recursos de red en la plantilla.
-
-**Pruebas reales:** 53/53 PASS con Pester 5.7.1 en Windows PowerShell 5.1.26100.9444 y 53/53 PASS en PowerShell 7.6.5. El primer intento de invocar `pwsh` por nombre falló porque no estaba en `PATH`; se repitió con el ejecutable 7.6.5 del runtime local y aprobó. Las tres pruebas nuevas validan la frontera de un único recurso declarado, NIC existente, identidad/tamaño/imagen/disco exactos y ausencia de credenciales predeterminadas. Son verificaciones sintácticas/estructurales; Azure no validó ni ejecutó el template. No se hicieron llamadas Azure, commit ni push.
-
-**Puerta siguiente:** revisar y aprobar explícitamente el despliegue conjunto de la VM y su disco administrado. Si la validación de Azure rechaza API, imagen, Trusted Launch, cuota o referencia a la NIC, detenerse y documentar el error antes de modificar el alcance.
-
-## Prompt importante 08: ejecución y evidencia real de H4
-
-**Solicitud real resumida, 2026-10-05:** guiar la configuración manual de ingestión, alertas, Automation, falla controlada, remediación y Workbook; luego indicar capturas y confirmar si Reto 3 terminó. El usuario ejecutó Azure Portal y compartió únicamente resultados necesarios. No se usó CLI/SDK Azure desde el agente.
-
-**Resultado observado:** las tablas `Event`, `Heartbeat`, `Perf` y `W3CIISLog` ingirieron datos. La alerta A detectó fallos 503 consecutivos y activó el runbook. El job terminó `Completed`, pero el éxito se aceptó solo por salida `Recovered`, HTTP 200, `H4_OK` y primer sondeo sano posterior. La alerta B entregó correo humano. El Workbook contiene vistas separadas Dirección/NOC. Costo evaluado visible: USD 0,06; presupuesto USD 15.
-
-**Incidencia real y corrección:** el script de falla lanzó `StopNotVerified` porque consultó inmediatamente el estado asíncrono del pool. La comprobación posterior mostró `Stopped` y HTTP 503. Se corrigió localmente con sondeo acotado de 15 segundos y pausa de 250 ms, conservando fallo cerrado. Pester 5.7.1: **55/55 PASS** en Windows PowerShell 5.1.26100.9444 y PowerShell 7.6.5, cero fallos u omisiones. El primer intento de invocar `pwsh` por nombre falló al no estar en PATH; se repitió con el ejecutable local conocido y aprobó.
-
-**Revisión de evidencia:** ocho capturas quedaron aprobadas o aprobadas con límite. Cuatro se movieron a `evidencias/private/h4/capturas-originales/` porque exponían identificadores o fragmentos de destinatarios; deben sustituirse antes de versionar. No se desactivan alertas por decisión del usuario. La política y el webhook sí quedaron deshabilitados. Falta autorización explícita para eliminar y verificar recursos; sin commit/push ni inicio de H5.
-
-**Revisión posterior:** las cuatro capturas sustitutas se inspeccionaron nuevamente después de aumentar la cobertura. Ya no se distinguen caracteres de Job ID, incidente, destinatarios ni Object ID. Se renombraron a sus nombres finales y, junto con la captura adicional de configuración de alerta A, completan trece PNG públicos revisados. Puntos negros aislados son artefactos visuales sin contenido. El material rechazado permanece privado. Continúan pendientes autorización de commit y limpieza de Azure.
-
-## Prompt importante 09: priorización del Reto 4 y propuesta ejecutiva de 90 días
-
-**Solicitud real resumida:** registrar Reto 4 como diferido, no parcial ni completado, porque terminó el tiempo disponible; no afirmar integración de IA ni entregar demostración no probada. Después crear solo `reto5-90-dias/PLAN_90_DIAS.md` y PDF oficial de máximo dos páginas, actualizar cuatro documentos de control, inspeccionar visualmente y detenerse antes de commit/push.
-
-**Priorización registrada:** la decisión final de no implementar el Reto 4 fue humana. La IA ayudó únicamente a organizar el backlog pendiente: contrato JSON cerrado; catálogo versionado y permitido de runbooks; minimización de evidencia; clasificación/recomendación estructurada; validación estricta; timeout/indisponibilidad/JSON inválido; pruebas de memoria, pool/503 y disco; evaluación de precisión/utilidad; revisión humana; sin ejecución automática de cambios en la primera versión. La decisión protege calidad, seguridad y verificabilidad.
-
-**Uso real de IA:** estructuración ejecutiva, condensación del contenido solicitado, diseño de tablas, generación programática del PDF y revisión visual. La IA no aportó datos históricos, no ejecutó Azure, no hizo llamadas pagadas y no sustituyó la revisión humana solicitada.
-
-**Correcciones reales:** la primera generación tuvo dos páginas, pero una tabla introdujo Helvetica no incorporada; se fijó Vera en todas las celdas y Poppler confirmó solo dos fuentes TrueType incorporadas. La primera distribución dejó la página 1 demasiado vacía y la 2 demasiado densa; se movieron los desbloqueos a la primera página y se regeneró. La segunda inspección mostró páginas equilibradas, texto legible, tablas completas, márgenes y pies correctos.
-
-**Validación:** dos páginas A4 exactas; PDF reabierto; texto sustancial en ambas; Vera Roman/Bold con `emb yes`, `sub yes`, `uni yes`; render PNG de las dos páginas inspeccionado sin cortes ni colisiones. El usuario declaró eliminados los recursos Azure; se registra como declaración, no verificación independiente. Sin commit/push.
-
-**Corrección final solicitada:** por decisión humana, la tabla del Reto 5 cambió su última columna a `Riesgo` y calificó explícitamente cinco iniciativas como Bajo, Bajo, Medio, Bajo y Medio. La explicación del Reto 4 quedó en `reto4-ia/README.md` y no se incorporó al PDF ejecutivo. La IA organizó el contenido y regeneró el PDF; la aprobación de legibilidad y la decisión de diferir el Reto 4 corresponden al usuario.
+| Herramienta | Modelo exacto | Razonamiento | Etapas | Finalidad |
+|---|---|---|---|---|
+| Codex | GPT-6 Astra | No verificable | Inicio y H0 exclusivamente, según confirmación del usuario | Inspección inicial, protección de fuentes y planificación |
+| Codex | GPT-5.6 Sol | Medium | H1–H7 anteriores a esta auditoría | Implementación, pruebas, documentación, evidencias y control de versiones |
+| ChatGPT | GPT-5.6 Sol | Medium | H0–H7, según declaración del usuario | Interpretación del enunciado, revisión crítica, control de alcance y preparación de instrucciones |
+| Codex | GPT-6, según la configuración de la sesión actual | No verificable | Auditoría actual y reconciliación documental | Contraste de Git/documentos, edición y validación final |
+
+La asignación histórica de modelos procede de la confirmación del usuario y no puede demostrarse mediante Git. El usuario confirmó que la denominación es **GPT-6 Astra** y que se utilizó únicamente hasta H0. No existe evidencia conservada de su configuración de razonamiento ni del momento técnico exacto del cambio de modelo.
+
+## Prompts clave y respuestas resumidas
+
+### 1. H0 — Preparación
+
+- **Herramienta principal y modelo:** Codex — GPT-6 Astra, utilizado hasta H0, con razonamiento no verificable.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** inspeccionar el enunciado, proteger originales y proponer el plan sin resolver todavía los retos.
+- **Respuesta resumida:** inventario, exclusiones, hitos, puertas de aprobación y separación entre hechos, hipótesis y supuestos.
+- **Revisión o decisión humana:** aprobación de la preparación y autorización separada del primer commit/push.
+- **Evidencia o validación:** 18 originales inventariados e intactos; `aa212c5`, `dff7c62`, `PLAN.md` y `DECISION_LOG.md`.
+
+### 2. H1 — Ingesta y calidad
+
+- **Herramienta principal y modelo:** Codex — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** implementar ingesta, normalización y validación reproducible.
+- **Respuesta resumida:** parser, trazabilidad, reglas de calidad, verificador, fixtures y resumen publicable.
+- **Revisión o decisión humana:** aceptación de supuestos y límites antes de autorizar H2.
+- **Evidencia o validación:** 21/21 pruebas, 33 controles y `evidencias/publicables/h1-summary.json`; commit `a0a13c8`.
+
+### 3. H2 — Diagnóstico y post-mortem
+
+- **Herramienta principal y modelo:** Codex — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** correlacionar evidencia, separar hechos de hipótesis y producir diagnóstico y post-mortem ejecutivo.
+- **Respuesta resumida:** cronología, indicadores, catálogo E-001–E-009, análisis causal con incertidumbre y PDF ejecutivo.
+- **Revisión o decisión humana:** aprobación del diagnóstico, sus límites y el cierre del Reto 1.
+- **Evidencia o validación:** 33 pruebas combinadas, evidencia reproducible y PDF de dos páginas; commits `97c4245` y `e9eba75`.
+
+### 4. H3 — Mantenimiento seguro
+
+- **Herramienta principal y modelo:** Codex — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** sustituir el BAT por PowerShell seguro, idempotente, sin credenciales y probado con Pester.
+- **Respuesta resumida:** evaluación de riesgos, módulo y CLI, configuración cerrada, `WhatIf`, auditoría JSONL, límites y bloqueo.
+- **Revisión o decisión humana:** eliminación de operaciones riesgosas, aprobación de H3 y exclusión de cualquier activación productiva.
+- **Evidencia o validación:** 38/38 pruebas por motor y `evidencias/publicables/h3-tests.json`; commits `df48a58` y `e66c348`.
+
+### 5. H4 — Preparación local
+
+- **Herramienta principal y modelo:** Codex — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** crear scripts, KQL, runbook, permisos mínimos, guía de Portal y pruebas locales sin desplegar Azure.
+- **Respuesta resumida:** artefactos locales, rol mínimo, salvaguardas, mocks, Workbook y secuencia de activación por puertas.
+- **Revisión o decisión humana:** presupuesto, región, SKU, permisos y alcance se revisaron antes de cada despliegue.
+- **Evidencia o validación:** artefactos de `reto3-azure/`, pruebas locales y decisiones D37–D46.
+
+### 6. H4 — Ejecución controlada
+
+- **Herramienta principal y modelo:** Codex — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** avanzar mediante autorizaciones individuales, recopilar evidencia y validar alerta, remediación y recuperación.
+- **Respuesta resumida:** guía paso a paso, revisión de resultados y capturas, corrección del sondeo asíncrono y cierre documentado.
+- **Revisión o decisión humana:** el usuario operó Portal, autorizó recursos y falla controlada, aceptó permisos/riesgos y decidió la eliminación final.
+- **Evidencia o validación:** 55/55 pruebas por motor, 13 capturas públicas, HTTP 200 y commit `0244b7f`.
+
+### 7. Reto 4 — Diferimiento
+
+- **Herramienta principal y modelo:** Codex — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** documentar honestamente el diferimiento y ordenar la implementación pendiente.
+- **Respuesta resumida:** justificación independiente y backlog seguro, sin código ni demostración ficticia.
+- **Revisión o decisión humana:** el usuario decidió priorizar entregables verificables y no afirmar una integración inexistente.
+- **Evidencia o validación:** `reto4-ia/README.md`; ausencia comprobada de código, pruebas o PDF del Reto 4.
+
+### 8. Reto 5 — Plan de 90 días
+
+- **Herramienta principal y modelo:** Codex — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Herramienta de revisión y modelo:** ChatGPT — GPT-5.6 Sol, Medium, según confirmación del usuario.
+- **Prompt abreviado:** elaborar una propuesta ejecutiva de máximo dos páginas con iniciativas, métricas, desbloqueos y límites.
+- **Respuesta resumida:** cinco iniciativas, cronograma, medición, dependencias y exclusiones en Markdown/PDF.
+- **Revisión o decisión humana:** evaluación de impacto, esfuerzo, riesgo y viabilidad; aprobación visual del PDF final.
+- **Evidencia o validación:** PDF A4 de dos páginas, tabla final de riesgos y commit `2021de7`.
+
+## H0 — Preparación, inventario y controles
+
+- **Objetivo:** entender el enunciado y las fuentes, proteger originales y dividir el trabajo en hitos con puertas de aprobación.
+- **IA utilizada:** Codex; ChatGPT como apoyo de interpretación y alcance por declaración del usuario.
+- **Aporte de la IA:** estructura inicial de `PLAN.md`, `DECISION_LOG.md`, `IA_BITACORA.md`, `README.md`, exclusiones y criterios de hecho, hipótesis y supuesto.
+- **Revisión y decisión humana:** aprobación de H0 y autorización separada de commit/push registradas en `DECISION_LOG.md`. Ningún cambio Azure fue autorizado en este hito.
+- **Correcciones:** el inventario inicial omitió archivos ignorados; se repitió sin depender de `.gitignore`. Se corrigió una lectura UTF-8 defectuosa y se sustituyó el supuesto de que Python no existía por una comprobación del runtime.
+- **Validaciones:** 18 originales inventariados e intactos por SHA-256; exclusión de entradas privadas; BAT no ejecutado ni copiado; revisión de Git y de la credencial conocida sin publicar su valor.
+- **Limitaciones y pendientes:** la fecha de recepción del enunciado no quedó confirmada. La inspección inicial no equivalía a resolver los retos.
+- **Trazabilidad Git:** `aa212c5` y `dff7c62`.
+
+## H1 — Ingesta y calidad de datos
+
+- **Objetivo:** cargar, normalizar y resumir las fuentes del Reto 1 de forma reproducible, conservando trazabilidad y originales.
+- **IA utilizada:** Codex para implementación, pruebas y documentación; ChatGPT para revisión de alcance según declaración del usuario.
+- **Aporte de la IA:** parser, verificador, pruebas sintéticas, reglas de calidad y resumen publicable.
+- **Revisión y decisión humana:** el usuario aprobó y versionó H1 antes de autorizar H2, según `DECISION_LOG.md`.
+- **Correcciones:** el validador inicial rechazó indebidamente 13 ausencias de memoria y un registro HTTPERR incompleto; se conservaron como valores desconocidos. Se eliminaron rutas locales no portables de las instrucciones. Se aclaró que H1 cubría ingesta/calidad y no completaba por sí solo todo el Reto 1.
+- **Validaciones:** 21/21 pruebas unitarias; 33 controles independientes; dos reproducciones iguales; 195.932 entradas, 170.050 conservadas, 25.882 filas de una copia exacta excluidas y 0 rechazadas. La fuente publicable es `evidencias/publicables/h1-summary.json`.
+- **Limitaciones y pendientes:** Python 3.12.14 fue ejecutado; compatibilidad objetivo 3.11 no se probó directamente. Las zonas de eventos y tickets conservaron el supuesto documentado. H1 no estableció causa raíz ni disponibilidad extremo a extremo.
+- **Trazabilidad Git:** `a0a13c8`.
+
+## H2 — Diagnóstico y post-mortem
+
+- **Objetivo:** correlacionar las fuentes, reconstruir la cronología, separar evidencia de hipótesis y producir un informe técnico y un post-mortem ejecutivo.
+- **IA utilizada:** Codex para análisis, pruebas, documentación y PDF; ChatGPT para revisar conclusiones y cuestionar decisiones técnicas, según declaración del usuario.
+- **Aporte de la IA:** análisis reproducible, catálogo E-001–E-009, pruebas H2, diagnóstico, post-mortem Markdown/PDF y validaciones de formato.
+- **Revisión y decisión humana:** el usuario revisó y aprobó H2; el Reto 1 quedó cerrado y versionado. Las mitigaciones siguieron siendo recomendaciones humanas, no cambios productivos.
+- **Correcciones:** se hizo explícita la separación entre hechos e hipótesis; la posible retención de sesiones quedó como hipótesis de alta confianza, no defecto demostrado. Se corrigió la presentación del post-mortem: paginación, distribución y sustitución de Helvetica por Bitstream Vera TrueType incorporada. También se corrigió un `SyntaxWarning` del generador.
+- **Validaciones:** 33 pruebas combinadas (21 H1 y 12 H2); 33 controles H1 previos; dos ejecuciones finales con evidencia idéntica; PDF de dos páginas renderizado e inspeccionado; texto cotejado con Markdown. Evidencia: `evidencias/publicables/h2-evidence.json`.
+- **Limitaciones y pendientes:** los datos no prueban disponibilidad temporal extremo a extremo ni el defecto exacto de código. Faltan dumps, código de aplicación y una prueba controlada para cerrar causalidad.
+- **Trazabilidad Git:** `97c4245` y ajuste documental `e9eba75`.
+
+## H3 — Mantenimiento seguro
+
+- **Objetivo:** sustituir el BAT por mantenimiento limitado, auditable e idempotente, probado solo con fixtures sintéticos.
+- **IA utilizada:** Codex para evaluación estática, implementación PowerShell, pruebas y documentación; ChatGPT para revisar riesgos y alcance, según declaración del usuario.
+- **Aporte de la IA:** evaluación de operaciones, módulo y CLI, configuración cerrada, `WhatIf`, JSONL, bloqueo, límites, códigos de salida y pruebas Pester.
+- **Revisión y decisión humana:** el usuario decidió eliminar reinicios, operaciones de red, manejo de credenciales y borrado de evidencia; aprobó H3 y su commit. No aprobó producción ni Task Scheduler.
+- **Correcciones:** la configuración fija inicial impedía desplegar el módulo sin editar código; se separó en `h3.routes.v1`, con ruta exacta y plantilla deshabilitada. Se eliminó el manejo de credenciales del BAT. También se corrigieron supuestos frágiles de orden en pruebas, propagación de stderr y configuración de Pester.
+- **Validaciones:** 38/38 casos en Windows PowerShell 5.1.26100.9444 y 38/38 en PowerShell 7.6.5, Pester 5.7.1; hashes de ocho artefactos; evidencia en `evidencias/publicables/h3-tests.json`.
+- **Limitaciones y pendientes:** pruebas solo en sandbox sintético; no Windows Server, ACL reales, IIS, servicios, red ni BAT original. La revocación de la credencial original y una adopción productiva requieren intervención humana independiente.
+- **Trazabilidad Git:** `df48a58` y conciliación `e66c348`.
+
+## H4 — Observabilidad y remediación en Azure
+
+- **Objetivo:** demostrar ingestión, monitoreo, alertas, remediación limitada, validación HTTP, seguridad y vistas separadas para Dirección y NOC.
+- **IA utilizada:** Codex para diseño, artefactos, pruebas locales, consultas, runbook, documentación, Workbook y control de versiones. ChatGPT apoyó la interpretación, revisión de resultados, cuestionamiento de permisos y preparación de instrucciones, según declaración del usuario.
+- **Aporte de la IA:** scripts, módulo, KQL, plantillas ARM, rol mínimo, runbook, salvaguardas, pruebas, guías y revisión de capturas. Codex no ejecutó CLI/SDK Azure; el usuario operó Portal.
+- **Revisión y decisión humana:** fueron humanas la corrección presupuestaria, región/SKU, creación y eliminación de recursos, permisos, activación progresiva, falla controlada, aceptación de riesgos y evidencia. El presupuesto vigente fue USD 15. El cambio solicitado de USD 100 a USD 15 se registra como decisión humana; el valor previo de USD 100 no aparece en el historial Git alcanzable y por ello ese antecedente exacto es **no verificable** desde el repositorio.
+- **Correcciones:** se reemplazaron región y SKU iniciales por opciones permitidas; se redujo el presupuesto; se limitaron permisos a tres acciones y alcance de VM; la activación avanzó por puertas. En pruebas se corrigieron errores del harness, compatibilidad de timestamps y persistencia. En el ensayo, `StopNotVerified` reveló una comprobación prematura del apagado asíncrono; se añadió espera acotada.
+- **Validaciones:** 55/55 casos Pester en cada motor; 13 capturas públicas revisadas; ingestión en cuatro tablas, alerta A, job, salida `Recovered`, HTTP 200, alerta B, RBAC y Workbook documentados. El segundo fallo hasta el job fue 2 min 52,554 s y hasta el primer sondeo sano 4 min 00,069 s. Costo observado durante la evidencia: USD 0,06. Fuentes: `evidencias/publicables/h4-local-tests.json` y `evidencias/publicables/h4/`.
+- **Limitaciones y pendientes:** las pruebas locales usan mocks y no sustituyen Azure. El usuario confirmó finalmente que eliminó todos los recursos y que no hay costos residuales; no existe evidencia pública posterior al borrado ni verificación independiente del agente, por lo que ese estado final es **declarado por el usuario**.
+- **Trazabilidad Git:** `0244b7f`.
+
+## H5 — Reto 4, triage con IA
+
+- **Objetivo:** evaluar un triage estructurado y seguro; finalmente se priorizó no implementarlo.
+- **IA utilizada:** Codex para organizar el backlog y documentar límites; ChatGPT para controlar alcance y preparar instrucciones, según declaración del usuario.
+- **Aporte de la IA:** orden de implementación pendiente: contrato JSON, catálogo permitido, minimización, respuesta estructurada, validación, fallos, casos, evaluación y revisión humana.
+- **Revisión y decisión humana:** el usuario decidió diferir el Reto 4 por límite de tiempo y priorización. No se afirmará que fue implementado.
+- **Correcciones o resultados:** se rechazó presentar una integración superficial, no evaluada o capaz de recomendar acciones sin controles.
+- **Validaciones:** existe únicamente la justificación y backlog en `reto4-ia/README.md`; se comprobó que no hay código, integración, prueba ni PDF del Reto 4.
+- **Limitaciones y pendientes:** todo el componente permanece pendiente. La primera versión prevista no ejecutaría cambios automáticamente.
+- **Trazabilidad Git:** `2021de7`.
+
+## H6 — Reto 5, plan de 90 días
+
+- **Objetivo:** convertir hallazgos en cinco iniciativas ejecutivas con cronograma, métricas y límites.
+- **IA utilizada:** Codex para estructurar, condensar, generar y validar el PDF; ChatGPT para revisar resultados y preparar instrucciones, según declaración del usuario.
+- **Aporte de la IA:** propuesta, tablas, métricas, diseño PDF y comprobaciones de contenido y formato.
+- **Revisión y decisión humana:** el usuario revisó impacto, esfuerzo, riesgo y viabilidad; solicitó la columna explícita de riesgo y aprobó la versión final de dos páginas.
+- **Correcciones:** se equilibraron páginas, se eliminaron fuentes no incorporadas y se calificaron los riesgos como Bajo, Bajo, Medio, Bajo y Medio. La justificación del Reto 4 quedó fuera del PDF.
+- **Validaciones:** PDF A4 de dos páginas; contenido sustantivo cotejado con Markdown; cero elementos fuera de página; Vera Roman/Bold incorporadas; render inspeccionado. Entregables: `reto5-90-dias/PLAN_90_DIAS.md` y `PLAN_90_DIAS.pdf`.
+- **Limitaciones y pendientes:** las metas porcentuales son objetivos sujetos a línea base, no resultados históricos.
+- **Trazabilidad Git:** `2021de7`.
+
+## Errores o propuestas riesgosas de la IA
+
+| Caso | Error o riesgo | Cómo se detectó | Corrección humana | Validación posterior |
+|---|---|---|---|---|
+| H1: ausencias y HTTPERR | El validador rechazó 13 ausencias válidas de memoria y un registro parcial de HTTPERR. | La revisión de cuarentena se contrastó con las líneas originales. | Se decidió conservar ausencias como `null` y aceptar el registro de conexión sin inventar campos HTTP. | 21/21 pruebas, 33 controles, 170.050 registros conservados y 0 rechazados. |
+| H2: sesiones/caché | La correlación podía convertirse indebidamente en una causa de código demostrada. | La revisión evidenció que no existían dumps, código ni prueba controlada de reversión. | Se separó el mecanismo inmediato verificado de la hipótesis de retención de sesiones/caché. | Catálogo E-001–E-009, 12 pruebas H2 y revisión humana del diagnóstico/post-mortem. |
+| H3: rutas fijas | La primera solución estaba segura para el laboratorio, pero no podía desplegarse sin editar el módulo. | El usuario cuestionó su aplicabilidad operativa. | Se autorizó una configuración `h3.routes.v1`, cerrada, versionable, con raíz exacta y plantilla deshabilitada. | 38/38 pruebas en PowerShell 5.1 y 38/38 en PowerShell 7.6.5. |
+| H4: presupuesto | La propuesta inicial usó USD 100, superior al límite aceptado. | El usuario revisó costo, crédito disponible y alcance. | El usuario fijó USD 15 como techo preventivo y exigió activación progresiva. | Documentación unificada en USD 15 y captura pública del presupuesto; el valor previo de USD 100 no es verificable en Git. |
+| H4: `StopNotVerified` | El script verificó demasiado pronto una operación asíncrona y reportó fallo aunque el pool terminó detenido. | La comprobación posterior mostró estado detenido y HTTP 503. | Se aprobó una espera acotada de 15 segundos con sondeo cada 250 ms y fallo cerrado. | 55/55 pruebas por motor y evidencia posterior de recuperación HTTP. |
+| PDF ejecutivo | Una versión introdujo una fuente no incorporada y otra distribución desequilibró las páginas. | `pdffonts`, render PNG y revisión visual humana. | Se exigió Bitstream Vera incorporada y redistribución del contenido. | PDF final de dos páginas, fuentes incorporadas, contenido cotejado y aprobación visual. |
+
+## Validación y decisiones no delegadas
+
+| Categoría | Decisión reservada a una persona | Razón |
+|---|---|---|
+| Credenciales | Introducción, rotación, revocación y manejo de credenciales | La IA no necesita conocer valores y no debe ampliar exposición. |
+| Costos | Aprobación de presupuesto, SKU, duración y consumo | Generan impacto financiero y dependen de la cuenta real. |
+| Recursos Azure | Creación, modificación y eliminación | Son acciones externas, facturables y potencialmente irreversibles. |
+| Permisos y riesgos | Aceptación de RBAC, privilegio efectivo y salvaguardas | El propietario debe aceptar el riesgo residual y el alcance operativo. |
+| Causa raíz | Conclusión final y cierre de hipótesis | La correlación disponible no sustituye dumps, código o prueba controlada. |
+| Evidencias | Selección, redacción y publicación | Pueden exponer identificadores o información personal; requieren revisión visual humana. |
+| Reto 4 | Decisión de diferirlo | Es una priorización de tiempo, calidad y riesgo, no una decisión técnica automática. |
+| Repositorio | Autorización de commit, push y publicación | Cambia el historial o divulga artefactos; requiere consentimiento explícito. |
+
+Las validaciones técnicas ejecutadas por Codex sirvieron como evidencia para la decisión; no concedieron autorización automática para ninguna de estas categorías.
+
+## H7 — Cierre, control de versiones y estado actual
+
+- **Objetivo:** preservar evidencia revisada, mantener límites honestos y versionar solo con aprobación humana.
+- **IA utilizada:** Codex para auditoría, revisión del índice, escaneo redactado, commits autorizados y verificación posterior. ChatGPT apoyó el control de alcance por declaración del usuario.
+- **Aporte de la IA:** nueve commits locales trazables desde `aa212c5` hasta `2021de7`, comprobaciones previas y documentación de lo pendiente.
+- **Revisión y decisión humana:** cada commit/push y cada cambio Azure requirió autorización separada. El commit final de Retos 4–5 fue aprobado por el usuario. No hay autorización vigente de push.
+- **Correcciones o resultados:** Esta auditoría complementó el registro por hitos con ocho prompts clave, sus respuestas resumidas, la revisión humana aplicada y la evidencia correspondiente.
+- **Validaciones de esta auditoría:** historial y archivos de los nueve commits; 18 evidencias publicables rastreadas; ninguna ruta de `input-private/`, `work-private/` o `evidencias/private/` rastreada; codificación UTF-8 de esta bitácora; contraste con PLAN, decisiones, README y entregables.
+- **Limitaciones y pendientes:** Git no demuestra por sí solo la herramienta que produjo cada cambio ni las aprobaciones humanas. El commit local final continúa pendiente de publicación y esta auditoría requiere revisión humana.
+- **Trabajo actual no confirmado:** antes de esta auditoría el árbol estaba limpio; `main` estaba un commit delante de `origin/main`. Esta actualización de `IA_BITACORA.md` queda sin commit ni push hasta revisión humana.
+
+## Inconsistencias y hechos no verificables detectados
+
+- Git y los documentos no permiten reconstruir las sesiones exactas de ChatGPT/Codex ni su configuración histórica; la asignación de GPT-6 Astra hasta H0 y GPT-5.6 Sol Medium se registra por confirmación del usuario.
+- El cambio de presupuesto de USD 100 a USD 15 fue solicitado por el usuario, pero el historial alcanzable conserva USD 15 y no demuestra el importe anterior.
+- La eliminación definitiva de Azure y la ausencia de costos residuales fueron confirmadas nuevamente por el usuario, sin captura o consulta pública posterior al borrado.
+- La advertencia de Git sobre el archivo global de exclusiones inaccesible persiste; las exclusiones locales y el conjunto rastreado sí se pudieron comprobar.

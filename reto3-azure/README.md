@@ -1,6 +1,6 @@
 # Reto 3 — observabilidad y remediación en Azure
 
-El laboratorio H4 demostró la cadena VM Windows/IIS → Azure Monitor Agent → Log Analytics → alerta A → Action Group → Azure Automation → Run Command → recuperación del application pool. La comprobación final fue HTTP 200 con cuerpo `H4_OK`. La política de remediación y el webhook quedaron deshabilitados después del ensayo; las alertas operativas permanecen activas hasta eliminar el laboratorio.
+El laboratorio H4 demostró la cadena VM Windows/IIS → Azure Monitor Agent → Log Analytics → alerta A → Action Group → Azure Automation → Run Command → recuperación del application pool. La comprobación final fue HTTP 200 con cuerpo `H4_OK`. La política de remediación y el webhook quedaron deshabilitados después del ensayo. El usuario declaró posteriormente eliminados todos los recursos Azure y confirmó ausencia de costos residuales; no existe verificación pública independiente posterior al borrado.
 
 ## Resultado observado
 
@@ -54,4 +54,4 @@ pwsh -NoProfile -File tests/Run-H4Tests.ps1 -PesterManifest ./work-private/h3-to
 
 La disponibilidad del workbook es observada desde la VM y no representa experiencia extremo a extremo ni transacciones reales. Minutos sin sondeo son `Unknown`. Un job `Completed` no demuestra recuperación sin el HTTP 200 y `H4_OK`.
 
-Las trece capturas públicas pasaron revisión visual y la documentación registra los resultados y límites. Para cerrar H4 falta eliminar y verificar los recursos cuando el usuario autorice el alcance. Bicep o Terraform es un bono opcional y no forma parte del mínimo funcional ya demostrado. No se hará commit, push ni eliminación sin autorización explícita.
+Las trece capturas públicas pasaron revisión visual y la documentación registra los resultados y límites. H4/Reto 3 quedó cerrado según la evidencia disponible y el usuario declaró completada la eliminación de recursos sin costos residuales. Esa limpieza no fue verificada de forma independiente por el agente. Bicep o Terraform es un bono opcional y no formó parte del mínimo funcional demostrado. El commit quedó autorizado y realizado; cualquier push continúa requiriendo autorización explícita.
